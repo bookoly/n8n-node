@@ -1,0 +1,139 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Implement API Key Authentication",
+        "description": "Set up authentication mechanism to validate API keys in request headers",
+        "details": "Create middleware to extract and validate API keys from Authorization header. Store credentials securely using n8n's credential system. Implement error handling for invalid or missing keys.",
+        "testStrategy": "Send requests with valid and invalid API keys to verify authentication success/failure",
+        "priority": "high",
+        "dependencies": [],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 2,
+        "title": "Create Operation Dropdown Field",
+        "description": "Implement UI component to select operation type from available options",
+        "details": "Design and implement a dropdown field in n8n node configuration to select between Sound, Speech, Transcription, Subtitle, and Video operations. Populate options based on API endpoints.",
+        "testStrategy": "Verify dropdown displays all operation categories and allows selection",
+        "priority": "medium",
+        "dependencies": [
+          1
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 3,
+        "title": "Implement Sound Operations",
+        "description": "Develop functionality for sound-related API endpoints",
+        "details": "Create separate functions for GET /sounds/{sound} and POST /combine-sounds. Handle parameter validation, request processing, and response formatting for each operation.",
+        "testStrategy": "Test each sound operation with valid and invalid parameters to verify correct behavior",
+        "priority": "medium",
+        "dependencies": [
+          2
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 4,
+        "title": "Implement Speech Operations",
+        "description": "Develop functionality for speech-related API endpoints",
+        "details": "Implement GET /speeches/{speech} and POST /text-to-speech. Validate required parameters like vendorId, handle request processing, and format responses appropriately.",
+        "testStrategy": "Test each speech operation with valid and invalid parameters to verify correct behavior",
+        "priority": "medium",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 5,
+        "title": "Implement Transcription Operations",
+        "description": "Develop functionality for transcription-related API endpoints",
+        "details": "Create functions for GET /transcripts/{transcript} and POST /create-transcript. Validate language codes, handle request processing, and format responses correctly.",
+        "testStrategy": "Test each transcription operation with valid and invalid parameters to verify correct behavior",
+        "priority": "medium",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 6,
+        "title": "Implement Subtitle File Operations",
+        "description": "Develop functionality for subtitle file-related API endpoints",
+        "details": "Implement GET /subtitleFiles/{subtitle} and POST /generate-subtitle-file. Validate parameters like type and style, handle request processing, and format responses appropriately.",
+        "testStrategy": "Test each subtitle file operation with valid and invalid parameters to verify correct behavior",
+        "priority": "medium",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "Implement Video Operations",
+        "description": "Develop functionality for video-related API endpoints",
+        "details": "Create functions for GET /videos/{video} and implement video editing operations like add audio, add subtitles, generate AI videos, and other transformations.",
+        "testStrategy": "Test each video operation with valid and invalid parameters to verify correct behavior",
+        "priority": "medium",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "Implement Dynamic Field Rendering",
+        "description": "Create UI components to display operation-specific fields",
+        "details": "Develop dynamic form rendering logic that shows fields based on selected operation. Implement validation for required parameters and format input correctly.",
+        "testStrategy": "Verify field visibility and validation for each operation type",
+        "priority": "medium",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "Implement Error Handling and Logging",
+        "description": "Add comprehensive error handling and logging mechanisms",
+        "details": "Create error handling for all API operations, including validation errors, network issues, and unexpected exceptions. Implement logging for debugging and monitoring.",
+        "testStrategy": "Test error scenarios and verify proper error messages and logging",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 10,
+        "title": "Integrate with n8n Credential System",
+        "description": "Securely store and retrieve API credentials",
+        "details": "Implement credential storage using n8n's credential system. Create UI for entering API key and handle secure retrieval during API requests.",
+        "testStrategy": "Verify credential storage and retrieval works correctly with valid API keys",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "done",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-07-25T18:25:58.915Z",
+      "updated": "2025-07-25T18:35:31.891Z",
+      "description": "Tasks for master context"
+    }
+  }
+}

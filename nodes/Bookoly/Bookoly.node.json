@@ -1,0 +1,20 @@
+{
+	"node": "n8n-nodes-base.Bookoly",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": [
+		"Data & Storage"
+	],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://bookoly.com/app/docs/v1/api#/operations/authCheckApi"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://bookoly.com/app/docs/v1/api#"
+			}
+		]
+	}
+}

@@ -1,0 +1,80 @@
+Project: Bookoly API n8n Node
+
+Description:
+Create a custom n8n node that integrates with Bookoly's REST API to provide audio, speech, transcription, subtitle, and video manipulation capabilities. The node will support multiple operations across different categories, with dynamic fields based on the selected operation.
+
+Key Requirements:
+
+1. Node Structure:
+- Single node named "Bookoly"
+- Operation selector dropdown
+- Dynamic fields based on operation
+- API key authentication via credentials
+
+2. Operation Categories:
+a) Sound Operations
+- Get specific sound
+- Combine multiple sounds
+- Create sound effects
+
+b) Speech Operations
+- Get specific speech
+- Create speech synthesis
+
+c) Transcription Operations
+- Get specific transcript
+- Transcribe audio/video
+
+d) Subtitle Operations
+- Get specific subtitle file
+- Create subtitle file
+
+e) Video Operations
+- Get specific video
+- Multiple video editing operations (add audio, subtitles, mute, clip, etc.)
+
+Technical Requirements:
+
+1. Authentication:
+- Implement API key authentication
+- Create credentials component
+- Pass API key via Authorization header
+
+2. API Integration:
+- RESTful API endpoints
+- Handle various HTTP methods (GET, POST)
+- Support different request/response formats
+- Implement proper error handling
+
+3. Dynamic Fields:
+- Operation-specific input fields
+- Field validation based on restrictions
+- Support for optional parameters
+- Handle webhook URLs
+
+4. Testing:
+- Unit tests for each operation
+- Integration tests
+- Error handling tests
+- Validation tests
+
+5. Documentation:
+- Clear operation descriptions
+- Parameter documentation
+- Usage examples
+- Error handling guide
+
+Implementation Priorities:
+1. Core node structure and authentication
+2. Basic operations (GET endpoints)
+3. Sound and Speech operations
+4. Transcription and Subtitle operations
+5. Video operations
+6. Testing and documentation
+
+Success Criteria:
+1. All operations function correctly
+2. Proper error handling and validation
+3. Clear and helpful documentation
+4. Comprehensive test coverage
+5. Easy to use interface with dynamic fields 
