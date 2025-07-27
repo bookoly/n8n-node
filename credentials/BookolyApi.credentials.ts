@@ -20,26 +20,27 @@ export class BookolyApi implements ICredentialType {
 			},
 		},
 	];
+
 	authenticate: IAuthenticateGeneric = {
 		type: 'generic',
 		properties: {
 			headers: {
-				'Authorization': 'Bearer {{$credentials.apiToken}}',
+				Authorization: '=Bearer {{$credentials.apiToken}}',
 				'Content-Type': 'application/json',
-				'Accept': 'application/json',
+				Accept: 'application/json',
 			},
 		},
 	};
 
-	// Credential test block
 	test: ICredentialTestRequest = {
 		request: {
+			baseURL: 'https://bookoly.com/api/v1',
+			url: '/auth-check',
 			method: 'POST',
-			url: 'https://bookoly.com/api/v1/auth-check',
 			headers: {
-				'Authorization': 'Bearer {{$credentials.apiToken}}',
+				Authorization: '=Bearer {{$credentials.apiToken}}',
 				'Content-Type': 'application/json',
-				'Accept': 'application/json',
+				Accept: 'application/json',
 			},
 		},
 	};

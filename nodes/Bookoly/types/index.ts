@@ -1,49 +1,31 @@
-// Credentials
-export interface BookolyCredentials {
-	apiToken: string;
-}
-
-// Base parameter interfaces
-export interface BaseApiParams {
-	apiToken: string;
-}
+import { IHttpRequestMethods, INodeProperties, INodePropertyOptions } from 'n8n-workflow';
 
 // Resource types enum
 export enum BookolyResourceType {
 	Sound = 'Sound',
-	Speech = 'Speech',
-	Subtitle = 'Subtitle',
-	Transcription = 'Transcription',
-	Video = 'Video',
+	// Speech = 'Speech',
+	// Subtitle = 'Subtitle',
+	// Transcription = 'Transcription',
+	// Video = 'Video',
 }
 
-// Sound types
-export interface SoundNodeParams {
-	
+// Operation interface
+export interface OperationOption extends INodePropertyOptions {
+	description: string;
+	routing: {
+		request: {
+			method: IHttpRequestMethods; // Changed from string
+			url: string;
+		};
+	};
 }
 
-// Speech types
-export interface SpeechNodeParams {
-	
-}
-
-// Subtitle types
-export interface SubtitleNodeParams {
-	
-}
-
-// Transcription types
-export interface TranscriptionNodeParams {
-	
-}
-
-// Video types
-export interface VideoNodeParams {
-	
-}
-
-// Common interface for all resource operations
-export interface ResourceOperationParams {
-	resource: BookolyResourceType;
+// Resource definition interface
+export interface BookolyResourceDefinition {
+	displayName: string;
+	value: BookolyResourceType;
+	description: string;
+	operations: INodeProperties[]; // Changed from custom type to INodeProperties
+	parameters: INodeProperties[];
 }
 

@@ -4,6 +4,7 @@ volumes:
 
 networks:
   n8n-local:
+    name: n8n-local
 
 services:
   postgres:
@@ -11,11 +12,13 @@ services:
     networks: ['n8n-local']
     restart: unless-stopped
     ports:
-      - 15432:5432
+      - 5433:5432  # Changed from 15432 to 5433 to avoid conflicts
     environment:
       - POSTGRES_USER
       - POSTGRES_PASSWORD
       - POSTGRES_DB
+      - POSTGRES_NON_ROOT_USER=${POSTGRES_NON_ROOT_USER:-n8n}
+      - POSTGRES_NON_ROOT_PASSWORD=${POSTGRES_NON_ROOT_PASSWORD:-n8n}
     volumes:
       - postgres_storage:/var/lib/postgresql/data
     healthcheck:
@@ -33,17 +36,23 @@ services:
     container_name: n8n-bookoly
     restart: unless-stopped
     ports:
-      - 5678:5678
+      - 5679:5678  # Changed from 5678:5678 to avoid port conflict
     environment:
       - DB_TYPE=postgresdb
       - DB_POSTGRESDB_HOST=postgres
+      - DB_POSTGRESDB_PORT=5432  # Added explicit port
       - DB_POSTGRESDB_USER=${POSTGRES_USER}
       - DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD}
+      - DB_POSTGRESDB_DATABASE=${POSTGRES_DB}
       - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
-      - N8N_HOST=${N8N_HOST}
+      - N8N_HOST=0.0.0.0  # Changed from localhost to 0.0.0.0
+      - N8N_PROTOCOL=http
+      - N8N_PORT=5678
+      - N8N_EDITOR_BASE_URL=http://localhost:5679  # Add this to specify the editor URL
       - NODE_FUNCTION_ALLOW_BUILTIN=*
       - NODE_FUNCTION_ALLOW_EXTERNAL=*
       - N8N_COMMUNITY_PACKAGES_ENABLED=true
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
       - N8N_CUSTOM_EXTENSIONS=/home/node/.n8n/custom/node_modules/custom_nodes
       - BOOKOLY_BASE_URL=${BOOKOLY_BASE_URL}
     links:
