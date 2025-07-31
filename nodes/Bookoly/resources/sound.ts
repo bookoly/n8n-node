@@ -48,7 +48,7 @@ export const soundResource: BookolyResourceDefinition = {
 			required: true,
 			displayOptions: {
 				show: {
-					operation: ['getSound'],
+					operation: ['waitForSound'],
 					resource: [BookolyResourceType.Sound],
 				},
 			},

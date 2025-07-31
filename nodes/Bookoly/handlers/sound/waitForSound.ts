@@ -6,9 +6,12 @@ export async function waitForSound(
 	ctx: IExecuteFunctions,
 	soundId: string,
 ): Promise<any> {
-	const maxAttempts = 60;
+	const maxAttempts = 5;
 	const delayMs = 2000;
-
+	if(!soundId){
+		soundId = ctx.getNodeParameter('soundId', 0) as string;
+	}
+	Logger.info(`Bookoly: waitForSound ${soundId}`, {soundId});
 	for (let attempt = 0; attempt < maxAttempts; attempt++) {
 		const response = await apiRequest(ctx, 'GET', `sounds/${soundId}`);
 		Logger.info(`Bookoly: waitForSound ${JSON.stringify(response)}`, {response});

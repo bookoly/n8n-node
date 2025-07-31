@@ -1,23 +1,12 @@
-import { IHttpRequestMethods, INodeProperties, INodePropertyOptions } from 'n8n-workflow';
+import { INodeProperties } from 'n8n-workflow';
 
 // Resource types enum
 export enum BookolyResourceType {
 	Sound = 'Sound',
-	// Speech = 'Speech',
-	// Subtitle = 'Subtitle',
-	// Transcription = 'Transcription',
+	Speech = 'Speech',
+	File = 'File',
+	Transcription = 'Transcription',
 	// Video = 'Video',
-}
-
-// Operation interface
-export interface OperationOption extends INodePropertyOptions {
-	description: string;
-	routing: {
-		request: {
-			method: IHttpRequestMethods; // Changed from string
-			url: string;
-		};
-	};
 }
 
 // Resource definition interface
