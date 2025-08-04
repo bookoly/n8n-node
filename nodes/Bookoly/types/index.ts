@@ -6,7 +6,7 @@ export enum BookolyResourceType {
 	Speech = 'Speech',
 	File = 'File',
 	Transcription = 'Transcription',
-	// Video = 'Video',
+	Video = 'Video',
 }
 
 // Resource definition interface

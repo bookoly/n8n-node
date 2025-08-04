@@ -179,3 +179,14 @@ export const positionOptions: Option[] = [
 	{ value: 'mid_top_center', name: 'Mid Top Center' },
 	{ value: 'mid_bottom_center', name: 'Mid Bottom Center' },
 ];
+export const resolutionOptions: Option[] = [
+	{ value: 'horizontal_hd', name: 'Horizontal - 1080p (HD): 1920x1080' },
+	{ value: 'horizontal_2k', name: 'Horizontal - 1440p (2K): 2560x1440' },
+	{ value: 'horizontal_4k', name: 'Horizontal - 2160p (4K): 3840x2160' },
+	{ value: 'vertical_hd', name: 'Vertical - 1080p (HD): 1080x1920' },
+	{ value: 'vertical_2k', name: 'Vertical - 1440p (2K): 1440x2560' },
+	{ value: 'vertical_4k', name: 'Vertical - 2160p (4K): 2160x3840' },
+	{ value: 'square_hd', name: 'Square - 1080p (HD): 1080x1080' },
+	{ value: 'square_2k', name: 'Square - 1440p (2K): 1440x1440' },
+	{ value: 'square_4k', name: 'Square - 2160p (4K): 2160x2160' },
+];
