@@ -1,4 +1,4 @@
-import { NodePropertyTypes } from 'n8n-workflow';
+import { getNameParam, getTypeParam, getUrlParam, getWebhookUrlParam, getIdParam, getWaitParam } from './commonParams';
 import { BookolyResourceDefinition, BookolyResourceType } from '../types';
 import { getSubtitleParameters } from './subtitleParams';
 
@@ -35,96 +35,12 @@ export const fileResource: BookolyResourceDefinition = {
 		},
 	],
 	parameters: [
-		// Generate Subtitle File parameters
-		{
-			displayName: 'Name',
-			name: 'name',
-			type: 'string',
-			default: '',
-			displayOptions: {
-				show: {
-					resource: [BookolyResourceType.File],
-					operation: ['generateSubtitleFile'],
-				},
-			},
-			description: 'The name of the subtitle file',
-		},
-		{
-			displayName: 'Type',
-			name: 'type',
-			type: 'options',
-			default: 'ass',
-			displayOptions: {
-				show: {
-					resource: [BookolyResourceType.File],
-					operation: ['generateSubtitleFile'],
-				},
-			},
-			options: [
-				{
-					name: 'Advanced SubStation Alpha (ASS)',
-					value: 'ass',
-				},
-			],
-			description: 'Choose the format for your subtitle. ASS is selected by default.',
-		},
-		{
-			displayName: 'URL',
-			name: 'url',
-			type: 'string',
-			default: '',
-			required: true,
-			displayOptions: {
-				show: {
-					resource: [BookolyResourceType.File],
-					operation: ['generateSubtitleFile'],
-				},
-			},
-			description: 'Paste the public URL of the video or audio source you want to subtitle',
-		},
-		{
-			displayName: 'Webhook URL',
-			name: 'webhook_url',
-			type: 'string',
-			default: '',
-			displayOptions: {
-				show: {
-					resource: [BookolyResourceType.File],
-					operation: ['generateSubtitleFile'],
-				},
-			},
-			description: 'Enter a valid URL to receive webhook notifications. Subtitle File ID and URL will be included.',
-		},
-		// Subtitle parameters for generateSubtitleFile
+		getNameParam('generateSubtitleFile', BookolyResourceType.File, 'The name of the subtitle file'),
+		getTypeParam('generateSubtitleFile', BookolyResourceType.File),
+		getUrlParam('generateSubtitleFile', BookolyResourceType.File, true, 'Paste the public URL of the video or audio source you want to subtitle'),
+		getWebhookUrlParam('generateSubtitleFile', BookolyResourceType.File, 'webhook_url', 'Enter a valid URL to receive webhook notifications. Subtitle File ID and URL will be included.'),
 		...getSubtitleParameters('generateSubtitleFile'),
-		// Wait for Subtitle File Generation parameters
-		{
-			displayName: 'Subtitle File ID',
-			name: 'subtitleFileId',
-			type: 'string',
-			default: '',
-			required: true,
-			displayOptions: {
-				show: {
-					resource: [BookolyResourceType.File],
-					operation: ['waitForSubtitleFileGeneration'],
-				},
-			},
-			description: 'The ID of the Subtitle File',
-		},
-		// Wait toggle (visible only for the two POST operations)
-		{
-			displayName: 'Wait for Completion',
-			name: 'wait',
-			type: 'boolean' as NodePropertyTypes,
-			default: false,
-			displayOptions: {
-				show: {
-					operation: ['generateSubtitleFile'],
-					resource: [BookolyResourceType.File],
-				},
-			},
-			description: 'If enabled, the node will poll the server until the subtitle file is generated and then return the full subtitle file object instead of just the creation response',
-		},
+		getIdParam('waitForSubtitleFileGeneration', BookolyResourceType.File, 'subtitleFileId', 'Subtitle File ID', 'The ID of the Subtitle File'),
+		getWaitParam('generateSubtitleFile', BookolyResourceType.File, 'If enabled, the node will poll the server until the subtitle file is generated and then return the full subtitle file object instead of just the creation response'),
 	],
 };

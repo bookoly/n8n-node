@@ -1,7 +1,5 @@
-import { NodePropertyTypes } from 'n8n-workflow';
+import { getNameParam, getTextParam, getWebhookUrlParam, getVoiceParam, getWaitParam, getIdParam } from './commonParams';
 import { BookolyResourceDefinition, BookolyResourceType } from '../types';
-import { voiceOptions } from './static';
-
 export const speechResource: BookolyResourceDefinition = {
 	displayName: 'Speech',
 	value: BookolyResourceType.Speech,
@@ -35,89 +33,11 @@ export const speechResource: BookolyResourceDefinition = {
 		},
 	],
 	parameters: [
-		{
-			displayName: 'Speech ID',
-			name: 'speechId',
-			type: 'string',
-			required: true,
-			default: '',
-			description: 'The ID of the Speech',
-			displayOptions: {
-				show: {
-					operation: ['waitForSpeech'],
-					resource: [BookolyResourceType.Speech],
-				},
-			},
-		},
-		{
-			displayName: 'Name',
-			name: 'name',
-			type: 'string',
-			required: true,
-			default: '',
-			description: 'The name of the speech synthesis',
-			displayOptions: {
-				show: {
-					operation: ['createSpeech'],
-					resource: [BookolyResourceType.Speech],
-				},
-			},
-		},
-		{
-			displayName: 'Text',
-			name: 'text',
-			type: 'string',
-			required: true,
-			default: '',
-			description: 'The text to create the speech synthesis from',
-			displayOptions: {
-				show: {
-					operation: ['createSpeech'],
-					resource: [BookolyResourceType.Speech],
-				},
-			},
-		},
-		{
-			displayName: 'Webhook URL',
-			name: 'webhookUrl',
-			type: 'string',
-			default: '',
-			description: 'Enter a valid URL to receive webhook notifications. Speech ID and URL will be included.',
-			displayOptions: {
-				show: {
-					operation: ['createSpeech'],
-					resource: [BookolyResourceType.Speech],
-				},
-			},
-		},
-		{
-			displayName: 'Voice',
-			name: 'vendor_id',
-			type: 'options',
-			required: true,
-			default: '',
-			description: 'The name of the voice',
-			options: voiceOptions,
-			displayOptions: {
-				show: {
-					operation: ['createSpeech'],
-					resource: [BookolyResourceType.Speech],
-				},
-			},
-		},
-		// Wait toggle (visible only for the two POST operations)
-		{
-			displayName: 'Wait for Completion',
-			name: 'wait',
-			type: 'boolean' as NodePropertyTypes,
-			default: false,
-			displayOptions: {
-				show: {
-					operation: ['createSpeech'],
-					resource: [BookolyResourceType.Speech],
-				},
-			},
-			description: 'If enabled, the node will poll the server until the speech is finished and then return the full speech object instead of just the creation response',
-		},
+		getIdParam('waitForSpeech', BookolyResourceType.Speech, 'speechId', 'Speech ID', 'The ID of the Speech'),
+		getNameParam('createSpeech', BookolyResourceType.Speech, 'The name of the speech synthesis'),
+		getTextParam('createSpeech', BookolyResourceType.Speech, true, 'The text to create the speech synthesis from'),
+		getWebhookUrlParam('createSpeech', BookolyResourceType.Speech, 'webhookUrl', 'Enter a valid URL to receive webhook notifications. Speech ID and URL will be included.'),
+		getVoiceParam('createSpeech', BookolyResourceType.Speech, true, 'The name of the voice'),
+		getWaitParam('createSpeech', BookolyResourceType.Speech, 'If enabled, the node will poll the server until the speech is finished and then return the full speech object instead of just the creation response'),
 	],
 };

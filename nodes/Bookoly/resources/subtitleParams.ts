@@ -1,7 +1,7 @@
 import { INodeProperties } from 'n8n-workflow';
 import { languageOptions, subtitleStyleOptions, fontFamilyOptions, positionOptions } from './static';
 
-export const getSubtitleParameters = (operation: string): INodeProperties[] => [
+export const getSubtitleParameters = (operation: string | string[]): INodeProperties[] => [
 	{
 		displayName: 'Subtitle Style',
 		name: 'style',
@@ -10,7 +10,7 @@ export const getSubtitleParameters = (operation: string): INodeProperties[] => [
 		required: true,
 		displayOptions: {
 			show: {
-				operation: [operation],
+				operation: Array.isArray(operation) ? operation : [operation],
 			},
 		},
 		options: subtitleStyleOptions,
@@ -24,7 +24,7 @@ export const getSubtitleParameters = (operation: string): INodeProperties[] => [
 		required: true,
 		displayOptions: {
 			show: {
-				operation: [operation],
+				operation: Array.isArray(operation) ? operation : [operation],
 			},
 		},
 		options: languageOptions,
@@ -38,7 +38,7 @@ export const getSubtitleParameters = (operation: string): INodeProperties[] => [
 		required: true,
 		displayOptions: {
 			show: {
-				operation: [operation],
+				operation: Array.isArray(operation) ? operation : [operation],
 			},
 		},
 		options: fontFamilyOptions,
@@ -52,7 +52,7 @@ export const getSubtitleParameters = (operation: string): INodeProperties[] => [
 		required: true,
 		displayOptions: {
 			show: {
-				operation: [operation],
+				operation: Array.isArray(operation) ? operation : [operation],
 			},
 		},
 		description: 'The default subtitle font size is 20',
@@ -64,7 +64,7 @@ export const getSubtitleParameters = (operation: string): INodeProperties[] => [
 		default: '#FEEE15',
 		displayOptions: {
 			show: {
-				operation: [operation],
+				operation: Array.isArray(operation) ? operation : [operation],
 			},
 		},
 		description: 'The subtitle word color given in Hex e.g. #FEEE15 = Yellow',
@@ -76,7 +76,7 @@ export const getSubtitleParameters = (operation: string): INodeProperties[] => [
 		default: '#FFFFFF',
 		displayOptions: {
 			show: {
-				operation: [operation],
+				operation: Array.isArray(operation) ? operation : [operation],
 			},
 		},
 		description: 'The subtitle line color given in Hex e.g. #FFFFFF = White',
@@ -89,7 +89,7 @@ export const getSubtitleParameters = (operation: string): INodeProperties[] => [
 		required: true,
 		displayOptions: {
 			show: {
-				operation: [operation],
+				operation: Array.isArray(operation) ? operation : [operation],
 			},
 		},
 		description: 'Defines how many words are displayed at a time. Min. = 1, Max. = 10',
@@ -102,7 +102,7 @@ export const getSubtitleParameters = (operation: string): INodeProperties[] => [
 		required: true,
 		displayOptions: {
 			show: {
-				operation: [operation],
+				operation: Array.isArray(operation) ? operation : [operation],
 			},
 		},
 		description: 'The default subtitle outline width is 5',
@@ -115,7 +115,7 @@ export const getSubtitleParameters = (operation: string): INodeProperties[] => [
 		required: true,
 		displayOptions: {
 			show: {
-				operation: [operation],
+				operation: Array.isArray(operation) ? operation : [operation],
 			},
 		},
 		options: positionOptions,
@@ -128,7 +128,7 @@ export const getSubtitleParameters = (operation: string): INodeProperties[] => [
 		default: true,
 		displayOptions: {
 			show: {
-				operation: [operation],
+				operation: Array.isArray(operation) ? operation : [operation],
 			},
 		},
 		description: 'Whether text flows left-to-right (LTR) or right-to-left (RTL)',

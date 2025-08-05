@@ -1,6 +1,31 @@
 import { BookolyResourceDefinition, BookolyResourceType } from '../types';
 import { getSubtitleParameters } from './subtitleParams';
-import { resolutionOptions } from './static';
+import {
+	getNameParam,
+	getUrlParam,
+	getWebhookUrlParam,
+	getVoiceParam,
+	getIdParam,
+	getResolutionParam,
+	getMuteParam,
+	getTypeParam,
+	getSubtitleUrlParam,
+	getSecParam,
+	getTextParam,
+	getRotateParam,
+} from './commonParams';
+import { scenesParam } from './videoParams/scenes';
+import { watermarkUrlParam, watermarkPositionParam } from './videoParams/watermark';
+import { blurOptionParam } from './videoParams/blur';
+import { clipOptionParam } from './videoParams/clip';
+import {
+	xCoordinateParam,
+	yCoordinateParam,
+	cropWidthParam,
+	cropHeightParam,
+} from './videoParams/crop';
+import { audioUrlParam, trimAudioParam, audioVolumeParam } from './videoParams/audio';
+import { splitOptionParams } from './videoParams/split';
 
 export const videoResource: BookolyResourceDefinition = {
 	displayName: 'Video',
@@ -123,499 +148,123 @@ export const videoResource: BookolyResourceDefinition = {
 		},
 	],
 	parameters: [
-		{
-			displayName: 'Video ID',
-			name: 'videoId',
-			type: 'string',
-			default: '',
-			description: 'The ID of the video',
-			required: true,
-			displayOptions: {
-				show: {
-					operation: ['waitForVideoGeneration'],
-				},
-			},
-		},
-		// Video parameters for addAudioToVideo
-		{
-			displayName: 'Video Name',
-			name: 'name',
-			type: 'string',
-			default: '',
-			description: 'The name of the video',
-			required: true,
-			displayOptions: {
-				show: {
-					operation: [
-						'addAudioToVideo',
-						'addAudioWithSubtitlesToVideo',
-						'addSubtitlesToVideo',
-						'addSubtitlesToVideoFromFile',
-						'createSlideshow',
-						'addWatermarkToVideo',
-						'blurVideo',
-						'clipVideo',
-						'cropVideo'
-					],
-				},
-			},
-		},
-		{
-			displayName: 'URL',
-			name: 'url',
-			type: 'string',
-			default: '',
-			description: 'The URL of the video',
-			required: true,
-			displayOptions: {
-				show: {
-					operation: [
-						'addAudioToVideo',
-						'addAudioWithSubtitlesToVideo',
-						'addSubtitlesToVideo',
-						'addSubtitlesToVideoFromFile',
-						'addWatermarkToVideo',
-						'blurVideo',
-						'clipVideo',
-						'cropVideo'
-					],
-				},
-			},
-		},
-		{
-			displayName: 'Mute Video',
-			name: 'mute',
-			type: 'boolean',
-			default: false,
-			description: 'Whether to mute the original video audio',
-			displayOptions: {
-				show: {
-					operation: [
-						'addAudioToVideo',
-						'addAudioWithSubtitlesToVideo',
-						'addWatermarkToVideo',
-						'blurVideo',
-						'clipVideo',
-						'cropVideo'
-					],
-				},
-			},
-		},
-		{
-			displayName: 'Webhook URL',
-			name: 'webhook_url',
-			type: 'string',
-			default: '',
-			description:
-				'Enter a valid URL to receive webhook notifications. Video ID and URL will be included.',
-			displayOptions: {
-				show: {
-					operation: [
-						'addAudioToVideo',
-						'addAudioWithSubtitlesToVideo',
-						'addSubtitlesToVideo',
-						'addSubtitlesToVideoFromFile',
-						'createSlideshow',
-						'addWatermarkToVideo',
-						'blurVideo',
-						'clipVideo',
-						'cropVideo'
-					],
-				},
-			},
-		},
-		// Audio parameters for addAudioToVideo
-		{
-			displayName: 'Audio URL',
-			name: 'url',
-			type: 'string',
-			default: '',
-			description: 'The URL of the audio',
-			required: true,
-			displayOptions: {
-				show: {
-					operation: ['addAudioToVideo', 'addAudioWithSubtitlesToVideo'],
-				},
-			},
-		},
-		{
-			displayName: 'Trim Audio',
-			name: 'trim',
-			type: 'boolean',
-			default: false,
-			description: 'Whether to trim the audio to match video length',
-			displayOptions: {
-				show: {
-					operation: ['addAudioToVideo', 'addAudioWithSubtitlesToVideo'],
-				},
-			},
-		},
-		{
-			displayName: 'Volume',
-			name: 'volume',
-			type: 'number',
-			default: 100,
-			description:
-				'Set audio volume from 0% to 100%. 100% is the original volume, and 50% is half the original volume.',
-			displayOptions: {
-				show: {
-					operation: ['addAudioToVideo', 'addAudioWithSubtitlesToVideo'],
-				},
-			},
-		},
-		// Subtitle parameters for addAudioWithSubtitlesToVideo
+		getIdParam(
+			'waitForVideoGeneration',
+			BookolyResourceType.Video,
+			'videoId',
+			'Video ID',
+			'The ID of the video',
+		),
+		getNameParam(
+			[
+				'addAudioToVideo',
+				'addAudioWithSubtitlesToVideo',
+				'addSubtitlesToVideoFromFile',
+				'addSubtitlesToVideo',
+				'addWatermarkToVideo',
+				'blurVideo',
+				'clipVideo',
+				'createSlideshow',
+				'cropVideo',
+				'extractAudioFromVideo',
+				'frameVideo',
+				'generateVideo',
+				'muteVideo',
+				'rotateVideo',
+				'splitVideoIntoScenes',
+			],
+			BookolyResourceType.Video,
+			'The name of the video',
+		),
+		getUrlParam(
+			[
+				'addAudioToVideo',
+				'addAudioWithSubtitlesToVideo',
+				'addSubtitlesToVideoFromFile',
+				'addSubtitlesToVideo',
+				'addWatermarkToVideo',
+				'blurVideo',
+				'clipVideo',
+				'cropVideo',
+				'extractAudioFromVideo',
+				'frameVideo',
+				'muteVideo',
+				'rotateVideo',
+				'splitVideoIntoScenes',
+			],
+			BookolyResourceType.Video,
+			true,
+			'The URL of the video',
+		),
+		getMuteParam(
+			[
+				'addAudioToVideo',
+				'addAudioWithSubtitlesToVideo',
+				'addWatermarkToVideo',
+				'blurVideo',
+				'clipVideo',
+				'cropVideo',
+				'rotateVideo',
+				'splitVideoIntoScenes',
+			],
+			BookolyResourceType.Video,
+		),
+		getWebhookUrlParam(
+			[
+				'addAudioToVideo',
+				'addAudioWithSubtitlesToVideo',
+				'addSubtitlesToVideoFromFile',
+				'addSubtitlesToVideo',
+				'addWatermarkToVideo',
+				'blurVideo',
+				'clipVideo',
+				'createSlideshow',
+				'cropVideo',
+				'extractAudioFromVideo',
+				'frameVideo',
+				'generateVideo',
+				'muteVideo',
+				'rotateVideo',
+				'splitVideoIntoScenes',
+			],
+			BookolyResourceType.Video,
+			'webhook_url',
+			'Enter a valid URL to receive webhook notifications. Video ID and URL will be included.',
+		),
+		getResolutionParam(['createSlideshow', 'generateVideo'], BookolyResourceType.Video),
+		getTextParam(
+			['generateVideo'],
+			BookolyResourceType.Video,
+			true,
+			'The text to create the speech synthesis from',
+		),
+		getVoiceParam('generateVideo', BookolyResourceType.Video, true, 'The name of the voice'),
+		getTypeParam(['addSubtitlesToVideoFromFile'], BookolyResourceType.Video),
+		getSubtitleUrlParam(
+			['addSubtitlesToVideoFromFile'],
+			BookolyResourceType.Video,
+			true,
+			'The URL of the subtitle file',
+		),
+		getSecParam(['frameVideo'], BookolyResourceType.Video),
+		getRotateParam(['rotateVideo'], BookolyResourceType.Video),
+		// Extracted unique/complex parameter groups
+		audioUrlParam,
+		trimAudioParam,
+		audioVolumeParam,
+		scenesParam,
+		watermarkUrlParam,
+		watermarkPositionParam,
+		clipOptionParam,
+		xCoordinateParam,
+		yCoordinateParam,
+		cropWidthParam,
+		cropHeightParam,
+		// Subtitle parameters for relevant operations
+		...blurOptionParam,
+		...splitOptionParams,
 		...getSubtitleParameters('addAudioWithSubtitlesToVideo'),
-		// Subtitle parameters for addSubtitlesToVideo
 		...getSubtitleParameters('addSubtitlesToVideo'),
-		// Subtitle parameters for addSubtitlesToVideoFromFile
-		{
-			displayName: 'File Type',
-			name: 'type',
-			type: 'options',
-			default: 'ass',
-			displayOptions: {
-				show: {
-					operation: ['addSubtitlesToVideoFromFile'],
-				},
-			},
-			options: [
-				{
-					name: 'Advanced SubStation Alpha (ASS)',
-					value: 'ass',
-				},
-			],
-			description: 'Choose the format for your subtitle. ASS is selected by default.',
-		},
-		{
-			displayName: 'URL',
-			name: 'url',
-			type: 'string',
-			default: '',
-			required: true,
-			displayOptions: {
-				show: {
-					operation: ['addSubtitlesToVideoFromFile'],
-				},
-			},
-			description: 'The public URL of the subtitle file',
-		},
-		{
-			displayName: 'Scenes',
-			name: 'scenes',
-			type: 'fixedCollection',
-			typeOptions: {
-				multipleValues: true,
-			},
-			default: {},
-			description: 'Add multiple scenes to the slideshow',
-			displayOptions: {
-				show: {
-					operation: ['createSlideshow'],
-				},
-			},
-			options: [
-				{
-					displayName: 'Scene',
-					name: 'scene',
-					values: [
-						{
-							displayName: 'Effect',
-							name: 'effect',
-							type: 'options',
-							default: 'zoom_in',
-							description: 'The effect to apply to the scene',
-							options: [
-								{
-									name: 'Zoom In',
-									value: 'zoom_in',
-									description: 'Apply zoom in effect to the scene',
-								},
-							],
-						},
-						{
-							displayName: 'Duration',
-							name: 'duration',
-							type: 'number',
-							default: 1,
-							description: 'The duration of the scene, required only when using images',
-						},
-						{
-							displayName: 'Asset URL',
-							name: 'src',
-							type: 'string',
-							default: '',
-							description: 'The public URL of the asset',
-							required: true,
-						},
-						{
-							displayName: 'Asset Type',
-							name: 'type',
-							type: 'options',
-							default: 'image',
-							description: 'The type of asset for the scene',
-							options: [
-								{
-									name: 'Image',
-									value: 'image',
-									description: 'Use an image asset',
-								},
-								{
-									name: 'Video',
-									value: 'video',
-									description: 'Use a video asset',
-								},
-							],
-						},
-					],
-				},
-			],
-		},
-		// Resolution parameter for createSlideshow
-		{
-			displayName: 'Resolution',
-			name: 'resolution',
-			type: 'options',
-			default: 'horizontal_hd',
-			description: 'The resolution of your video',
-			required: true,
-			displayOptions: {
-				show: {
-					operation: ['createSlideshow'],
-				},
-			},
-			options: resolutionOptions,
-		},
-		// Watermark parameters for addWatermarkToVideo
-		{
-			displayName: 'Image URL',
-			name: 'watermarkUrl',
-			type: 'string',
-			default: '',
-			description: 'Direct URL to the watermark image (e.g., PNG or JPG)',
-			required: true,
-			displayOptions: {
-				show: {
-					operation: ['addWatermarkToVideo'],
-				},
-			},
-		},
-		{
-			displayName: 'Position',
-			name: 'watermarkPosition',
-			type: 'fixedCollection',
-			default: {},
-			description: 'Set the absolute position of the watermark from the top-left corner of the video',
-			displayOptions: {
-				show: {
-					operation: ['addWatermarkToVideo'],
-				},
-			},
-			options: [
-				{
-					displayName: 'Position',
-					name: 'position',
-					values: [
-						{
-							displayName: 'X Coordinate',
-							name: 'x',
-							type: 'number',
-							default: 0,
-							description: 'Distance in pixels from the left edge of the video',
-							required: true,
-						},
-						{
-							displayName: 'Y Coordinate',
-							name: 'y',
-							type: 'number',
-							default: 0,
-							description: 'Distance in pixels from the top edge of the video',
-							required: true,
-						},
-					],
-				},
-			],
-		},
-		// Blur parameters for blurVideo
-		{
-			displayName: 'Blur Setting',
-			name: 'blur_option',
-			type: 'fixedCollection',
-			default: {},
-			description: 'Set the top-left corner (X, Y) of the area to blur. Coordinates must be within the videos dimensions.',
-			displayOptions: {
-				show: {
-					operation: ['blurVideo'],
-				},
-			},
-			options: [
-				{
-					displayName: 'Start Position',
-					name: 'point',
-					values: [
-						{
-							displayName: 'X Coordinate',
-							name: 'x',
-							type: 'number',
-							default: 0,
-							description: 'Horizontal position of the top-left corner of the blur area',
-							required: true,
-						},
-						{
-							displayName: 'Y Coordinate',
-							name: 'y',
-							type: 'number',
-							default: 0,
-							description: 'Vertical position of the top-left corner of the blur area',
-							required: true,
-						},
-					],
-				},
-				{
-					displayName: 'Box Width',
-					name: 'boxWidth',
-					type: 'number',
-					default: 1,
-					description: 'Width of the blur box in pixels. Must not exceed the video width.',
-					required: true,
-					displayOptions: {
-						show: {
-							operation: ['blurVideo'],
-						},
-					},
-				},
-				{
-					displayName: 'Box Height',
-					name: 'boxHeight',
-					type: 'number',
-					default: 1,
-					description: 'Height of the blur box in pixels. Must not exceed the video height.',
-					required: true,
-					displayOptions: {
-						show: {
-							operation: ['blurVideo'],
-						},
-					},
-				},
-				{
-					displayName: 'Power',
-					name: 'power',
-					type: 'number',
-					default: 1,
-					description: 'Blur intensity level',
-					required: true,
-					displayOptions: {
-						show: {
-							operation: ['blurVideo'],
-						},
-					},
-				},
-			],
-		},
-		
-		// Clip parameters for clipVideo
-		{
-			displayName: 'Clip Options',
-			name: 'clip_option',
-			type: 'fixedCollection',
-			default: {},
-			description: 'Configure the video clip settings',
-			displayOptions: {
-				show: {
-					operation: ['clipVideo'],
-				},
-			},
-			options: [
-				{
-					displayName: 'Clip Options',
-					name: 'clipOptions',
-					values: [
-						{
-							displayName: 'Clip Start Time',
-							name: 'start',
-							type: 'number',
-							default: 0,
-							description: 'Set the start time of the clip (in seconds) from the beginning of the video',
-							required: true,
-						},
-						{
-							displayName: 'Clip Duration',
-							name: 'duration',
-							type: 'number',
-							default: 0,
-							description: 'Set how long the clip should be (in seconds). Leave blank to include the remainder of the video.',
-							required: true,
-						},
-					],
-				},
-			],
-		},
-		// Crop parameters for cropVideo
-		{
-			displayName: 'Crop Options',
-			name: 'crop_option',
-			type: 'fixedCollection',
-			default: {},
-			description: 'Configure the video crop settings',
-			displayOptions: {
-				show: {
-					operation: ['cropVideo'],
-				},
-			},
-			options: [
-				{
-					displayName: 'Crop Options',
-					name: 'cropOptions',
-					values: [
-						{
-							displayName: 'Crop Start Position',
-							name: 'point',
-							type: 'fixedCollection',
-							default: {},
-							description: 'Set the top-left corner (X, Y) of the crop area. Coordinates must be within the videos dimensions.',
-							options: [
-								{
-									displayName: 'Crop Start Position',
-									name: 'point',
-									values: [
-										{
-											displayName: 'X Coordinate',
-											name: 'x',
-											type: 'number',
-											default: 0,
-											description: 'Horizontal position of the crops top-left corner',
-											required: true,
-										},
-										{
-											displayName: 'Y Coordinate',
-											name: 'y',
-											type: 'number',
-											default: 0,
-											description: 'Vertical position of the crops top-left corner',
-											required: true,
-										},
-									],
-								},
-							],
-						},
-						{
-							displayName: 'Crop Width',
-							name: 'width',
-							type: 'number',
-							default: 1,
-							description: 'Width of the cropped area in pixels. Must not exceed the video width.',
-							required: true,
-						},
-						{
-							displayName: 'Crop Height',
-							name: 'height',
-							type: 'number',
-							default: 1,
-							description: 'Height of the cropped area in pixels. Must not exceed the video height.',
-							required: true,
-						},
-					],
-				},
-			],
-		},
+		...getSubtitleParameters('generateVideo'),
 	],
 };
