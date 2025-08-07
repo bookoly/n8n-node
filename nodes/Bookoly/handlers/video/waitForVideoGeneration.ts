@@ -14,7 +14,7 @@ export async function waitForVideoGeneration(
 
 	while (attempts < maxAttempts) {
 		try {
-			const response = await apiRequest(ctx, 'GET', `video/${videoId}`);
+			const response = await apiRequest(ctx, 'GET', `videos/${videoId}`);
 			
 			if (response.status === 'completed') {
 				Logger.info(`Video generation completed successfully`, { 

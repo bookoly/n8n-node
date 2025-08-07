@@ -13,6 +13,7 @@ import {
 	getSecParam,
 	getTextParam,
 	getRotateParam,
+	getWaitParam,
 } from './commonParams';
 import { scenesParam } from './videoParams/scenes';
 import { watermarkUrlParam, watermarkPositionParam } from './videoParams/watermark';
@@ -266,5 +267,26 @@ export const videoResource: BookolyResourceDefinition = {
 		...getSubtitleParameters('addAudioWithSubtitlesToVideo'),
 		...getSubtitleParameters('addSubtitlesToVideo'),
 		...getSubtitleParameters('generateVideo'),
+		getWaitParam(
+			[
+				'addAudioToVideo',
+				'addAudioWithSubtitlesToVideo',
+				'addSubtitlesToVideoFromFile',
+				'addSubtitlesToVideo',
+				'addWatermarkToVideo',
+				'blurVideo',
+				'clipVideo',
+				'createSlideshow',
+				'cropVideo',
+				'extractAudioFromVideo',
+				'frameVideo',
+				'generateVideo',
+				'muteVideo',
+				'rotateVideo',
+				'splitVideoIntoScenes',
+			],
+			BookolyResourceType.Video,
+			'If enabled, the node will poll the server until the video is finished and then return the full video object instead of just the creation response',
+		),
 	],
 };

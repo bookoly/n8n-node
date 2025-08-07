@@ -1,6 +1,7 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { LoggerProxy as Logger } from 'n8n-workflow';
 import { apiRequest } from '../../helpers/apiClient';
+import { waitForVideoGeneration } from './waitForVideoGeneration';
 
 export async function addAudioWithSubtitlesToVideo(
 	ctx: IExecuteFunctions,
@@ -13,7 +14,7 @@ export async function addAudioWithSubtitlesToVideo(
 	const audioUrl = ctx.getNodeParameter('audioUrl', itemIndex) as string;
 	const trim = ctx.getNodeParameter('trim', itemIndex, false) as boolean;
 	const volume = ctx.getNodeParameter('volume', itemIndex, 100) as number;
-
+	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
 	// Subtitle parameters
 	const style = ctx.getNodeParameter('style', itemIndex) as string;
 	const language = ctx.getNodeParameter('language', itemIndex) as string;
@@ -58,8 +59,15 @@ export async function addAudioWithSubtitlesToVideo(
 		audioUrl,
 	});
 
-	const response = await apiRequest(ctx, 'POST', 'add-audio-with-subtitles-to-video', body);
+	const response = await apiRequest(ctx, 'POST', 'add-audio-with-subtitle-to-video', body);
 	Logger.info(`Audio with subtitles added to video successfully`, { response });
 
+	if (wait && response?.id) {  // Check for response.id directly, not response.sound.id
+		Logger.info(`Waiting for video generation to complete ${response.id}`, {
+			videoId: response.id,  // Use response.id directly
+			name,
+		});	
+		return await waitForVideoGeneration(ctx, response.id);  // Use waitForSound helper with response.id
+	}
 	return response;
 } 

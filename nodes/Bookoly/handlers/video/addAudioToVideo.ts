@@ -1,6 +1,7 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { LoggerProxy as Logger } from 'n8n-workflow';
 import { apiRequest } from '../../helpers/apiClient';
+import { waitForVideoGeneration } from './waitForVideoGeneration';
 
 export async function addAudioToVideo(
 	ctx: IExecuteFunctions,
@@ -13,7 +14,7 @@ export async function addAudioToVideo(
 	const audioUrl = ctx.getNodeParameter('audioUrl', itemIndex) as string;
 	const trim = ctx.getNodeParameter('trim', itemIndex, false) as boolean;
 	const volume = ctx.getNodeParameter('volume', itemIndex, 100) as number;
-
+	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
 	const body = {
 		video: {
 			name,
@@ -37,5 +38,12 @@ export async function addAudioToVideo(
 	const response = await apiRequest(ctx, 'POST', 'add-audio-to-video', body);
 	Logger.info(`Audio added to video successfully`, { response });
 
+	if (wait && response?.id) {  // Check for response.id directly, not response.sound.id
+		Logger.info(`Waiting for video generation to complete ${response.id}`, {
+			videoId: response.id,  // Use response.id directly
+			name,
+		});	
+		return await waitForVideoGeneration(ctx, response.id);  // Use waitForSound helper with response.id
+	}
 	return response;
 } 

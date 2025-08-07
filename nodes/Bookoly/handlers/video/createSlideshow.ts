@@ -1,6 +1,7 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { LoggerProxy as Logger } from 'n8n-workflow';
 import { apiRequest } from '../../helpers/apiClient';
+import { waitForVideoGeneration } from './waitForVideoGeneration';
 
 export async function createSlideshow(
 	ctx: IExecuteFunctions,
@@ -8,6 +9,8 @@ export async function createSlideshow(
 ): Promise<any> {
 	const name = ctx.getNodeParameter('name', itemIndex, '') as string;
 	const webhook_url = ctx.getNodeParameter('webhook_url', itemIndex, '') as string;
+	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
+	const resolution = ctx.getNodeParameter('resolution', itemIndex) as string;
 	
 	// Get scenes collection
 	const scenesCollection = ctx.getNodeParameter('scenes', itemIndex, {}) as any;
@@ -36,6 +39,7 @@ export async function createSlideshow(
 		slideshow: {
 			name,
 			webhook_url,
+			resolution,
 			scene: scenes,
 		},
 	};
@@ -45,8 +49,15 @@ export async function createSlideshow(
 		sceneCount: scenes.length,
 	});
 
-	const response = await apiRequest(ctx, 'POST', 'create-slideshow', body);
+	const response = await apiRequest(ctx, 'POST', 'assets-to-video', body);
 	Logger.info(`Slideshow created successfully`, { response });
 
+	if (wait && response?.id) {  // Check for response.id directly, not response.sound.id
+		Logger.info(`Waiting for video generation to complete ${response.id}`, {
+			videoId: response.id,  // Use response.id directly
+			name,
+		});	
+		return await waitForVideoGeneration(ctx, response.id);  // Use waitForSound helper with response.id
+	}
 	return response;
 } 
