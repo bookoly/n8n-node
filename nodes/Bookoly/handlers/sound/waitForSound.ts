@@ -1,13 +1,14 @@
 import { IExecuteFunctions, NodeOperationError } from 'n8n-workflow';
 import { LoggerProxy as Logger } from 'n8n-workflow';
 import { apiRequest } from '../../helpers/apiClient';
+import { pollingConfig } from '../config';
 
 export async function waitForSound(
 	ctx: IExecuteFunctions,
 	soundId: string,
 ): Promise<any> {
-	const maxAttempts = 5;
-	const delayMs = 2000;
+	const maxAttempts = pollingConfig.polling.maxAttempts;
+	const delayMs = pollingConfig.polling.delayMs;
 	if(!soundId){
 		soundId = ctx.getNodeParameter('soundId', 0) as string;
 	}

@@ -4,6 +4,7 @@ export interface Option {
 }
 
 export const voiceOptions: Option[] = [
+	{ value: 'l1zE9xgNpUTaQCZzpNJa', name: 'Alberto' },
 	{ value: 'kdmDKE6EkgrWrrykO9Qt', name: 'Alexandra' },
 	{ value: 'Xb7hH8MSUJpSbSDYk0k2', name: 'Alice' },
 	{ value: 'xctasy8XvGp2cVO9HL9k', name: 'Allison' },
@@ -18,6 +19,7 @@ export const voiceOptions: Option[] = [
 	{ value: 'XB0fDUnXU5powFXDhCwa', name: 'Charlotte' },
 	{ value: 'iP95p4xoKVk53GoZ742B', name: 'Chris' },
 	{ value: 'coral', name: 'Coral' },
+	{ value: '9F4C8ztpNUmXkdDDbz3J', name: 'Dan' },
 	{ value: 'onwK4e9ZLuTAKqWW03F9', name: 'Daniel' },
 	{ value: 'echo', name: 'Echo' },
 	{ value: 'cjVigY5qzO86Huf0OWal', name: 'Eric' },
@@ -38,6 +40,7 @@ export const voiceOptions: Option[] = [
 	{ value: 'SAz9YHcvj6GT2YYXdXww', name: 'River' },
 	{ value: 'CwhRBWXzGAHq8TQ4Fs17', name: 'Roger' },
 	{ value: 'sage', name: 'Sage' },
+	{ value: 'KHCvMklQZZo0O30ERnVn', name: 'Sara' },
 	{ value: 'EXAVITQu4vr4xnSDxMaL', name: 'Sarah' },
 	{ value: 'shimmer', name: 'Shimmer' },
 	{ value: '8l89UrPQsmYVJoJRfnAt', name: 'Vikram' },

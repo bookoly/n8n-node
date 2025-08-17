@@ -1,13 +1,14 @@
 import { IExecuteFunctions, NodeOperationError } from 'n8n-workflow';
 import { LoggerProxy as Logger } from 'n8n-workflow';
 import { apiRequest } from '../../helpers/apiClient';
+import { pollingConfig } from '../config';
 
 export async function waitForSubtitleFileGeneration(
 	ctx: IExecuteFunctions,
 	subtitleFileId: string,
 ): Promise<any> {
-	const maxAttempts = 60;
-	const delayMs = 7000;
+	const maxAttempts = pollingConfig.polling.maxAttempts;
+	const delayMs = pollingConfig.polling.delayMs;
 	if(!subtitleFileId){
 		subtitleFileId = ctx.getNodeParameter('subtitleFileId', 0) as string;
 	}

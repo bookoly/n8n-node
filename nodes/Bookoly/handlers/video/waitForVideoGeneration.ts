@@ -1,6 +1,7 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { LoggerProxy as Logger } from 'n8n-workflow';
 import { apiRequest } from '../../helpers/apiClient';
+import { pollingConfig } from '../config';
 
 export async function waitForVideoGeneration(
 	ctx: IExecuteFunctions,
@@ -9,8 +10,8 @@ export async function waitForVideoGeneration(
 	Logger.info(`Waiting for video generation to complete`, { videoId });
 
 	let attempts = 0;
-	const maxAttempts = 60; // 5 minutes with 5-second intervals
-	const interval = 5000; // 5 seconds
+	const maxAttempts = pollingConfig.polling.maxAttempts;
+	const interval = pollingConfig.polling.delayMs;
 
 	while (attempts < maxAttempts) {
 		try {

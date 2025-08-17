@@ -1,13 +1,14 @@
 import { IExecuteFunctions, NodeOperationError } from 'n8n-workflow';
 import { LoggerProxy as Logger } from 'n8n-workflow';
 import { apiRequest } from '../../helpers/apiClient';
+import { pollingConfig } from '../config';
 
 export async function waitForSpeech(
 	ctx: IExecuteFunctions,
 	speechId: string,
 ): Promise<any> {
-	const maxAttempts = 5;
-	const delayMs = 2000;
+	const maxAttempts = pollingConfig.polling.maxAttempts;
+	const delayMs = pollingConfig.polling.delayMs;
 	if(!speechId){
 		speechId = ctx.getNodeParameter('speechId', 0) as string;
 	}
