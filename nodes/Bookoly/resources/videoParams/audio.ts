@@ -10,7 +10,7 @@ export const audioUrlParam = {
   required: true,
   displayOptions: {
     show: {
-      operation: ['addAudioToVideo', 'addAudioWithSubtitlesToVideo'],
+      operation: ['addAudioToVideo', 'addAudioWithSubtitlesToVideo','generateVideo'],
     },
   },
 };
@@ -23,7 +23,7 @@ export const trimAudioParam = {
   description: 'Whether to trim the audio to match video length',
   displayOptions: {
     show: {
-      operation: ['addAudioToVideo', 'addAudioWithSubtitlesToVideo'],
+      operation: ['addAudioToVideo', 'addAudioWithSubtitlesToVideo','generateVideo'],
     },
   },
 };
@@ -37,7 +37,7 @@ export const audioVolumeParam = {
     'Set audio volume from 0% to 100%. 100% is the original volume, and 50% is half the original volume.',
   displayOptions: {
     show: {
-      operation: ['addAudioToVideo', 'addAudioWithSubtitlesToVideo'],
+      operation: ['addAudioToVideo', 'addAudioWithSubtitlesToVideo','generateVideo'],
     },
   },
 };

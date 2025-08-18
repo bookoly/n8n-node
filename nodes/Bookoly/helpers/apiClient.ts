@@ -27,12 +27,21 @@ export async function apiRequest(
 		const response = await ctx.helpers.requestWithAuthentication.call(ctx, authentication, options);
 		return response;
 	} catch (error) {
-			Logger.error('API request failed', {
-				endpoint,
-				method,
-				error: error.message,
-				status: error.statusCode,
+		Logger.error(`API request failed:${JSON.stringify(error)}`, {
+			endpoint,
+			method,
+			error: error.message,
+			status: error.statusCode,
 		});
-		throw error;
+		
+		// Create a new error with the description as the message
+		const apiError = new Error(error.description || error.message || 'API request failed');
+		// Preserve the original error properties
+		Object.assign(apiError, {
+			statusCode: error.statusCode,
+			description: error.description,
+			context: error.context,
+		});
+		throw apiError;
 	}
 } 

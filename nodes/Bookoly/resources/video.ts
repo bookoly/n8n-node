@@ -117,7 +117,7 @@ export const videoResource: BookolyResourceDefinition = {
 					value: 'generateVideo',
 					description:
 						'Create a video from images and video clips, generate and add a voice-over with automated subtitles, and integrate background music',
-					action: 'Generate a video from a text description',
+					action: 'Generate a video',
 				},
 				{
 					name: 'Mute a Video',

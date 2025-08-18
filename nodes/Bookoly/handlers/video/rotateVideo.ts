@@ -18,13 +18,13 @@ export async function rotateVideo(
 		video: {
 			name,
 			url,
-			webhook_url,
 			mute,
+			rotation_degrees,
+			webhook_url,
 		},
-		rotation_degrees,
 	};
 
-	Logger.info(`Rotating video initiated`, {
+	Logger.info(`Rotating video initiated ${JSON.stringify(body)}`, {
 		videoName: name,
 		videoUrl: url,
 		rotation_degrees,

@@ -10,7 +10,7 @@ export async function generateVideo(
 	const name = ctx.getNodeParameter('name', itemIndex, '') as string;
 	const webhook_url = ctx.getNodeParameter('webhook_url', itemIndex, '') as string;
 	const resolution = ctx.getNodeParameter('resolution', itemIndex, 'horizontal_hd') as string;
-	const scenesCollection = ctx.getNodeParameter('scenes', itemIndex, []) as string[];
+	const scenesCollection = ctx.getNodeParameter('scenes', itemIndex, {}) as any;
 	
 	// Speech parameters
 	const speechText = ctx.getNodeParameter('text', itemIndex, '') as string;
@@ -29,30 +29,35 @@ export async function generateVideo(
 	const ltr = ctx.getNodeParameter('ltr', itemIndex, true) as boolean;
 	
 	// Audio parameters
-	const audioUrl = ctx.getNodeParameter('audioUrl', itemIndex, '') as string;
+	const audioUrl = ctx.getNodeParameter('audio_url', itemIndex, '') as string;
 	const trim = ctx.getNodeParameter('trim', itemIndex, true) as boolean;
 	const volume = ctx.getNodeParameter('volume', itemIndex, 1) as number;
 	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
 	
 // Process scenes
 const scenes = [];
-if (scenesCollection && typeof scenesCollection === 'object') {
-	for (const [sceneData] of Object.entries(scenesCollection)) {
-		if (sceneData && typeof sceneData === 'object') {
-			const scene = sceneData as any;
-			scenes.push({
-				effect: scene.effect || 'zoom_in',
-				duration: scene.duration || 1,
-				asset: [
-					{
-						src: scene.src || '',
-						type: scene.type || 'image',
-					},
-				],
-			});
+	if (scenesCollection && scenesCollection.scene && Array.isArray(scenesCollection.scene)) {
+		for (const scene of scenesCollection.scene) {
+			if (scene && typeof scene === 'object') {
+				const sceneObj: any = {
+					effect: scene.effect || 'zoom_in',
+					asset: [
+						{
+							src: scene.src || '',
+							type: scene.type || 'image',
+						},
+					],
+				};
+				
+				// Only include duration for image assets
+				if (scene.type === 'image') {
+					sceneObj.duration = scene.duration || 1;
+				}
+				
+				scenes.push(sceneObj);
+			}
 		}
 	}
-}
 	const body = {
 		video: {
 			name,
@@ -85,11 +90,7 @@ if (scenesCollection && typeof scenesCollection === 'object') {
 		},
 	};
 
-	Logger.info(`Generating video initiated`, {
-		videoName: name,
-		resolution,
-		webhookUrl: webhook_url,
-	});
+	Logger.info(`Generating video initiated: ${JSON.stringify(body)}`);
 
 	const response = await apiRequest(ctx, 'POST', 'generate-a-video', body);
 	Logger.info(`Video generation initiated successfully`, { response });

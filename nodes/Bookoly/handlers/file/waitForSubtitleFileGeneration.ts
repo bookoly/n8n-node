@@ -18,12 +18,16 @@ export async function waitForSubtitleFileGeneration(
 		Logger.info(`Bookoly: waitForSubtitleFileGeneration ${JSON.stringify(response)}`, {response});
 		if (response?.state === 'completed') {
 			return response;
+		}else if(response?.state === 'failed'){
+			const error = new NodeOperationError(ctx.getNode(), 'Subtitle file generation failed');
+			Logger.error(`Subtitle file generation failed ${error.message}`, {error});
+			throw error;
 		}
 
 		await new Promise(resolve => setTimeout(resolve, delayMs));
 	}
 
-	const error = new NodeOperationError(ctx.getNode(), 'Timeout while waiting for speech generation to finish');
-	Logger.error(`Speech generation timeout ${error.message}`, {error});
+	const error = new NodeOperationError(ctx.getNode(), 'Timeout while waiting for subtitle file generation to finish');
+	Logger.error(`Subtitle file generation timeout ${error.message}`, {error});
 	throw error;
 } 

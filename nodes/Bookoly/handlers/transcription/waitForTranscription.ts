@@ -18,12 +18,16 @@ export async function waitForTranscription(
 		Logger.info(`Bookoly: waitForTranscription ${JSON.stringify(response)}`, {response});
 		if (response?.state === 'completed') {
 			return response;
+		}else if(response?.state === 'failed'){
+			const error = new NodeOperationError(ctx.getNode(), 'Transcription generation failed');
+			Logger.error(`Transcription generation failed ${error.message}`, {error});
+			throw error;
 		}
 
 		await new Promise(resolve => setTimeout(resolve, delayMs));
 	}
 
-	const error = new NodeOperationError(ctx.getNode(), 'Timeout while waiting for speech generation to finish');
-	Logger.error(`Speech generation timeout ${error.message}`, {error});
+	const error = new NodeOperationError(ctx.getNode(), 'Timeout while waiting for Transcription generation to finish');
+	Logger.error(`Transcription generation timeout ${error.message}`, {error});
 	throw error;
 } 

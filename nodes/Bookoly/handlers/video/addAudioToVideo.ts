@@ -11,7 +11,7 @@ export async function addAudioToVideo(
 	const url = ctx.getNodeParameter('url', itemIndex) as string;
 	const mute = ctx.getNodeParameter('mute', itemIndex, false) as boolean;
 	const webhook_url = ctx.getNodeParameter('webhook_url', itemIndex, '') as string;
-	const audioUrl = ctx.getNodeParameter('audioUrl', itemIndex) as string;
+	const audioUrl = ctx.getNodeParameter('audio_url', itemIndex) as string;
 	const trim = ctx.getNodeParameter('trim', itemIndex, false) as boolean;
 	const volume = ctx.getNodeParameter('volume', itemIndex, 100) as number;
 	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;

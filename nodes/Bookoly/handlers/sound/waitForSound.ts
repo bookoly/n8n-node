@@ -18,12 +18,16 @@ export async function waitForSound(
 		Logger.info(`Bookoly: waitForSound ${JSON.stringify(response)}`, {response});
 		if (response?.state === 'completed') {
 			return response;
+		}else if(response?.state === 'failed'){
+			const error = new NodeOperationError(ctx.getNode(), 'Sound operation failed');
+			Logger.error(`Sound operation failed ${error.message}`, {error});
+			throw error;
 		}
 
 		await new Promise(resolve => setTimeout(resolve, delayMs));
 	}
 
-	const error = new NodeOperationError(ctx.getNode(), 'Timeout while waiting for sound generation to finish');
-	Logger.error(`Sound generation timeout ${error.message}`, {error});
+	const error = new NodeOperationError(ctx.getNode(), 'Timeout while waiting for Sound operation to finish');
+	Logger.error(`Sound operation timeout ${error.message}`, {error});
 	throw error;
 } 

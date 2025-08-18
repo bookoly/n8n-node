@@ -15,28 +15,33 @@ export async function createSlideshow(
 	// Get scenes collection
 	const scenesCollection = ctx.getNodeParameter('scenes', itemIndex, {}) as any;
 	
-	// Process scenes
+	// Process scenes - handle the fixedCollection structure correctly
 	const scenes = [];
-	if (scenesCollection && typeof scenesCollection === 'object') {
-		for (const [sceneData] of Object.entries(scenesCollection)) {
-			if (sceneData && typeof sceneData === 'object') {
-				const scene = sceneData as any;
-				scenes.push({
+	if (scenesCollection && scenesCollection.scene && Array.isArray(scenesCollection.scene)) {
+		for (const scene of scenesCollection.scene) {
+			if (scene && typeof scene === 'object') {
+				const sceneObj: any = {
 					effect: scene.effect || 'zoom_in',
-					duration: scene.duration || 1,
 					asset: [
 						{
 							src: scene.src || '',
 							type: scene.type || 'image',
 						},
 					],
-				});
+				};
+				
+				// Only include duration for image assets
+				if (scene.type === 'image') {
+					sceneObj.duration = scene.duration || 1;
+				}
+				
+				scenes.push(sceneObj);
 			}
 		}
 	}
 
 	const body = {
-		slideshow: {
+		video: {
 			name,
 			webhook_url,
 			resolution,
@@ -44,20 +49,21 @@ export async function createSlideshow(
 		},
 	};
 
-	Logger.info(`Creating slideshow initiated`, {
+	Logger.info(`Creating slideshow initiated: ${JSON.stringify(body)}`, {
 		slideshowName: name,
 		sceneCount: scenes.length,
+		resolution,
 	});
 
 	const response = await apiRequest(ctx, 'POST', 'assets-to-video', body);
-	Logger.info(`Slideshow created successfully`, { response });
+	Logger.info(`Slideshow created successfully: ${JSON.stringify(response)}`, { response });
 
-	if (wait && response?.id) {  // Check for response.id directly, not response.sound.id
+	if (wait && response?.id) {
 		Logger.info(`Waiting for video generation to complete ${response.id}`, {
-			videoId: response.id,  // Use response.id directly
+			videoId: response.id,
 			name,
 		});	
-		return await waitForVideoGeneration(ctx, response.id);  // Use waitForSound helper with response.id
+		return await waitForVideoGeneration(ctx, response.id);
 	}
 	return response;
 } 

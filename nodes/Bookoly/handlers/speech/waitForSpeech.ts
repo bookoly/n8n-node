@@ -18,6 +18,10 @@ export async function waitForSpeech(
 		Logger.info(`Bookoly: waitForSpeech ${JSON.stringify(response)}`, {response});
 		if (response?.state === 'completed') {
 			return response;
+		}else if(response?.state === 'failed'){
+			const error = new NodeOperationError(ctx.getNode(), 'Speech generation failed');
+			Logger.error(`Speech generation failed ${error.message}`, {error});
+			throw error;
 		}
 
 		await new Promise(resolve => setTimeout(resolve, delayMs));

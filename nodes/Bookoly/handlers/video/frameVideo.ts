@@ -24,14 +24,10 @@ export async function frameVideo(
 		},
 	};
 
-	Logger.info(`Extracting frame from video initiated`, {
-		videoName: name,
-		videoUrl: url,
-		seconds,
-	});
+	Logger.info(`Extracting frame from video initiated:$`, {body});
 
 	const response = await apiRequest(ctx, 'POST', 'frame-a-video', body);
-	Logger.info(`Frame extracted from video successfully`, { response });
+	Logger.info(`Frame extracted from video successfully: ${JSON.stringify(response)}`, { response });
 
 	if (wait && response?.id) {  // Check for response.id directly, not response.sound.id
 		Logger.info(`Waiting for video generation to complete ${response.id}`, {

@@ -35,7 +35,7 @@ export async function splitVideoIntoScenes(
 		},
 	};
 
-	Logger.info(`Splitting video into scenes initiated`, {
+	Logger.info(`Splitting video into scenes initiated: ${JSON.stringify(body)}`, {
 		videoName: name,
 		videoUrl: url,
 		mute,
@@ -44,7 +44,7 @@ export async function splitVideoIntoScenes(
 	});
 
 	const response = await apiRequest(ctx, 'POST', 'split-video-into-scenes', body);
-	Logger.info(`Video split into scenes successfully`, { response });
+	Logger.info(`Video split into scenes successfully: ${JSON.stringify(response)}`, { response });
 
 	if (wait && response?.id) {  // Check for response.id directly, not response.sound.id
 		Logger.info(`Waiting for video generation to complete ${response.id}`, {
