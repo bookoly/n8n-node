@@ -41,12 +41,11 @@ const scenes = [];
 			if (scene && typeof scene === 'object') {
 				const sceneObj: any = {
 					effect: scene.effect || 'zoom_in',
-					asset: [
+					asset: 
 						{
 							src: scene.src || '',
 							type: scene.type || 'image',
 						},
-					],
 				};
 				
 				// Only include duration for image assets
@@ -63,7 +62,7 @@ const scenes = [];
 			name,
 			resolution,
 			webhook_url,
-			scene: scenes,
+			scenes: scenes,
 		},
 		speech: {
 			text: speechText,

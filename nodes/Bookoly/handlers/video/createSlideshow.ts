@@ -22,12 +22,10 @@ export async function createSlideshow(
 			if (scene && typeof scene === 'object') {
 				const sceneObj: any = {
 					effect: scene.effect || 'zoom_in',
-					asset: [
-						{
+					asset:{
 							src: scene.src || '',
 							type: scene.type || 'image',
 						},
-					],
 				};
 				
 				// Only include duration for image assets
@@ -45,7 +43,7 @@ export async function createSlideshow(
 			name,
 			webhook_url,
 			resolution,
-			scene: scenes,
+			scenes: scenes,
 		},
 	};
 
