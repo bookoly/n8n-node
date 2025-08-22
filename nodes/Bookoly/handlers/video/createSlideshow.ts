@@ -11,28 +11,31 @@ export async function createSlideshow(
 	const webhook_url = ctx.getNodeParameter('webhook_url', itemIndex, '') as string;
 	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
 	const resolution = ctx.getNodeParameter('resolution', itemIndex) as string;
-	
+
 	// Get scenes collection
 	const scenesCollection = ctx.getNodeParameter('scenes', itemIndex, {}) as any;
-	
+
 	// Process scenes - handle the fixedCollection structure correctly
 	const scenes = [];
 	if (scenesCollection && scenesCollection.scene && Array.isArray(scenesCollection.scene)) {
 		for (const scene of scenesCollection.scene) {
 			if (scene && typeof scene === 'object') {
 				const sceneObj: any = {
-					effect: scene.effect || 'zoom_in',
 					asset:{
-							src: scene.src || '',
-							type: scene.type || 'image',
+							src: scene.src,
+							type: scene.type,
 						},
 				};
-				
+
+				if (scene.effect !== 'none') {
+					sceneObj.effect = scene.effect;
+				}
+
 				// Only include duration for image assets
 				if (scene.type === 'image') {
-					sceneObj.duration = scene.duration || 1;
+					sceneObj.duration = scene.duration;
 				}
-				
+
 				scenes.push(sceneObj);
 			}
 		}
@@ -60,8 +63,8 @@ export async function createSlideshow(
 		Logger.info(`Waiting for video generation to complete ${response.id}`, {
 			videoId: response.id,
 			name,
-		});	
+		});
 		return await waitForVideoGeneration(ctx, response.id);
 	}
 	return response;
-} 
+}
