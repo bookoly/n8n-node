@@ -1,5 +1,4 @@
-import { IExecuteFunctions, IHttpRequestOptions, IDataObject } from 'n8n-workflow';
-import { LoggerProxy as Logger } from 'n8n-workflow';
+import { IDataObject, IExecuteFunctions, IHttpRequestOptions, LoggerProxy as Logger } from 'n8n-workflow';
 
 export const BASE_URL = 'https://bookoly.com/api/v1';
 
@@ -24,8 +23,7 @@ export async function apiRequest(
 	};
 
 	try {
-		const response = await ctx.helpers.requestWithAuthentication.call(ctx, authentication, options);
-		return response;
+		return await ctx.helpers.requestWithAuthentication.call(ctx, authentication, options);
 	} catch (error) {
 		Logger.error(`API request failed:${JSON.stringify(error)}`, {
 			endpoint,
@@ -33,7 +31,7 @@ export async function apiRequest(
 			error: error.message,
 			status: error.statusCode,
 		});
-		
+
 		// Create a new error with the description as the message
 		const apiError = new Error(error.description || error.message || 'API request failed');
 		// Preserve the original error properties
@@ -44,4 +42,4 @@ export async function apiRequest(
 		});
 		throw apiError;
 	}
-} 
+}
