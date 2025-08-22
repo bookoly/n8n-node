@@ -15,15 +15,15 @@ import { BookolyResourceType } from './types';
 
 export class Bookoly implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Bookoly',
+		displayName: 'bookoly',
 		name: 'bookoly',
 		icon: 'file:bookoly.svg',
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-		description: 'Interact with Bookoly API',
+		description: 'Interact with the bookoly API',
 		defaults: {
-			name: 'Bookoly',
+			name: 'bookoly',
 		},
 		inputs: [NodeConnectionType.Main],
 		outputs: [NodeConnectionType.Main],
@@ -88,4 +88,4 @@ export class Bookoly implements INodeType {
 
 		return [returnData];
 	}
-} 
+}
