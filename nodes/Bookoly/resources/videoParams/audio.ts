@@ -6,7 +6,7 @@ export const audioUrlParam = {
   name: 'audio_url',
   type: 'string' as NodePropertyTypes,
   default: '',
-  description: 'The URL of the audio',
+  description: 'The public and downloadable URL of the audio file',
   required: true,
   displayOptions: {
     show: {
