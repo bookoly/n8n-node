@@ -21,13 +21,13 @@ export const fileResource: BookolyResourceDefinition = {
 				{
 					name: 'Generate a Subtitle File',
 					value: 'generateSubtitleFile',
-					action: 'Generate a new subtitle file',
+					action: 'Generate a subtitle file',
 					description: 'Generate subtitle files in multiple formats from a video or audio URL',
 				},
 				{
 					name: 'Wait for Subtitle File Generation',
 					value: 'waitForSubtitleFileGeneration',
-					action: 'Wait for a subtitle file to be generated',
+					action: 'Wait for subtitle file generation',
 					description: 'Pause the workflow until the subtitle file generation process is finished',
 				},
 			],
@@ -36,11 +36,11 @@ export const fileResource: BookolyResourceDefinition = {
 	],
 	parameters: [
 		getNameParam('generateSubtitleFile', BookolyResourceType.File, 'The name of the subtitle file'),
+		getUrlParam('generateSubtitleFile', BookolyResourceType.File, true, 'Paste the public and downloadable URL of the video or audio file you want to subtitle', 'URL'),
 		getTypeParam('generateSubtitleFile', BookolyResourceType.File),
-		getUrlParam('generateSubtitleFile', BookolyResourceType.File, true, 'Paste the public URL of the video or audio source you want to subtitle'),
-		getWebhookUrlParam('generateSubtitleFile', BookolyResourceType.File, 'webhook_url', 'Enter a valid URL to receive webhook notifications. Subtitle File ID and URL will be included.'),
 		...getSubtitleParameters('generateSubtitleFile'),
 		getIdParam('waitForSubtitleFileGeneration', BookolyResourceType.File, 'subtitleFileId', 'Subtitle File ID', 'The ID of the Subtitle File'),
 		getWaitParam('generateSubtitleFile', BookolyResourceType.File, 'If enabled, the node will poll the server until the subtitle file is generated and then return the full subtitle file object instead of just the creation response'),
+		getWebhookUrlParam('generateSubtitleFile', BookolyResourceType.File, 'webhook_url', 'Enter a valid URL to receive webhook notifications. Subtitle File ID and URL will be included.'),
 	],
 };

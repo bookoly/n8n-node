@@ -24,7 +24,7 @@ export const soundResource: BookolyResourceDefinition = {
 					// routing removed; handled in execute()
 				},
 				{
-					name: 'Create Sound Effect',
+					name: 'Create a Sound Effect',
 					value: 'createSoundEffect',
 					description: 'Generate sound effects based on a text description',
 					// routing removed; handled in execute()
@@ -95,7 +95,7 @@ export const soundResource: BookolyResourceDefinition = {
 					resource: [BookolyResourceType.Sound],
 				},
 			},
-			default: 0.5,
+			default: 1,
 			description: 'The duration of the sound which will be generated in seconds. Must be at least 0.5 and at most 22. We will guess the optimal duration using the text if the duration is not set',
 			typeOptions: {
 				minValue: 0.5,

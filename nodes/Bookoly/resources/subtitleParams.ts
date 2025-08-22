@@ -111,7 +111,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		displayName: 'Position',
 		name: 'position',
 		type: 'options',
-		default: 'top_left',
+		default: 'mid_bottom_center',
 		required: true,
 		displayOptions: {
 			show: {
@@ -122,15 +122,27 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		description: 'Position of the subtitle on the video',
 	},
 	{
-		displayName: 'Orientation',
+		displayName: 'Direction',
 		name: 'ltr',
-		type: 'boolean',
+		type: 'options',
+		options: [
+			{
+				name: 'Left to Right',
+				value: true,
+				description: 'Display subtitles from left to right',
+			},
+			{
+				name: 'Right to Left',
+				value: false,
+				description: 'Display subtitles from right to left',
+			},
+		],
 		default: true,
 		displayOptions: {
 			show: {
 				operation: Array.isArray(operation) ? operation : [operation],
 			},
 		},
-		description: 'Whether text flows left-to-right (LTR) or right-to-left (RTL)',
+		description: 'Choose the subtitle text direction',
 	},
-]; 
+];

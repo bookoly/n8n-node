@@ -182,6 +182,7 @@ export const positionOptions: Option[] = [
 	{ value: 'mid_top_center', name: 'Mid Top Center' },
 	{ value: 'mid_bottom_center', name: 'Mid Bottom Center' },
 ];
+
 export const resolutionOptions: Option[] = [
 	{ value: 'horizontal_hd', name: 'Horizontal - 1080p (HD): 1920x1080' },
 	{ value: 'horizontal_2k', name: 'Horizontal - 1440p (2K): 2560x1440' },

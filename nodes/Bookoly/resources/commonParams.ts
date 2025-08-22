@@ -18,8 +18,8 @@ export const getNameParam = (operation: string | string[], resource?: string, de
 });
 
 // URL parameter
-export const getUrlParam = (operation:  string | string[], resource?: string, required = true, description = 'The URL') => ({
-  displayName: 'URL',
+export const getUrlParam = (operation:  string | string[], resource?: string, required = true, description = 'The URL', displayName = 'Video URL') => ({
+  displayName: displayName,
   name: 'url',
   type: 'string' as NodePropertyTypes,
   required,
@@ -84,7 +84,7 @@ export const getWaitParam = (operation:  string | string[], resource?: string, d
   displayName: 'Wait for Completion',
   name: 'wait',
   type: 'boolean' as NodePropertyTypes,
-  default: false,
+  default: true,
   description,
   displayOptions: {
     show: {

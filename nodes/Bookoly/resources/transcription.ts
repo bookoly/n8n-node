@@ -69,7 +69,7 @@ export const transcriptionResource: BookolyResourceDefinition = {
 			type: 'string',
 			required: true,
 			default: '',
-			description: 'The public URL of the audio or video',
+			description: 'The public and downloadable URL of the audio or video file',
 			displayOptions: {
 				show: {
 					operation: ['createTranscription'],

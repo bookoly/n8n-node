@@ -45,29 +45,29 @@ export const videoResource: BookolyResourceDefinition = {
 			},
 			options: [
 				{
-					name: 'Add Audio to Video',
+					name: 'Add Audio to a Video',
 					value: 'addAudioToVideo',
 					description: 'Seamlessly add audio tracks to your video',
 					action: 'Add audio to a video',
 				},
 				{
-					name: 'Add Audio with Subtitle to Video',
+					name: 'Add Audio with Subtitles to a Video',
 					value: 'addAudioWithSubtitlesToVideo',
 					description:
 						'Adds audio to your video and automatically generates and adds subtitles from the audio',
 					action: 'Add audio with subtitles to a video',
 				},
 				{
+					name: 'Add Subtitles to a Video',
+					value: 'addSubtitlesToVideo',
+					description: 'Automatically generates and adds subtitles to your video',
+					action: 'Add subtitles to a video',
+				},
+				{
 					name: 'Add Subtitles to a Video From a File',
 					value: 'addSubtitlesToVideoFromFile',
 					description: 'Automatically generates and adds subtitles to your video',
 					action: 'Add subtitles to a video from a file',
-				},
-				{
-					name: 'Add Subtitles to Video',
-					value: 'addSubtitlesToVideo',
-					description: 'Automatically generates and adds subtitles to your video',
-					action: 'Add subtitles to a video',
 				},
 				{
 					name: 'Add Watermark to a Video',
@@ -91,7 +91,7 @@ export const videoResource: BookolyResourceDefinition = {
 					name: 'Create a Slideshow',
 					value: 'createSlideshow',
 					description: 'Creates a video slideshow from images, videos, or a combination of both',
-					action: 'Create a slideshow from a list of images',
+					action: 'Create a slideshow',
 				},
 				{
 					name: 'Crop a Video',
@@ -100,7 +100,7 @@ export const videoResource: BookolyResourceDefinition = {
 					action: 'Crop a video',
 				},
 				{
-					name: 'Extract Audio From Video',
+					name: 'Extract Audio From a Video',
 					value: 'extractAudioFromVideo',
 					description: 'Separates and saves the audio track from a video file',
 					action: 'Extract audio from a video',
@@ -113,7 +113,7 @@ export const videoResource: BookolyResourceDefinition = {
 					action: 'Frame a video',
 				},
 				{
-					name: 'Generate Video',
+					name: 'Generate a Video',
 					value: 'generateVideo',
 					description:
 						'Create a video from images and video clips, generate and add a voice-over with automated subtitles, and integrate background music',
@@ -123,7 +123,7 @@ export const videoResource: BookolyResourceDefinition = {
 					name: 'Mute a Video',
 					value: 'muteVideo',
 					description: "Mute the video's audio by reducing the volume to zero",
-					action: 'Mute a video by reducing the volume to zero',
+					action: 'Mute a video',
 				},
 				{
 					name: 'Rotate a Video',
@@ -132,7 +132,7 @@ export const videoResource: BookolyResourceDefinition = {
 					action: 'Rotate a video',
 				},
 				{
-					name: 'Split Video Into Scenes',
+					name: 'Split a Video Into Scenes',
 					value: 'splitVideoIntoScenes',
 					description:
 						'Automatically divide a video into multiple segments based on scene detection or fixed intervals',
@@ -195,7 +195,7 @@ export const videoResource: BookolyResourceDefinition = {
 			],
 			BookolyResourceType.Video,
 			true,
-			'The URL of the video',
+			'The public and downloadable URL of the video file',
 		),
 		getMuteParam(
 			[
@@ -210,28 +210,6 @@ export const videoResource: BookolyResourceDefinition = {
 			],
 			BookolyResourceType.Video,
 		),
-		getWebhookUrlParam(
-			[
-				'addAudioToVideo',
-				'addAudioWithSubtitlesToVideo',
-				'addSubtitlesToVideoFromFile',
-				'addSubtitlesToVideo',
-				'addWatermarkToVideo',
-				'blurVideo',
-				'clipVideo',
-				'createSlideshow',
-				'cropVideo',
-				'extractAudioFromVideo',
-				'frameVideo',
-				'generateVideo',
-				'muteVideo',
-				'rotateVideo',
-				'splitVideoIntoScenes',
-			],
-			BookolyResourceType.Video,
-			'webhook_url',
-			'Enter a valid URL to receive webhook notifications. Video ID and URL will be included.',
-		),
 		getResolutionParam(['createSlideshow', 'generateVideo'], BookolyResourceType.Video),
 		getTextParam(
 			['generateVideo'],
@@ -245,7 +223,7 @@ export const videoResource: BookolyResourceDefinition = {
 			['addSubtitlesToVideoFromFile'],
 			BookolyResourceType.Video,
 			true,
-			'The URL of the subtitle file',
+			'The public and downloadable URL of the subtitle file',
 		),
 		getSecParam(['frameVideo'], BookolyResourceType.Video),
 		getRotateParam(['rotateVideo'], BookolyResourceType.Video),
@@ -287,6 +265,28 @@ export const videoResource: BookolyResourceDefinition = {
 			],
 			BookolyResourceType.Video,
 			'If enabled, the node will poll the server until the video is finished and then return the full video object instead of just the creation response',
+		),
+		getWebhookUrlParam(
+			[
+				'addAudioToVideo',
+				'addAudioWithSubtitlesToVideo',
+				'addSubtitlesToVideoFromFile',
+				'addSubtitlesToVideo',
+				'addWatermarkToVideo',
+				'blurVideo',
+				'clipVideo',
+				'createSlideshow',
+				'cropVideo',
+				'extractAudioFromVideo',
+				'frameVideo',
+				'generateVideo',
+				'muteVideo',
+				'rotateVideo',
+				'splitVideoIntoScenes',
+			],
+			BookolyResourceType.Video,
+			'webhook_url',
+			'Enter a valid URL to receive webhook notifications. Video ID and URL will be included.',
 		),
 	],
 };

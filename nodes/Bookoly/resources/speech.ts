@@ -19,7 +19,7 @@ export const speechResource: BookolyResourceDefinition = {
 				{
 					name: 'Create a Speech Synthesis',
 					value: 'createSpeech',
-					action: 'Create a new speech',
+					action: 'Create a speech synthesis',
 					description: 'Synthesizes a text into speech',
 				},
 				{
@@ -36,8 +36,8 @@ export const speechResource: BookolyResourceDefinition = {
 		getIdParam('waitForSpeech', BookolyResourceType.Speech, 'speechId', 'Speech ID', 'The ID of the Speech'),
 		getNameParam('createSpeech', BookolyResourceType.Speech, 'The name of the speech synthesis'),
 		getTextParam('createSpeech', BookolyResourceType.Speech, true, 'The text to create the speech synthesis from'),
-		getWebhookUrlParam('createSpeech', BookolyResourceType.Speech, 'webhookUrl', 'Enter a valid URL to receive webhook notifications. Speech ID and URL will be included.'),
 		getVoiceParam('createSpeech', BookolyResourceType.Speech, true, 'The name of the voice'),
 		getWaitParam('createSpeech', BookolyResourceType.Speech, 'If enabled, the node will poll the server until the speech is finished and then return the full speech object instead of just the creation response'),
+		getWebhookUrlParam('createSpeech', BookolyResourceType.Speech, 'webhookUrl', 'Enter a valid URL to receive webhook notifications. Speech ID and URL will be included.'),
 	],
 };
