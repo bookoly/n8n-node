@@ -2,6 +2,7 @@ import { IExecuteFunctions } from 'n8n-workflow';
 import { LoggerProxy as Logger } from 'n8n-workflow';
 import { apiRequest } from '../../helpers/apiClient';
 import { waitForVideoGeneration } from './waitForVideoGeneration';
+import { processScenes } from './getScenes';
 
 export async function generateVideo(
 	ctx: IExecuteFunctions,
@@ -34,32 +35,9 @@ export async function generateVideo(
 	const volume = ctx.getNodeParameter('volume', itemIndex, 1) as number;
 	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
 
-// Process scenes
-const scenes = [];
-	if (scenesCollection && scenesCollection.scene && Array.isArray(scenesCollection.scene)) {
-		for (const scene of scenesCollection.scene) {
-			if (scene && typeof scene === 'object') {
-				const sceneObj: any = {
-					asset:
-						{
-							src: scene.src,
-							type: scene.type,
-						},
-				};
+	// Process scenes using the shared function
+	const scenes = processScenes(scenesCollection);
 
-				if (scene.effect !== 'none') {
-					sceneObj.effect = scene.effect;
-				}
-
-				// Only include duration for image assets
-				if (scene.type === 'image') {
-					sceneObj.duration = scene.duration;
-				}
-
-				scenes.push(sceneObj);
-			}
-		}
-	}
 	const body = {
 		video: {
 			name,

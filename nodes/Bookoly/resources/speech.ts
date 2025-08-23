@@ -23,7 +23,7 @@ export const speechResource: BookolyResourceDefinition = {
 					description: 'Synthesizes a text into speech',
 				},
 				{
-					name: 'Wait for Speech Generation',
+					name: 'Get a Specific Speech',
 					value: 'waitForSpeech',
 					action: 'Get a speech',
 					description: 'Pauses the workflow until the speech generation process is finished',

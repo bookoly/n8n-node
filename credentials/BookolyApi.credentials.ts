@@ -4,7 +4,7 @@ import {
 	ICredentialType,
 	INodeProperties,
 } from 'n8n-workflow';
-
+import { BASE_URL } from '../nodes/Bookoly/Bookoly.node';
 export class BookolyApi implements ICredentialType {
 	name = 'bookolyApi';
 	displayName = 'Bookoly API';
@@ -34,7 +34,7 @@ export class BookolyApi implements ICredentialType {
 
 	test: ICredentialTestRequest = {
 		request: {
-			baseURL: 'https://bookoly.com/api/v1',
+			baseURL: BASE_URL,
 			url: '/auth-check',
 			method: 'POST',
 			headers: {

@@ -13,11 +13,12 @@ import { RESOURCE_DEFINITIONS } from './resources';
 import { HANDLERS } from './handlers';
 import { BookolyResourceType } from './types';
 
+export const BASE_URL = 'https://bookoly.com/api/v1';
 export class Bookoly implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'bookoly',
 		name: 'bookoly',
-		icon: 'file:bookoly_logo.svg',
+		icon: 'file:bookoly.svg',
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
@@ -28,7 +29,7 @@ export class Bookoly implements INodeType {
 		inputs: [NodeConnectionType.Main],
 		outputs: [NodeConnectionType.Main],
 		requestDefaults: {
-			baseURL: 'https://bookoly.com/api/v1/',
+			baseURL: BASE_URL,
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json',

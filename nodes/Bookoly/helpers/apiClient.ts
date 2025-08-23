@@ -1,7 +1,6 @@
 import { IDataObject, IExecuteFunctions, IHttpRequestOptions, LoggerProxy as Logger } from 'n8n-workflow';
-
-export const BASE_URL = 'https://bookoly.com/api/v1';
-
+import { BASE_URL } from '../Bookoly.node';
+Logger.info(`BASE_URL: ${BASE_URL}`);
 export async function apiRequest(
 	ctx: IExecuteFunctions,
 	method: 'GET' | 'POST' | 'PUT' | 'DELETE',
@@ -10,6 +9,7 @@ export async function apiRequest(
 	qs?: IDataObject,
 	authentication = 'bookolyApi',
 ): Promise<any> {
+	Logger.info(`apiRequest: ${BASE_URL}/${endpoint.replace(/^\//, '')}`);
 	const options: IHttpRequestOptions = {
 		headers: {
 			'Accept': 'application/json',

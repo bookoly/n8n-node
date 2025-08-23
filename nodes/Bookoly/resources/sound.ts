@@ -30,7 +30,7 @@ export const soundResource: BookolyResourceDefinition = {
 					// routing removed; handled in execute()
 				},
 				{
-					name: 'Wait for Sound Generation',
+					name: 'Get a Specific Sound',
 					value: 'waitForSound',
 					description: 'Pauses the workflow until the sound generation process is finished',
 					// routing removed; handled in execute()

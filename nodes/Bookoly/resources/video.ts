@@ -120,6 +120,12 @@ export const videoResource: BookolyResourceDefinition = {
 					action: 'Generate a video',
 				},
 				{
+					name: 'Get a Specific Video',
+					value: 'waitForVideoGeneration',
+					description: 'Pauses the workflow until the video generation process is finished',
+					action: 'Pauses the workflow until the video generation process is finished',
+				},
+				{
 					name: 'Mute a Video',
 					value: 'muteVideo',
 					description: "Mute the video's audio by reducing the volume to zero",
@@ -137,13 +143,7 @@ export const videoResource: BookolyResourceDefinition = {
 					description:
 						'Automatically divide a video into multiple segments based on scene detection or fixed intervals',
 					action: 'Split a video into scenes',
-				},
-				{
-					name: 'Wait for Video Generation',
-					value: 'waitForVideoGeneration',
-					description: 'Pauses the workflow until the video generation process is finished',
-					action: 'Pauses the workflow until the video generation process is finished',
-				},
+				}
 			],
 			default: 'generateVideo',
 		},

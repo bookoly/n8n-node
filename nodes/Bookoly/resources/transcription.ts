@@ -25,7 +25,7 @@ export const transcriptionResource: BookolyResourceDefinition = {
 					description: 'Transcribe your audio or video files into clear, accurate text with timestamps',
 				},
 				{
-					name: 'Wait for Transcription Generation',
+					name: 'Get a Specific Transcription',
 					value: 'waitForTranscription',
 					action: 'Get a transcription',
 					description: 'Pauses the workflow until the transcript generation process is finished',

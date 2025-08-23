@@ -25,9 +25,9 @@ export const fileResource: BookolyResourceDefinition = {
 					description: 'Generate subtitle files in multiple formats from a video or audio URL',
 				},
 				{
-					name: 'Wait for Subtitle File Generation',
+					name: 'Get a Specific Subtitle File',
 					value: 'waitForSubtitleFileGeneration',
-					action: 'Wait for subtitle file generation',
+					action: 'Get a subtitle file',
 					description: 'Pause the workflow until the subtitle file generation process is finished',
 				},
 			],

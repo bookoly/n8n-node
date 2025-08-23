@@ -39,6 +39,11 @@ export const scenesParam = {
 					type: 'number' as NodePropertyTypes,
 					default: 1,
 					description: 'Duration of the scene in seconds (required only for image-based scenes',
+					displayOptions: {
+						show: {
+							type: ['image'],
+						},
+					},
 				},
 				{
 					displayName: 'Effect',
