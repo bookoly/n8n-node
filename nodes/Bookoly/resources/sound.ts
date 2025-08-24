@@ -20,18 +20,21 @@ export const soundResource: BookolyResourceDefinition = {
 				{
 					name: 'Combine Sounds',
 					value: 'combineSounds',
+					action: 'Combine sounds',
 					description: 'Merge multiple sound files into a single seamless audio track',
 					// routing removed; handled in execute()
 				},
 				{
 					name: 'Create a Sound Effect',
 					value: 'createSoundEffect',
+					action: 'Create a sound effect',
 					description: 'Generate sound effects based on a text description',
 					// routing removed; handled in execute()
 				},
 				{
 					name: 'Get a Specific Sound',
 					value: 'waitForSound',
+					action: 'Get a sound',
 					description: 'Pauses the workflow until the sound generation process is finished',
 					// routing removed; handled in execute()
 				},
