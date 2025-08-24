@@ -15,22 +15,22 @@ export const scenesParam = {
 			name: 'scene',
 			values: [
 				{
-					displayName: 'Asset Type',
+					displayName: 'Type',
 					name: 'type',
 					type: 'options' as NodePropertyTypes,
 					default: 'image',
-					description: 'The type of asset for the scene',
+					description: 'The type of the scene',
 					options: [
 						{ name: 'Image', value: 'image' },
 						{ name: 'Video', value: 'video' },
 					],
 				},
 				{
-					displayName: 'Asset URL',
+					displayName: 'URL',
 					name: 'src',
 					type: 'string' as NodePropertyTypes,
 					default: '',
-					description: 'The public and downloadable URL of the asset file',
+					description: 'The public and downloadable URL of the scene file',
 					required: true,
 				},
 				{
