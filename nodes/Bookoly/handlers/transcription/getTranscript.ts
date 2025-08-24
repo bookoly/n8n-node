@@ -9,10 +9,10 @@ export async function getTranscript(ctx: IExecuteFunctions, transcriptId: string
 	if (!transcriptId) {
 		transcriptId = ctx.getNodeParameter('transcriptId', 0) as string;
 	}
-	Logger.info(`Bookoly: getTranscript ${transcriptId}`, { transcriptId });
+	Logger.info(`bookoly: getTranscript ${transcriptId}`, { transcriptId });
 	for (let attempt = 0; attempt < maxAttempts; attempt++) {
 		const response = await apiRequest(ctx, 'GET', `transcripts/${transcriptId}`);
-		Logger.info(`Bookoly: getTranscript ${JSON.stringify(response)}`, { response });
+		Logger.info(`bookoly: getTranscript ${JSON.stringify(response)}`, { response });
 		if (response?.state === 'completed') {
 			return response;
 		} else if (response?.state === 'failed') {

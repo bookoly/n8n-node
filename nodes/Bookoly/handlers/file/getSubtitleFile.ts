@@ -12,10 +12,10 @@ export async function getSubtitleFile(
 	if (!subtitleFileId) {
 		subtitleFileId = ctx.getNodeParameter('subtitleFileId', 0) as string;
 	}
-	Logger.info(`Bookoly: getSubtitleFile ${subtitleFileId}`, { subtitleFileId });
+	Logger.info(`bookoly: getSubtitleFile ${subtitleFileId}`, { subtitleFileId });
 	for (let attempt = 0; attempt < maxAttempts; attempt++) {
 		const response = await apiRequest(ctx, 'GET', `subtitleFiles/${subtitleFileId}`);
-		Logger.info(`Bookoly: getSubtitleFile ${JSON.stringify(response)}`, { response });
+		Logger.info(`bookoly: getSubtitleFile ${JSON.stringify(response)}`, { response });
 		if (response?.state === 'completed') {
 			return response;
 		} else if (response?.state === 'failed') {

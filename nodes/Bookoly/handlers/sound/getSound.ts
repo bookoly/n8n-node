@@ -9,10 +9,10 @@ export async function getSound(ctx: IExecuteFunctions, soundId: string): Promise
 	if (!soundId) {
 		soundId = ctx.getNodeParameter('soundId', 0) as string;
 	}
-	Logger.info(`Bookoly: getSound ${soundId}`, { soundId });
+	Logger.info(`bookoly: getSound ${soundId}`, { soundId });
 	for (let attempt = 0; attempt < maxAttempts; attempt++) {
 		const response = await apiRequest(ctx, 'GET', `sounds/${soundId}`);
-		Logger.info(`Bookoly: getSound ${JSON.stringify(response)}`, { response });
+		Logger.info(`bookoly: getSound ${JSON.stringify(response)}`, { response });
 		if (response?.state === 'completed') {
 			return response;
 		} else if (response?.state === 'failed') {

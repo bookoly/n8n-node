@@ -9,10 +9,10 @@ export async function getSpeech(ctx: IExecuteFunctions, speechId: string): Promi
 	if (!speechId) {
 		speechId = ctx.getNodeParameter('speechId', 0) as string;
 	}
-	Logger.info(`Bookoly: getSpeech ${speechId}`, { speechId });
+	Logger.info(`bookoly: getSpeech ${speechId}`, { speechId });
 	for (let attempt = 0; attempt < maxAttempts; attempt++) {
 		const response = await apiRequest(ctx, 'GET', `speeches/${speechId}`);
-		Logger.info(`Bookoly: getSpeech ${JSON.stringify(response)}`, { response });
+		Logger.info(`bookoly: getSpeech ${JSON.stringify(response)}`, { response });
 		if (response?.state === 'completed') {
 			return response;
 		} else if (response?.state === 'failed') {
