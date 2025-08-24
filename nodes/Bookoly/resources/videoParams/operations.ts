@@ -78,7 +78,7 @@ export const videoOperations = [
 		name: 'Get a Specific Video',
 		value: 'waitForVideoGeneration',
 		description: 'Pauses the workflow until the video generation process is finished',
-		action: 'Pauses the workflow until the video generation process is finished',
+		action: 'Get a video',
 	},
 	{
 		name: 'Mute a Video',
