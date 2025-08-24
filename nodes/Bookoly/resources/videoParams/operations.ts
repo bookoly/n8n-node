@@ -76,8 +76,8 @@ export const videoOperations = [
 	},
 	{
 		name: 'Get a Specific Video',
-		value: 'waitForVideoGeneration',
-		description: 'Pauses the workflow until the video generation process is finished',
+		value: 'getVideo',
+		description: 'Fetches video data from the API using the video ID',
 		action: 'Get a video',
 	},
 	{
@@ -98,5 +98,5 @@ export const videoOperations = [
 		description:
 			'Automatically divide a video into multiple segments based on scene detection or fixed intervals',
 		action: 'Split a video into scenes',
-	}
+	},
 ];

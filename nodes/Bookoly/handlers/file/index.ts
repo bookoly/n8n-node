@@ -1,7 +1,7 @@
 import { generateSubtitleFile } from './generateSubtitleFile';
-import { waitForSubtitleFileGeneration } from './waitForSubtitleFileGeneration';
+import { getSubtitleFile } from './getSubtitleFile';
 
 export const fileHandlers = {
 	generateSubtitleFile,
-	waitForSubtitleFileGeneration,
-}; 
+	getSubtitleFile,
+};

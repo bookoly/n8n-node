@@ -8,7 +8,8 @@ import { BASE_URL } from '../nodes/Bookoly/Bookoly.node';
 export class BookolyApi implements ICredentialType {
 	name = 'bookolyApi';
 	displayName = 'Bookoly API';
-	documentationUrl = 'https://docs.n8n.io/integrations/creating-nodes/build/declarative-style-node/';
+	documentationUrl =
+		'https://docs.n8n.io/integrations/creating-nodes/build/declarative-style-node/';
 	properties: INodeProperties[] = [
 		{
 			displayName: 'API Token',

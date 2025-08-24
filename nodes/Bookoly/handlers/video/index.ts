@@ -13,7 +13,7 @@ import { generateVideo } from './generateVideo';
 import { muteVideo } from './muteVideo';
 import { rotateVideo } from './rotateVideo';
 import { splitVideoIntoScenes } from './splitVideoIntoScenes';
-import { waitForVideoGeneration } from './waitForVideoGeneration';
+import { getVideo } from './getVideo';
 
 export const videoHandlers = {
 	addAudioToVideo,
@@ -31,5 +31,5 @@ export const videoHandlers = {
 	muteVideo,
 	rotateVideo,
 	splitVideoIntoScenes,
-	waitForVideoGeneration,
-}; 
+	getVideo,
+};

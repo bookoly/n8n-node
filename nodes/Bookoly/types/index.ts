@@ -17,4 +17,3 @@ export interface BookolyResourceDefinition {
 	operations: INodeProperties[]; // Changed from custom type to INodeProperties
 	parameters: INodeProperties[];
 }
-

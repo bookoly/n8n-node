@@ -1,13 +1,10 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { LoggerProxy as Logger } from 'n8n-workflow';
 import { apiRequest } from '../../helpers/apiClient';
-import { waitForVideoGeneration } from './waitForVideoGeneration';
+import { getVideo } from './getVideo';
 import { processScenes } from './getScenes';
 
-export async function generateVideo(
-	ctx: IExecuteFunctions,
-	itemIndex: number,
-): Promise<any> {
+export async function generateVideo(ctx: IExecuteFunctions, itemIndex: number): Promise<any> {
 	const name = ctx.getNodeParameter('name', itemIndex, '') as string;
 	const webhook_url = ctx.getNodeParameter('webhook_url', itemIndex, '') as string;
 	const resolution = ctx.getNodeParameter('resolution', itemIndex, 'horizontal_hd') as string;
@@ -26,7 +23,11 @@ export async function generateVideo(
 	const lineColor = ctx.getNodeParameter('line_color', itemIndex, '') as string;
 	const lineWords = ctx.getNodeParameter('line_words', itemIndex, 1) as number;
 	const outlineWidth = ctx.getNodeParameter('outline_width', itemIndex, 1) as number;
-	const subtitlePosition = ctx.getNodeParameter('position', itemIndex, 'mid_bottom_center') as string;
+	const subtitlePosition = ctx.getNodeParameter(
+		'position',
+		itemIndex,
+		'mid_bottom_center',
+	) as string;
 	const ltr = ctx.getNodeParameter('ltr', itemIndex, true) as boolean;
 
 	// Audio parameters
@@ -75,12 +76,15 @@ export async function generateVideo(
 	const response = await apiRequest(ctx, 'POST', 'generate-a-video', body);
 	Logger.info(`Video generation initiated successfully`, { response });
 
-	if (wait && response?.id) {  // Check for response.id directly, not response.sound.id
+	if (wait && response?.id) {
+		// Check for response.id directly, not response.sound.id
 		Logger.info(`Waiting for video generation to complete ${response.id}`, {
-			videoId: response.id,  // Use response.id directly
+			videoId: response.id, // Use response.id directly
 			name,
 		});
-		return await waitForVideoGeneration(ctx, response.id);  // Use waitForSound helper with response.id
+
+		return await getVideo(ctx, response.id);
 	}
+
 	return response;
 }

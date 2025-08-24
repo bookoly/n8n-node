@@ -49,13 +49,7 @@ export const videoResource: BookolyResourceDefinition = {
 		},
 	],
 	parameters: [
-		getIdParam(
-			'waitForVideoGeneration',
-			BookolyResourceType.Video,
-			'videoId',
-			'Video ID',
-			'The ID of the video',
-		),
+		getIdParam('getVideo', BookolyResourceType.Video, 'videoId', 'Video ID', 'The ID of the video'),
 		getNameParam(
 			[
 				'addAudioToVideo',

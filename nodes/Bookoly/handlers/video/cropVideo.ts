@@ -1,12 +1,9 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { LoggerProxy as Logger } from 'n8n-workflow';
 import { apiRequest } from '../../helpers/apiClient';
-import { waitForVideoGeneration } from './waitForVideoGeneration';
+import { getVideo } from './getVideo';
 
-export async function cropVideo(
-	ctx: IExecuteFunctions,
-	itemIndex: number,
-): Promise<any> {
+export async function cropVideo(ctx: IExecuteFunctions, itemIndex: number): Promise<any> {
 	const name = ctx.getNodeParameter('name', itemIndex, '') as string;
 	const url = ctx.getNodeParameter('url', itemIndex) as string;
 	const x = ctx.getNodeParameter('x', itemIndex) as number;
@@ -43,12 +40,15 @@ export async function cropVideo(
 	const response = await apiRequest(ctx, 'POST', 'crop-a-video', body);
 	Logger.info(`Video cropped successfully`, { response });
 
-	if (wait && response?.id) {  // Check for response.id directly, not response.sound.id
+	if (wait && response?.id) {
+		// Check for response.id directly, not response.sound.id
 		Logger.info(`Waiting for video generation to complete ${response.id}`, {
-			videoId: response.id,  // Use response.id directly
+			videoId: response.id, // Use response.id directly
 			name,
-		});	
-		return await waitForVideoGeneration(ctx, response.id);  // Use waitForSound helper with response.id
+		});
+
+		return await getVideo(ctx, response.id);
 	}
+
 	return response;
-} 
+}

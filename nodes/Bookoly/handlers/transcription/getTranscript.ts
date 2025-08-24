@@ -3,31 +3,31 @@ import { LoggerProxy as Logger } from 'n8n-workflow';
 import { apiRequest } from '../../helpers/apiClient';
 import { pollingConfig } from '../config';
 
-export async function waitForTranscription(
-	ctx: IExecuteFunctions,
-	transcriptId: string,
-): Promise<any> {
+export async function getTranscript(ctx: IExecuteFunctions, transcriptId: string): Promise<any> {
 	const maxAttempts = pollingConfig.polling.maxAttempts;
 	const delayMs = pollingConfig.polling.delayMs;
-	if(!transcriptId){
+	if (!transcriptId) {
 		transcriptId = ctx.getNodeParameter('transcriptId', 0) as string;
 	}
-	Logger.info(`Bookoly: waitForTranscription ${transcriptId}`, {transcriptId});
+	Logger.info(`Bookoly: getTranscript ${transcriptId}`, { transcriptId });
 	for (let attempt = 0; attempt < maxAttempts; attempt++) {
 		const response = await apiRequest(ctx, 'GET', `transcripts/${transcriptId}`);
-		Logger.info(`Bookoly: waitForTranscription ${JSON.stringify(response)}`, {response});
+		Logger.info(`Bookoly: getTranscript ${JSON.stringify(response)}`, { response });
 		if (response?.state === 'completed') {
 			return response;
-		}else if(response?.state === 'failed'){
+		} else if (response?.state === 'failed') {
 			const error = new NodeOperationError(ctx.getNode(), 'Transcription generation failed');
-			Logger.error(`Transcription generation failed ${error.message}`, {error});
+			Logger.error(`Transcription generation failed ${error.message}`, { error });
 			throw error;
 		}
 
-		await new Promise(resolve => setTimeout(resolve, delayMs));
+		await new Promise((resolve) => setTimeout(resolve, delayMs));
 	}
 
-	const error = new NodeOperationError(ctx.getNode(), 'Timeout while waiting for Transcription generation to finish');
-	Logger.error(`Transcription generation timeout ${error.message}`, {error});
+	const error = new NodeOperationError(
+		ctx.getNode(),
+		'Timeout while waiting for Transcription generation to finish',
+	);
+	Logger.error(`Transcription generation timeout ${error.message}`, { error });
 	throw error;
-} 
+}

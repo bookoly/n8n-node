@@ -1,13 +1,10 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { LoggerProxy as Logger } from 'n8n-workflow';
 import { apiRequest } from '../../helpers/apiClient';
-import { waitForVideoGeneration } from './waitForVideoGeneration';
+import { getVideo } from './getVideo';
 import { processScenes } from './getScenes';
 
-export async function createSlideshow(
-	ctx: IExecuteFunctions,
-	itemIndex: number,
-): Promise<any> {
+export async function createSlideshow(ctx: IExecuteFunctions, itemIndex: number): Promise<any> {
 	const name = ctx.getNodeParameter('name', itemIndex, '') as string;
 	const webhook_url = ctx.getNodeParameter('webhook_url', itemIndex, '') as string;
 	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
@@ -42,7 +39,9 @@ export async function createSlideshow(
 			videoId: response.id,
 			name,
 		});
-		return await waitForVideoGeneration(ctx, response.id);
+
+		return await getVideo(ctx, response.id);
 	}
+
 	return response;
 }

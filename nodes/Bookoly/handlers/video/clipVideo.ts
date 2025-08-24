@@ -1,12 +1,9 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { LoggerProxy as Logger } from 'n8n-workflow';
 import { apiRequest } from '../../helpers/apiClient';
-import { waitForVideoGeneration } from './waitForVideoGeneration';
+import { getVideo } from './getVideo';
 
-export async function clipVideo(
-	ctx: IExecuteFunctions,
-	itemIndex: number,
-): Promise<any> {
+export async function clipVideo(ctx: IExecuteFunctions, itemIndex: number): Promise<any> {
 	const name = ctx.getNodeParameter('name', itemIndex, '') as string;
 	const url = ctx.getNodeParameter('url', itemIndex) as string;
 	const clipOption = ctx.getNodeParameter('clip_option', itemIndex, {}) as any;
@@ -39,8 +36,10 @@ export async function clipVideo(
 		Logger.info(`Waiting for video generation to complete ${response.id}`, {
 			videoId: response.id,
 			name,
-		});	
-		return await waitForVideoGeneration(ctx, response.id);
+		});
+
+		return await getVideo(ctx, response.id);
 	}
+
 	return response;
-} 
+}

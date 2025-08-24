@@ -1,9 +1,9 @@
 import { createSoundEffect } from './createSoundEffect';
 import { combineSounds } from './combineSounds';
-import { waitForSound } from './waitForSound';
+import { getSound } from './getSound';
 
 export const soundHandlers = {
 	createSoundEffect,
 	combineSounds,
-	waitForSound,
-}; 
+	getSound,
+};

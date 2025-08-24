@@ -11,4 +11,4 @@ export const HANDLERS: Record<BookolyResourceType, Record<string, Function>> = {
 	[BookolyResourceType.Transcription]: transcriptionHandlers,
 	[BookolyResourceType.File]: fileHandlers,
 	[BookolyResourceType.Video]: videoHandlers,
-}; 
+};

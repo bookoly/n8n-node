@@ -33,9 +33,9 @@ export const soundResource: BookolyResourceDefinition = {
 				},
 				{
 					name: 'Get a Specific Sound',
-					value: 'waitForSound',
+					value: 'getSound',
 					action: 'Get a sound',
-					description: 'Pauses the workflow until the sound generation process is finished',
+					description: 'Fetches sound data from the API using the sound ID',
 					// routing removed; handled in execute()
 				},
 			],
@@ -51,7 +51,7 @@ export const soundResource: BookolyResourceDefinition = {
 			required: true,
 			displayOptions: {
 				show: {
-					operation: ['waitForSound'],
+					operation: ['getSound'],
 					resource: [BookolyResourceType.Sound],
 				},
 			},
@@ -99,7 +99,8 @@ export const soundResource: BookolyResourceDefinition = {
 				},
 			},
 			default: 1,
-			description: 'The duration of the sound which will be generated in seconds. Must be at least 0.5 and at most 22. We will guess the optimal duration using the text if the duration is not set',
+			description:
+				'The duration of the sound which will be generated in seconds. Must be at least 0.5 and at most 22. We will guess the optimal duration using the text if the duration is not set',
 			typeOptions: {
 				minValue: 0.5,
 				maxValue: 22,
@@ -116,7 +117,8 @@ export const soundResource: BookolyResourceDefinition = {
 				},
 			},
 			default: '',
-			description: 'Enter a valid URL to receive webhook notifications. Sound ID and URL will be included.',
+			description:
+				'Enter a valid URL to receive webhook notifications. Sound ID and URL will be included.',
 		},
 
 		// Combine Sounds Parameters
@@ -145,7 +147,8 @@ export const soundResource: BookolyResourceDefinition = {
 				},
 			},
 			default: '',
-			description: 'Enter a valid URL to receive webhook notifications. Sound ID and URL will be included.',
+			description:
+				'Enter a valid URL to receive webhook notifications. Sound ID and URL will be included.',
 		},
 		{
 			displayName: 'Segments',
@@ -194,8 +197,8 @@ export const soundResource: BookolyResourceDefinition = {
 					resource: [BookolyResourceType.Sound],
 				},
 			},
-			description: 'If enabled, the node will poll the server until the sound is finished and then return the full sound object instead of just the creation response',
+			description:
+				'If enabled, the node will poll the server until the sound is finished and then return the full sound object instead of just the creation response',
 		},
 	],
 };
-

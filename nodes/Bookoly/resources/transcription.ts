@@ -22,13 +22,14 @@ export const transcriptionResource: BookolyResourceDefinition = {
 					name: 'Transcribe Audio or Video',
 					value: 'createTranscription',
 					action: 'Transcribe audio or video',
-					description: 'Transcribe your audio or video files into clear, accurate text with timestamps',
+					description:
+						'Transcribe your audio or video files into clear, accurate text with timestamps',
 				},
 				{
 					name: 'Get a Specific Transcription',
-					value: 'waitForTranscription',
+					value: 'getTranscript',
 					action: 'Get a transcription',
-					description: 'Pauses the workflow until the transcript generation process is finished',
+					description: 'Fetches transcript data from the API using the transcript ID',
 				},
 			],
 			default: 'createTranscription',
@@ -44,7 +45,7 @@ export const transcriptionResource: BookolyResourceDefinition = {
 			description: 'The ID of the Transcript',
 			displayOptions: {
 				show: {
-					operation: ['waitForTranscription'],
+					operation: ['getTranscript'],
 					resource: [BookolyResourceType.Transcription],
 				},
 			},
@@ -63,7 +64,7 @@ export const transcriptionResource: BookolyResourceDefinition = {
 				},
 			},
 		},
-        {
+		{
 			displayName: 'URL',
 			name: 'src',
 			type: 'string',
@@ -111,7 +112,8 @@ export const transcriptionResource: BookolyResourceDefinition = {
 			name: 'webhookUrl',
 			type: 'string',
 			default: '',
-			description: 'Enter a valid URL to receive webhook notifications. Transcript ID and URL will be included.',
+			description:
+				'Enter a valid URL to receive webhook notifications. Transcript ID and URL will be included.',
 			displayOptions: {
 				show: {
 					operation: ['createTranscription'],
@@ -119,7 +121,7 @@ export const transcriptionResource: BookolyResourceDefinition = {
 				},
 			},
 		},
-        {
+		{
 			displayName: 'Wait for Completion',
 			name: 'wait',
 			type: 'boolean' as NodePropertyTypes,
@@ -130,7 +132,8 @@ export const transcriptionResource: BookolyResourceDefinition = {
 					resource: [BookolyResourceType.Transcription],
 				},
 			},
-			description: 'If enabled, the node will poll the server until the transcript is finished and then return the full transcript object instead of just the creation response',
+			description:
+				'If enabled, the node will poll the server until the transcript is finished and then return the full transcript object instead of just the creation response',
 		},
 	],
 };

@@ -1,7 +1,7 @@
 import { createSpeech } from './createSpeech';
-import { waitForSpeech } from './waitForSpeech';
+import { getSpeech } from './getSpeech';
 
 export const speechHandlers = {
 	createSpeech,
-	waitForSpeech,
-}; 
+	getSpeech,
+};

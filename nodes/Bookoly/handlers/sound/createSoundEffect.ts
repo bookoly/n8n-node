@@ -1,11 +1,8 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { apiRequest } from '../../helpers/apiClient';
-import { waitForSound } from './waitForSound';
+import { getSound } from './getSound';
 
-export async function createSoundEffect(
-	ctx: IExecuteFunctions,
-	itemIndex: number,
-): Promise<any> {
+export async function createSoundEffect(ctx: IExecuteFunctions, itemIndex: number): Promise<any> {
 	const name = ctx.getNodeParameter('name', itemIndex) as string;
 
 	const body = {
@@ -21,8 +18,8 @@ export async function createSoundEffect(
 
 	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
 	if (wait && response?.id) {
-		return await waitForSound(ctx, response.id);
+		return await getSound(ctx, response.id);
 	}
 
 	return response;
-} 
+}

@@ -1,5 +1,10 @@
 import { INodeProperties } from 'n8n-workflow';
-import { languageOptions, subtitleStyleOptions, fontFamilyOptions, positionOptions } from './static';
+import {
+	languageOptions,
+	subtitleStyleOptions,
+	fontFamilyOptions,
+	positionOptions,
+} from './static';
 
 export const getSubtitleParameters = (operation: string | string[]): INodeProperties[] => [
 	{

@@ -1,7 +1,7 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { LoggerProxy as Logger } from 'n8n-workflow';
 import { apiRequest } from '../../helpers/apiClient';
-import { waitForVideoGeneration } from './waitForVideoGeneration';
+import { getVideo } from './getVideo';
 
 export async function splitVideoIntoScenes(
 	ctx: IExecuteFunctions,
@@ -17,7 +17,11 @@ export async function splitVideoIntoScenes(
 	const amount = ctx.getNodeParameter('amount', itemIndex, 1) as number;
 	const min_duration = ctx.getNodeParameter('min_duration', itemIndex, 0.1) as number;
 	const max_duration = ctx.getNodeParameter('max_duration', itemIndex, 0.1) as number;
-	const scene_change_threshold = ctx.getNodeParameter('scene_change_threshold', itemIndex, 0.1) as number;
+	const scene_change_threshold = ctx.getNodeParameter(
+		'scene_change_threshold',
+		itemIndex,
+		0.1,
+	) as number;
 
 	const body = {
 		video: {
@@ -46,12 +50,15 @@ export async function splitVideoIntoScenes(
 	const response = await apiRequest(ctx, 'POST', 'split-video-into-scenes', body);
 	Logger.info(`Video split into scenes successfully: ${JSON.stringify(response)}`, { response });
 
-	if (wait && response?.id) {  // Check for response.id directly, not response.sound.id
+	if (wait && response?.id) {
+		// Check for response.id directly, not response.sound.id
 		Logger.info(`Waiting for video generation to complete ${response.id}`, {
-			videoId: response.id,  // Use response.id directly
+			videoId: response.id, // Use response.id directly
 			name,
-		});	
-		return await waitForVideoGeneration(ctx, response.id);  // Use waitForSound helper with response.id
+		});
+
+		return await getVideo(ctx, response.id);
 	}
+
 	return response;
-} 
+}

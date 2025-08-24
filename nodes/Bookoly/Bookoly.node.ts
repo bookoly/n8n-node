@@ -1,4 +1,3 @@
-
 import {
 	INodeExecutionData,
 	INodeType,
@@ -53,7 +52,7 @@ export class Bookoly implements INodeType {
 				})),
 				default: Object.values(RESOURCE_DEFINITIONS)[0].value,
 			},
-			...Object.values(RESOURCE_DEFINITIONS).flatMap(resource => [
+			...Object.values(RESOURCE_DEFINITIONS).flatMap((resource) => [
 				...resource.operations,
 				...resource.parameters,
 			]),
@@ -83,7 +82,10 @@ export class Bookoly implements INodeType {
 				if (error.name === 'NodeOperationError') {
 					throw error;
 				}
-				throw new NodeOperationError(this.getNode(), `Failed to execute ${operation}: ${error.message}`);
+				throw new NodeOperationError(
+					this.getNode(),
+					`Failed to execute ${operation}: ${error.message}`,
+				);
 			}
 		}
 

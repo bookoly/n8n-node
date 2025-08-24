@@ -1,7 +1,7 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { LoggerProxy as Logger } from 'n8n-workflow';
 import { apiRequest } from '../../helpers/apiClient';
-import { waitForSubtitleFileGeneration } from './waitForSubtitleFileGeneration';
+import { getSubtitleFile } from './getSubtitleFile';
 
 export async function generateSubtitleFile(
 	ctx: IExecuteFunctions,
@@ -39,9 +39,9 @@ export async function generateSubtitleFile(
 			ltr,
 		},
 	};
-	Logger.info(`Subtitle file generation body ${JSON.stringify(body)}`, {body});
+	Logger.info(`Subtitle file generation body ${JSON.stringify(body)}`, { body });
 	const response = await apiRequest(ctx, 'POST', 'generate-subtitle-file', body);
-	Logger.info(`Subtitle file generation initiated ${JSON.stringify(response)}`, {response});
+	Logger.info(`Subtitle file generation initiated ${JSON.stringify(response)}`, { response });
 
 	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
 	if (wait && response?.id) {
@@ -49,8 +49,9 @@ export async function generateSubtitleFile(
 			subtitleFileId: response.id,
 			name,
 		});
-		return await waitForSubtitleFileGeneration(ctx, response.id);
+
+		return await getSubtitleFile(ctx, response.id);
 	}
 
 	return response;
-} 
+}

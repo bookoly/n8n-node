@@ -54,7 +54,11 @@ export const scenesParam = {
 					description: 'The effect to apply to the scene',
 					options: [
 						{ name: 'None', value: 'none', description: 'No effect' },
-						{ name: 'Zoom In', value: 'zoom_in', description: 'Apply a zoom-in effect to the scene' },
+						{
+							name: 'Zoom In',
+							value: 'zoom_in',
+							description: 'Apply a zoom-in effect to the scene',
+						},
 					],
 				},
 			],

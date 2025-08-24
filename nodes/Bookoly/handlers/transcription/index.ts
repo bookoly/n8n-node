@@ -1,7 +1,7 @@
 import { createTranscription } from './createTranscription';
-import { waitForTranscription } from './waitForTranscription';
+import { getTranscript } from './getTranscript';
 
 export const transcriptionHandlers = {
 	createTranscription,
-	waitForTranscription,
-}; 
+	getTranscript,
+};
