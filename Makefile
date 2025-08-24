@@ -34,4 +34,4 @@ clean:
 	docker-compose down -v
 	docker system prune -f
 	rm -rf node_modules
-	rm -rf dist 
+	rm -rf dist
