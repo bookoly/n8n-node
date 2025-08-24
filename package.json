@@ -1,7 +1,7 @@
 {
   "name": "n8n-nodes-bookoly",
   "version": "0.1.0",
-  "description": "n8n community node for Bookoly API integration",
+  "description": "n8n community node for bookoly API integration",
   "keywords": [
     "n8n-community-node-package"
   ],
