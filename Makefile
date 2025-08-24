@@ -25,8 +25,10 @@ dev:
 	docker-compose down
 	@echo "📦 Building npm packages..."
 	npm run build
+	@echo "📦 Format source code..."
+	npm run format
 	@echo "🚀 Starting containers in development mode..."
-	docker-compose up
+	docker-compose up -d
 
 # Clean up
 clean:
