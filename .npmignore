@@ -7,7 +7,6 @@ node_modules
 .gitignore
 .npmignore
 .git
-.github
 .n8n
 .n8nignore
 .n8nrc
