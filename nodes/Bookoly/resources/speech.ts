@@ -48,13 +48,8 @@ export const speechResource: BookolyResourceDefinition = {
 			'The ID of the Speech',
 		),
 		getNameParam('createSpeech', BookolyResourceType.Speech, 'The name of the speech synthesis'),
-		getTextParam(
-			'createSpeech',
-			BookolyResourceType.Speech,
-			true,
-			'The text to create the speech synthesis from',
-		),
-		getVoiceParam('createSpeech', BookolyResourceType.Speech, true, 'The name of the voice'),
+		getTextParam('createSpeech', BookolyResourceType.Speech),
+		getVoiceParam('createSpeech', BookolyResourceType.Speech),
 		getWaitParam(
 			'createSpeech',
 			BookolyResourceType.Speech,

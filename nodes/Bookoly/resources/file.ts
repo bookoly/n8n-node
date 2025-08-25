@@ -43,13 +43,7 @@ export const fileResource: BookolyResourceDefinition = {
 	],
 	parameters: [
 		getNameParam('generateSubtitleFile', BookolyResourceType.File, 'The name of the subtitle file'),
-		getUrlParam(
-			'generateSubtitleFile',
-			BookolyResourceType.File,
-			true,
-			'Paste the public and downloadable URL of the video or audio file you want to subtitle',
-			'URL',
-		),
+		getUrlParam('generateSubtitleFile', BookolyResourceType.File, 'URL'),
 		getTypeParam('generateSubtitleFile', BookolyResourceType.File),
 		...getSubtitleParameters('generateSubtitleFile'),
 		getIdParam(

@@ -88,8 +88,6 @@ export const videoResource: BookolyResourceDefinition = {
 				'splitVideoIntoScenes',
 			],
 			BookolyResourceType.Video,
-			true,
-			'The public and downloadable URL of the video file',
 		),
 		getMuteParam(
 			[
@@ -105,20 +103,10 @@ export const videoResource: BookolyResourceDefinition = {
 			BookolyResourceType.Video,
 		),
 		getResolutionParam(['createSlideshow', 'generateVideo'], BookolyResourceType.Video),
-		getTextParam(
-			['generateVideo'],
-			BookolyResourceType.Video,
-			true,
-			'The text to create the speech synthesis from',
-		),
-		getVoiceParam('generateVideo', BookolyResourceType.Video, true, 'The name of the voice'),
+		getTextParam(['generateVideo'], BookolyResourceType.Video),
+		getVoiceParam('generateVideo', BookolyResourceType.Video),
 		getTypeParam(['addSubtitlesToVideoFromFile'], BookolyResourceType.Video),
-		getSubtitleUrlParam(
-			['addSubtitlesToVideoFromFile'],
-			BookolyResourceType.Video,
-			true,
-			'The public and downloadable URL of the subtitle file',
-		),
+		getSubtitleUrlParam(['addSubtitlesToVideoFromFile'], BookolyResourceType.Video),
 		getSecParam(['frameVideo'], BookolyResourceType.Video),
 		getRotateParam(['rotateVideo'], BookolyResourceType.Video),
 		// Extracted unique/complex parameter groups
