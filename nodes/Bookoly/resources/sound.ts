@@ -198,7 +198,7 @@ export const soundResource: BookolyResourceDefinition = {
 				},
 			},
 			description:
-				'If enabled, the node will poll the server until the sound is finished and then return the full sound object instead of just the creation response',
+				'If enabled, the node pauses the workflow and checks the server until the sound generation is finished, then returns the full sound object. If disabled, only the ID and creation timestamp are returned.',
 		},
 	],
 };

@@ -58,7 +58,7 @@ export const speechResource: BookolyResourceDefinition = {
 		getWaitParam(
 			'createSpeech',
 			BookolyResourceType.Speech,
-			'If enabled, the node will poll the server until the speech is finished and then return the full speech object instead of just the creation response',
+			'If enabled, the node pauses the workflow and checks the server until the speech generation is finished, then returns the full speech object. If disabled, only the ID and creation timestamp are returned.',
 		),
 		getWebhookUrlParam(
 			'createSpeech',

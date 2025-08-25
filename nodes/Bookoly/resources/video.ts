@@ -158,7 +158,7 @@ export const videoResource: BookolyResourceDefinition = {
 				'splitVideoIntoScenes',
 			],
 			BookolyResourceType.Video,
-			'If enabled, the node will poll the server until the video is finished and then return the full video object instead of just the creation response',
+			'If enabled, the node pauses the workflow and checks the server until the video generation is finished, then returns the full video object. If disabled, only the ID and creation timestamp are returned.',
 		),
 		getWebhookUrlParam(
 			[

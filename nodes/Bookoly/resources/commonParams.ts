@@ -108,7 +108,7 @@ export const getVoiceParam = (
 export const getWaitParam = (
 	operation: string | string[],
 	resource?: string,
-	description = 'If enabled, the node will poll the server until the process is finished and then return the full object instead of just the creation response',
+	description = 'If enabled, the node pauses the workflow and checks the server until the resource generation is finished, then returns the full resource object. If disabled, only the ID and creation timestamp are returned.',
 ) => ({
 	displayName: 'Wait for Completion',
 	name: 'wait',

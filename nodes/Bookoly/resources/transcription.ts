@@ -133,7 +133,7 @@ export const transcriptionResource: BookolyResourceDefinition = {
 				},
 			},
 			description:
-				'If enabled, the node will poll the server until the transcript is finished and then return the full transcript object instead of just the creation response',
+				'If enabled, the node pauses the workflow and checks the server until the transcript generation is finished, then returns the full transcript object. If disabled, only the ID and creation timestamp are returned.',
 		},
 	],
 };

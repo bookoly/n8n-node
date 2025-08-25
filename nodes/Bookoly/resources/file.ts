@@ -62,7 +62,7 @@ export const fileResource: BookolyResourceDefinition = {
 		getWaitParam(
 			'generateSubtitleFile',
 			BookolyResourceType.File,
-			'If enabled, the node will poll the server until the subtitle file is generated and then return the full subtitle file object instead of just the creation response',
+			'If enabled, the node pauses the workflow and checks the server until the subtitle file generation is finished, then returns the full subtitle file object. If disabled, only the ID and creation timestamp are returned.',
 		),
 		getWebhookUrlParam(
 			'generateSubtitleFile',
