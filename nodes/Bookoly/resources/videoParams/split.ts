@@ -20,14 +20,29 @@ export const splitOptionParams: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Amount',
+		displayName: 'Segment Length',
 		name: 'amount',
 		type: 'number' as NodePropertyTypes,
-		default: 1,
-		description: 'Number of segments to split into',
+		default: 4,
+		description: 'Splits the video into equal segments of the specified duration (in seconds)',
 		required: true,
 		displayOptions: {
 			show: {
+				type: ['time'],
+				operation: ['splitVideoIntoScenes'],
+			},
+		},
+	},
+	{
+		displayName: 'Number of Segments',
+		name: 'amount',
+		type: 'number' as NodePropertyTypes,
+		default: 2,
+		description: 'Splits the video into the specified total number of equal-length segments',
+		required: true,
+		displayOptions: {
+			show: {
+				type: ['count'],
 				operation: ['splitVideoIntoScenes'],
 			},
 		},
@@ -36,11 +51,12 @@ export const splitOptionParams: INodeProperties[] = [
 		displayName: 'Min Scene Duration (Sec)',
 		name: 'min_duration',
 		type: 'number' as NodePropertyTypes,
-		default: 0.1,
-		description: 'The minimum length of each automatically detected scene. Must be >= 0.1.',
+		default: 1,
+		description: 'The minimum length of each automatically detected scene',
 		required: true,
 		displayOptions: {
 			show: {
+				type: ['auto'],
 				operation: ['splitVideoIntoScenes'],
 			},
 		},
@@ -49,25 +65,27 @@ export const splitOptionParams: INodeProperties[] = [
 		displayName: 'Max Scene Duration (Sec)',
 		name: 'max_duration',
 		type: 'number' as NodePropertyTypes,
-		default: 0.1,
-		description: 'The maximum length of each automatically detected scene. Must be >= 0.1.',
+		default: 2,
+		description: 'The maximum length of each automatically detected scene',
 		required: true,
 		displayOptions: {
 			show: {
+				type: ['auto'],
 				operation: ['splitVideoIntoScenes'],
 			},
 		},
 	},
 	{
-		displayName: 'Scene Change Sensitivity',
+		displayName: 'Scene Change Threshold',
 		name: 'scene_change_threshold',
 		type: 'number' as NodePropertyTypes,
-		default: 0.1,
+		default: 0.2,
 		description:
 			'Lower values detect more scene changes; higher values detect fewer. Range: 0.1 – 1.',
 		required: true,
 		displayOptions: {
 			show: {
+				type: ['auto'],
 				operation: ['splitVideoIntoScenes'],
 			},
 		},

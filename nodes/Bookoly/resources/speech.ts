@@ -59,7 +59,6 @@ export const speechResource: BookolyResourceDefinition = {
 		getWebhookUrlParam(
 			'createSpeech',
 			BookolyResourceType.Speech,
-			'webhookUrl',
 			'Enter a valid URL to receive webhook notifications. Speech ID and URL will be included.',
 		),
 	],

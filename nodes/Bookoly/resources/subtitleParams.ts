@@ -8,10 +8,10 @@ import {
 
 export const getSubtitleParameters = (operation: string | string[]): INodeProperties[] => [
 	{
-		displayName: 'Subtitle Style',
+		displayName: 'Subtitle - Style',
 		name: 'style',
 		type: 'options',
-		default: 'simple',
+		default: 'highlight_current_word',
 		required: true,
 		displayOptions: {
 			show: {
@@ -19,10 +19,10 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 			},
 		},
 		options: subtitleStyleOptions,
-		description: 'Select a subtitle style. The default is "Simple".',
+		description: 'Select a subtitle style. The default is "Highlight Current Word".',
 	},
 	{
-		displayName: 'Subtitle Language',
+		displayName: 'Subtitle - Language',
 		name: 'language',
 		type: 'options',
 		default: 'en',
@@ -36,7 +36,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		description: 'Select the language for subtitles',
 	},
 	{
-		displayName: 'Font Family',
+		displayName: 'Subtitle - Font Family',
 		name: 'font_family',
 		type: 'options',
 		default: 'Arial',
@@ -50,7 +50,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		description: 'The default subtitle font family is Arial',
 	},
 	{
-		displayName: 'Font Size',
+		displayName: 'Subtitle - Font Size',
 		name: 'font_size',
 		type: 'number',
 		default: 20,
@@ -63,7 +63,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		description: 'The default subtitle font size is 20',
 	},
 	{
-		displayName: 'Word Color',
+		displayName: 'Subtitle - Word Color',
 		name: 'word_color',
 		type: 'color',
 		default: '#FEEE15',
@@ -72,10 +72,10 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 				operation: Array.isArray(operation) ? operation : [operation],
 			},
 		},
-		description: 'The subtitle word color given in Hex e.g. #FEEE15 = Yellow',
+		description: 'The subtitle word color given in HEX e.g. #FEEE15 = Yellow',
 	},
 	{
-		displayName: 'Line Color',
+		displayName: 'Subtitle - Line Color',
 		name: 'line_color',
 		type: 'color',
 		default: '#FFFFFF',
@@ -84,10 +84,10 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 				operation: Array.isArray(operation) ? operation : [operation],
 			},
 		},
-		description: 'The subtitle line color given in Hex e.g. #FFFFFF = White',
+		description: 'The subtitle line color given in HEX e.g. #FFFFFF = White',
 	},
 	{
-		displayName: 'Line Words',
+		displayName: 'Subtitle - Line Words',
 		name: 'line_words',
 		type: 'number',
 		default: 4,
@@ -100,7 +100,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		description: 'Defines how many words are displayed at a time. Min. = 1, Max. = 10',
 	},
 	{
-		displayName: 'Outline Width',
+		displayName: 'Subtitle - Outline Width',
 		name: 'outline_width',
 		type: 'number',
 		default: 5,
@@ -113,7 +113,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		description: 'The default subtitle outline width is 5',
 	},
 	{
-		displayName: 'Position',
+		displayName: 'Subtitle - Position',
 		name: 'position',
 		type: 'options',
 		default: 'mid_bottom_center',
@@ -124,10 +124,10 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 			},
 		},
 		options: positionOptions,
-		description: 'Position of the subtitle on the video',
+		description: 'Specifies where subtitles are displayed on the video',
 	},
 	{
-		displayName: 'Direction',
+		displayName: 'Subtitle - Orientation',
 		name: 'ltr',
 		type: 'options',
 		options: [
@@ -148,6 +148,6 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 				operation: Array.isArray(operation) ? operation : [operation],
 			},
 		},
-		description: 'Choose the subtitle text direction',
+		description: 'Choose the subtitle text orientation',
 	},
 ];

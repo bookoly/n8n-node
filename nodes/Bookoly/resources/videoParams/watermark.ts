@@ -5,7 +5,7 @@ export const watermarkUrlParam = {
 	name: 'watermark_url',
 	type: 'string' as NodePropertyTypes,
 	default: '',
-	description: 'Direct URL to the watermark image (e.g., PNG or JPG)',
+	description: 'The public and downloadable URL of the image file (e.g., PNG or JPG)',
 	required: true,
 	displayOptions: {
 		show: {

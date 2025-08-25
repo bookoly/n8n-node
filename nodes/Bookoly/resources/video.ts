@@ -167,7 +167,6 @@ export const videoResource: BookolyResourceDefinition = {
 				'splitVideoIntoScenes',
 			],
 			BookolyResourceType.Video,
-			'webhook_url',
 			'Enter a valid URL to receive webhook notifications. Video ID and URL will be included.',
 		),
 	],

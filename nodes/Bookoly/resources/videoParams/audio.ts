@@ -19,7 +19,7 @@ export const trimAudioParam = {
 	name: 'trim',
 	type: 'boolean' as NodePropertyTypes,
 	default: false,
-	description: 'Whether to trim the audio to match video length',
+	description: 'Trim audio to match video length (if longer)',
 	displayOptions: {
 		show: {
 			operation: ['addAudioToVideo', 'addAudioWithSubtitlesToVideo', 'generateVideo'],

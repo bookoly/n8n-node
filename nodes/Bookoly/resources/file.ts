@@ -61,7 +61,6 @@ export const fileResource: BookolyResourceDefinition = {
 		getWebhookUrlParam(
 			'generateSubtitleFile',
 			BookolyResourceType.File,
-			'webhook_url',
 			'Enter a valid URL to receive webhook notifications. Subtitle File ID and URL will be included.',
 		),
 	],

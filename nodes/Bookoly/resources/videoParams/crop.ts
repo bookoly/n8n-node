@@ -33,7 +33,7 @@ export const cropWidthParam = {
 	name: 'width',
 	type: 'number' as NodePropertyTypes,
 	default: 100,
-	description: 'Width of the cropped area in pixels',
+	description: 'Width of the cropped area in pixels. Must not exceed the video width.',
 	required: true,
 	displayOptions: {
 		show: {
@@ -47,7 +47,7 @@ export const cropHeightParam = {
 	name: 'height',
 	type: 'number' as NodePropertyTypes,
 	default: 100,
-	description: 'Height of the cropped area in pixels',
+	description: 'Height of the cropped area in pixels. Must not exceed the video height.',
 	required: true,
 	displayOptions: {
 		show: {

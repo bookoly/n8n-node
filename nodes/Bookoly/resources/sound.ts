@@ -106,20 +106,6 @@ export const soundResource: BookolyResourceDefinition = {
 				maxValue: 22,
 			},
 		},
-		{
-			displayName: 'Webhook URL',
-			name: 'webhook_url',
-			type: 'string' as NodePropertyTypes,
-			displayOptions: {
-				show: {
-					operation: ['createSoundEffect'],
-					resource: [BookolyResourceType.Sound],
-				},
-			},
-			default: '',
-			description:
-				'Enter a valid URL to receive webhook notifications. Sound ID and URL will be included.',
-		},
 
 		// Combine Sounds Parameters
 		{
@@ -135,20 +121,6 @@ export const soundResource: BookolyResourceDefinition = {
 			},
 			default: '',
 			description: 'The name of the sound',
-		},
-		{
-			displayName: 'Webhook URL',
-			name: 'webhook_url',
-			type: 'string' as NodePropertyTypes,
-			displayOptions: {
-				show: {
-					operation: ['combineSounds'],
-					resource: [BookolyResourceType.Sound],
-				},
-			},
-			default: '',
-			description:
-				'Enter a valid URL to receive webhook notifications. Sound ID and URL will be included.',
 		},
 		{
 			displayName: 'Segments',
@@ -185,12 +157,11 @@ export const soundResource: BookolyResourceDefinition = {
 			],
 			description: 'List the segments of your sound here',
 		},
-		// Wait toggle (visible only for the two POST operations)
 		{
 			displayName: 'Wait for Completion',
 			name: 'wait',
 			type: 'boolean' as NodePropertyTypes,
-			default: false,
+			default: true,
 			displayOptions: {
 				show: {
 					operation: ['createSoundEffect', 'combineSounds'],
@@ -199,6 +170,20 @@ export const soundResource: BookolyResourceDefinition = {
 			},
 			description:
 				'If enabled, the node pauses the workflow and checks the server until the sound generation is finished, then returns the full sound object. If disabled, only the ID and creation timestamp are returned.',
+		},
+		{
+			displayName: 'Webhook URL',
+			name: 'webhook_url',
+			type: 'string' as NodePropertyTypes,
+			displayOptions: {
+				show: {
+					operation: ['createSoundEffect', 'combineSounds'],
+					resource: [BookolyResourceType.Sound],
+				},
+			},
+			default: '',
+			description:
+				'Enter a valid URL to receive webhook notifications. Sound ID and URL will be included.',
 		},
 	],
 };

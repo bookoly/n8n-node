@@ -108,8 +108,22 @@ export const transcriptionResource: BookolyResourceDefinition = {
 			},
 		},
 		{
+			displayName: 'Wait for Completion',
+			name: 'wait',
+			type: 'boolean' as NodePropertyTypes,
+			default: true,
+			displayOptions: {
+				show: {
+					operation: ['createTranscription'],
+					resource: [BookolyResourceType.Transcription],
+				},
+			},
+			description:
+				'If enabled, the node pauses the workflow and checks the server until the transcript generation is finished, then returns the full transcript object. If disabled, only the ID and creation timestamp are returned.',
+		},
+		{
 			displayName: 'Webhook URL',
-			name: 'webhookUrl',
+			name: 'webhook_url',
 			type: 'string',
 			default: '',
 			description:
@@ -120,20 +134,6 @@ export const transcriptionResource: BookolyResourceDefinition = {
 					resource: [BookolyResourceType.Transcription],
 				},
 			},
-		},
-		{
-			displayName: 'Wait for Completion',
-			name: 'wait',
-			type: 'boolean' as NodePropertyTypes,
-			default: false,
-			displayOptions: {
-				show: {
-					operation: ['createTranscription'],
-					resource: [BookolyResourceType.Transcription],
-				},
-			},
-			description:
-				'If enabled, the node pauses the workflow and checks the server until the transcript generation is finished, then returns the full transcript object. If disabled, only the ID and creation timestamp are returned.',
 		},
 	],
 };

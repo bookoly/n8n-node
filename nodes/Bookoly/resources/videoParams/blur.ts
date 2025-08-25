@@ -6,7 +6,7 @@ export const blurOptionParam: INodeProperties[] = [
 		name: 'x',
 		type: 'number',
 		default: 0,
-		description: 'Distance in pixels from the left edge of the video',
+		description: 'Horizontal position of the top-left corner of the blur area',
 		required: true,
 		displayOptions: {
 			show: {
@@ -19,7 +19,7 @@ export const blurOptionParam: INodeProperties[] = [
 		name: 'y',
 		type: 'number',
 		default: 0,
-		description: 'Distance in pixels from the top edge of the video',
+		description: 'Vertical position of the top-left corner of the blur area',
 		required: true,
 		displayOptions: {
 			show: {
@@ -58,7 +58,8 @@ export const blurOptionParam: INodeProperties[] = [
 		name: 'power',
 		type: 'number',
 		default: 1,
-		description: 'Blur intensity level',
+		description:
+			'Controls the intensity of the blur. Higher values produce stronger blur. Recommended range: 10 to 25.',
 		required: true,
 		displayOptions: {
 			show: {

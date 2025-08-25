@@ -57,11 +57,10 @@ export const getSubtitleUrlParam = (operation: string | string[], resource?: str
 export const getWebhookUrlParam = (
 	operation: string | string[],
 	resource?: string,
-	name = 'webhook_url',
 	description = 'Enter a valid URL to receive webhook notifications.',
 ) => ({
 	displayName: 'Webhook URL',
-	name,
+	name: 'webhook_url',
 	type: 'string' as NodePropertyTypes,
 	default: '',
 	description,
