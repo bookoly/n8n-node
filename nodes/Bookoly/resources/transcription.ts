@@ -84,7 +84,7 @@ export const transcriptionResource: BookolyResourceDefinition = {
 			type: 'options',
 			required: true,
 			default: 'en',
-			description: 'The language of the audio/video file',
+			description: 'Choose the primary language spoken in your audio or video file',
 			options: languageOptions,
 			displayOptions: {
 				show: {
@@ -97,8 +97,8 @@ export const transcriptionResource: BookolyResourceDefinition = {
 			displayName: 'Translation Language',
 			name: 'translationLanguage',
 			type: 'options',
-			default: 'en',
-			description: 'The language to translate the transcript to (optional)',
+			default: '',
+			description: 'Optionally, translate the transcript into a different language if required',
 			options: translationLanguageOptions,
 			displayOptions: {
 				show: {

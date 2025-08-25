@@ -7,6 +7,7 @@ import {
 	getIdParam,
 } from './commonParams';
 import { BookolyResourceDefinition, BookolyResourceType } from '../types';
+
 export const speechResource: BookolyResourceDefinition = {
 	displayName: 'Speech',
 	value: BookolyResourceType.Speech,

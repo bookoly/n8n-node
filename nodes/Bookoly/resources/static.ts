@@ -109,7 +109,7 @@ export const languageOptions: Option[] = [
 ];
 
 export const translationLanguageOptions: Option[] = [
-	{ value: '', name: 'Empty' },
+	{ value: '', name: 'No Translation' },
 	{ value: 'ar', name: 'Arabic' },
 	{ value: 'bn', name: 'Bengali' },
 	{ value: 'ca', name: 'Catalan' },
