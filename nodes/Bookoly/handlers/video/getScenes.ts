@@ -9,16 +9,9 @@ export function processScenes(scenesCollection: any): any[] {
 						src: scene.src,
 						type: scene.type,
 					},
+					effect: scene.effect,
+					duration: scene.duration,
 				};
-
-				if (scene.effect !== 'none') {
-					sceneObj.effect = scene.effect;
-				}
-
-				// Only include duration for image assets
-				if (scene.type === 'image') {
-					sceneObj.duration = scene.duration;
-				}
 
 				scenes.push(sceneObj);
 			}

@@ -1,4 +1,5 @@
 import { NodePropertyTypes } from 'n8n-workflow';
+
 export const scenesParam = {
 	displayName: 'Scenes',
 	name: 'scenes',
@@ -49,11 +50,15 @@ export const scenesParam = {
 					displayName: 'Effect',
 					name: 'effect',
 					type: 'options' as NodePropertyTypes,
-					default: 'none',
+					default: '',
 					placeholder: 'Select an effect',
 					description: 'The effect to apply to the scene',
 					options: [
-						{ name: 'None', value: 'none', description: 'No effect' },
+						{
+							name: 'None',
+							value: '',
+							description: 'No visual effect will be applied to the scene',
+						},
 						{
 							name: 'Zoom In',
 							value: 'zoom_in',
