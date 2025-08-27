@@ -1,5 +1,5 @@
 import { generateSubtitleFile } from './generateSubtitleFile';
-import { getSubtitleFile } from './getSubtitleFile';
+import { getResource as getSubtitleFile } from '../getResource';
 
 export const fileHandlers = {
 	generateSubtitleFile,

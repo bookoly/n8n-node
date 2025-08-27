@@ -1,6 +1,6 @@
 import { createSoundEffect } from './createSoundEffect';
 import { combineSounds } from './combineSounds';
-import { getSound } from './getSound';
+import { getResource as getSound } from '../getResource';
 
 export const soundHandlers = {
 	createSoundEffect,

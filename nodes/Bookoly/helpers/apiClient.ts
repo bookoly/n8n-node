@@ -1,11 +1,7 @@
 import { IDataObject, IExecuteFunctions, IHttpRequestOptions } from 'n8n-workflow';
 import { API_V1_BASE_URL } from '../Bookoly.node';
-import { HttpMethod, ResourceType } from '../types';
-import { getVideo } from '../handlers/video/getVideo';
-import { getSpeech } from '../handlers/speech/getSpeech';
-import { getTranscript } from '../handlers/transcript/getTranscript';
-import { getSound } from '../handlers/sound/getSound';
-import { getSubtitleFile } from '../handlers/file/getSubtitleFile';
+import { HttpMethod } from '../types';
+import { getResource } from '../handlers/getResource';
 
 export async function bookolyApiRequest(
 	ctx: IExecuteFunctions,
@@ -35,18 +31,8 @@ export async function bookolyApiRequest(
 		const resourceId = response?.id;
 
 		if (wait && resourceId) {
-			switch (resourceType) {
-				case ResourceType.VIDEO:
-					return getVideo(ctx, resourceId);
-				case ResourceType.SPEECH:
-					return getSpeech(ctx, resourceId);
-				case ResourceType.TRANSCRIPT:
-					return getTranscript(ctx, resourceId);
-				case ResourceType.SOUND:
-					return getSound(ctx, resourceId);
-				case ResourceType.FILE:
-					return getSubtitleFile(ctx, resourceId);
-			}
+			// Not sure if value 0 is correct here!
+			return getResource(ctx, 0, resourceId);
 		}
 
 		return response;

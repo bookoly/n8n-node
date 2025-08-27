@@ -1,5 +1,5 @@
 import { createSpeech } from './createSpeech';
-import { getSpeech } from './getSpeech';
+import { getResource as getSpeech } from '../getResource';
 
 export const speechHandlers = {
 	createSpeech,
