@@ -1,9 +1,9 @@
-import { BookolyResourceDefinition, BookolyResourceType } from '../types';
+import { ResourceDefinition, ResourceType, SoundAction } from '../types';
 import { NodePropertyTypes } from 'n8n-workflow';
 
-export const soundResource: BookolyResourceDefinition = {
+export const soundResource: ResourceDefinition = {
 	displayName: 'Sound',
-	value: BookolyResourceType.Sound,
+	value: ResourceType.SOUND,
 	description: 'Manage sound operations',
 	operations: [
 		{
@@ -13,37 +13,34 @@ export const soundResource: BookolyResourceDefinition = {
 			noDataExpression: true,
 			displayOptions: {
 				show: {
-					resource: [BookolyResourceType.Sound],
+					resource: [ResourceType.SOUND],
 				},
 			},
 			options: [
+				// routing removed; handled in execute()
 				{
 					name: 'Combine Sounds',
-					value: 'combineSounds',
+					value: SoundAction.COMBINE_SOUNDS,
 					action: 'Combine sounds',
 					description: 'Merge multiple sound files into a single seamless audio track',
-					// routing removed; handled in execute()
 				},
 				{
 					name: 'Create a Sound Effect',
-					value: 'createSoundEffect',
+					value: SoundAction.CREATE_SOUND_EFFECT,
 					action: 'Create a sound effect',
 					description: 'Generate sound effects based on a text description',
-					// routing removed; handled in execute()
 				},
 				{
 					name: 'Get a Specific Sound',
-					value: 'getSound',
+					value: SoundAction.GET_SOUND,
 					action: 'Get a sound',
 					description: 'Fetches sound data from the API using the sound ID',
-					// routing removed; handled in execute()
 				},
 			],
-			default: 'createSoundEffect',
+			default: SoundAction.CREATE_SOUND_EFFECT,
 		},
 	],
 	parameters: [
-		// Wait for Sound Generation Parameters
 		{
 			displayName: 'Sound ID',
 			name: 'soundId',
@@ -51,15 +48,13 @@ export const soundResource: BookolyResourceDefinition = {
 			required: true,
 			displayOptions: {
 				show: {
-					operation: ['getSound'],
-					resource: [BookolyResourceType.Sound],
+					operation: [SoundAction.GET_SOUND],
+					resource: [ResourceType.SOUND],
 				},
 			},
 			default: '',
 			description: 'The ID of the sound',
 		},
-
-		// Create Sound Effect Parameters
 		{
 			displayName: 'Name',
 			name: 'name',
@@ -67,8 +62,8 @@ export const soundResource: BookolyResourceDefinition = {
 			required: true,
 			displayOptions: {
 				show: {
-					operation: ['createSoundEffect'],
-					resource: [BookolyResourceType.Sound],
+					operation: [SoundAction.CREATE_SOUND_EFFECT],
+					resource: [ResourceType.SOUND],
 				},
 			},
 			default: '',
@@ -81,8 +76,8 @@ export const soundResource: BookolyResourceDefinition = {
 			required: true,
 			displayOptions: {
 				show: {
-					operation: ['createSoundEffect'],
-					resource: [BookolyResourceType.Sound],
+					operation: [SoundAction.CREATE_SOUND_EFFECT],
+					resource: [ResourceType.SOUND],
 				},
 			},
 			default: '',
@@ -94,8 +89,8 @@ export const soundResource: BookolyResourceDefinition = {
 			type: 'number' as NodePropertyTypes,
 			displayOptions: {
 				show: {
-					operation: ['createSoundEffect'],
-					resource: [BookolyResourceType.Sound],
+					operation: [SoundAction.CREATE_SOUND_EFFECT],
+					resource: [ResourceType.SOUND],
 				},
 			},
 			default: 1,
@@ -106,8 +101,6 @@ export const soundResource: BookolyResourceDefinition = {
 				maxValue: 22,
 			},
 		},
-
-		// Combine Sounds Parameters
 		{
 			displayName: 'Name',
 			name: 'name',
@@ -115,8 +108,8 @@ export const soundResource: BookolyResourceDefinition = {
 			required: true,
 			displayOptions: {
 				show: {
-					operation: ['combineSounds'],
-					resource: [BookolyResourceType.Sound],
+					operation: [SoundAction.COMBINE_SOUNDS],
+					resource: [ResourceType.SOUND],
 				},
 			},
 			default: '',
@@ -133,8 +126,8 @@ export const soundResource: BookolyResourceDefinition = {
 			},
 			displayOptions: {
 				show: {
-					operation: ['combineSounds'],
-					resource: [BookolyResourceType.Sound],
+					operation: [SoundAction.COMBINE_SOUNDS],
+					resource: [ResourceType.SOUND],
 				},
 			},
 			default: { segmentValues: [{ src: '' }] },
@@ -150,7 +143,6 @@ export const soundResource: BookolyResourceDefinition = {
 							default: '',
 							description: 'List the segments of your sound here',
 							required: true,
-							placeholder: 'https://bookoly.com/view/audio/...',
 						},
 					],
 				},
@@ -164,8 +156,8 @@ export const soundResource: BookolyResourceDefinition = {
 			default: true,
 			displayOptions: {
 				show: {
-					operation: ['createSoundEffect', 'combineSounds'],
-					resource: [BookolyResourceType.Sound],
+					operation: [SoundAction.CREATE_SOUND_EFFECT, SoundAction.COMBINE_SOUNDS],
+					resource: [ResourceType.SOUND],
 				},
 			},
 			description:
@@ -177,8 +169,8 @@ export const soundResource: BookolyResourceDefinition = {
 			type: 'string' as NodePropertyTypes,
 			displayOptions: {
 				show: {
-					operation: ['createSoundEffect', 'combineSounds'],
-					resource: [BookolyResourceType.Sound],
+					operation: [SoundAction.CREATE_SOUND_EFFECT, SoundAction.COMBINE_SOUNDS],
+					resource: [ResourceType.SOUND],
 				},
 			},
 			default: '',

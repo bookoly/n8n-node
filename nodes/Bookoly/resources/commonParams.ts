@@ -1,10 +1,11 @@
 import { voiceOptions, resolutionOptions } from './static';
 import { NodePropertyTypes } from 'n8n-workflow';
+import { SubtitleFileType, VideoResolution, Voice } from '../types';
 
 export const getNameParam = (
 	operation: string | string[],
 	resource?: string,
-	description = 'The name',
+	description = 'Name',
 ) => ({
 	displayName: 'Name',
 	name: 'name',
@@ -77,7 +78,7 @@ export const getVoiceParam = (operation: string | string[], resource?: string) =
 	name: 'vendor_id',
 	type: 'options' as NodePropertyTypes,
 	required: true,
-	default: '',
+	default: Voice.ECHO,
 	description: 'The name of the voice',
 	options: voiceOptions,
 	displayOptions: {
@@ -110,8 +111,8 @@ export const getTypeParam = (operation: string | string[], resource?: string) =>
 	displayName: 'Type',
 	name: 'type',
 	type: 'options' as NodePropertyTypes,
-	default: 'ass',
-	options: [{ name: 'Advanced SubStation Alpha (ASS)', value: 'ass' }],
+	default: SubtitleFileType.ASS,
+	options: [{ name: 'Advanced SubStation Alpha (ASS)', value: SubtitleFileType.ASS }],
 	description: 'Choose the format for your subtitle. ASS is selected by default.',
 	displayOptions: {
 		show: {
@@ -167,7 +168,7 @@ export const getResolutionParam = (
 	name: 'resolution',
 	type: 'options' as NodePropertyTypes,
 	required,
-	default: 'horizontal_hd',
+	default: VideoResolution.HORIZONTAL_HD,
 	description,
 	options: resolutionOptions,
 	displayOptions: {

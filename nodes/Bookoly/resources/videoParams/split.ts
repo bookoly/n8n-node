@@ -1,4 +1,5 @@
 import { INodeProperties, NodePropertyTypes } from 'n8n-workflow';
+import { VideoAction } from '../../types';
 
 export const splitOptionParams: INodeProperties[] = [
 	{
@@ -15,7 +16,7 @@ export const splitOptionParams: INodeProperties[] = [
 		],
 		displayOptions: {
 			show: {
-				operation: ['splitVideoIntoScenes'],
+				operation: [VideoAction.SPLIT_VIDEO_INTO_SCENES],
 			},
 		},
 	},
@@ -29,7 +30,7 @@ export const splitOptionParams: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				type: ['time'],
-				operation: ['splitVideoIntoScenes'],
+				operation: [VideoAction.SPLIT_VIDEO_INTO_SCENES],
 			},
 		},
 	},
@@ -43,7 +44,7 @@ export const splitOptionParams: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				type: ['count'],
-				operation: ['splitVideoIntoScenes'],
+				operation: [VideoAction.SPLIT_VIDEO_INTO_SCENES],
 			},
 		},
 	},
@@ -57,7 +58,7 @@ export const splitOptionParams: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				type: ['auto'],
-				operation: ['splitVideoIntoScenes'],
+				operation: [VideoAction.SPLIT_VIDEO_INTO_SCENES],
 			},
 		},
 	},
@@ -71,7 +72,7 @@ export const splitOptionParams: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				type: ['auto'],
-				operation: ['splitVideoIntoScenes'],
+				operation: [VideoAction.SPLIT_VIDEO_INTO_SCENES],
 			},
 		},
 	},
@@ -86,7 +87,7 @@ export const splitOptionParams: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				type: ['auto'],
-				operation: ['splitVideoIntoScenes'],
+				operation: [VideoAction.SPLIT_VIDEO_INTO_SCENES],
 			},
 		},
 	},

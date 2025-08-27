@@ -1,17 +1,17 @@
 import {
+	getIdParam,
 	getNameParam,
 	getTypeParam,
 	getUrlParam,
-	getWebhookUrlParam,
-	getIdParam,
 	getWaitParam,
+	getWebhookUrlParam,
 } from './commonParams';
-import { BookolyResourceDefinition, BookolyResourceType } from '../types';
+import { ResourceDefinition, ResourceType, SubtitleFileAction } from '../types';
 import { getSubtitleParameters } from './subtitleParams';
 
-export const fileResource: BookolyResourceDefinition = {
+export const fileResource: ResourceDefinition = {
 	displayName: 'File',
-	value: BookolyResourceType.File,
+	value: ResourceType.FILE,
 	description: 'Manage file operations',
 	operations: [
 		{
@@ -21,46 +21,50 @@ export const fileResource: BookolyResourceDefinition = {
 			noDataExpression: true,
 			displayOptions: {
 				show: {
-					resource: [BookolyResourceType.File],
+					resource: [ResourceType.FILE],
 				},
 			},
 			options: [
 				{
 					name: 'Generate a Subtitle File',
-					value: 'generateSubtitleFile',
+					value: SubtitleFileAction.GENERATE_SUBTITLE_FILE,
 					action: 'Generate a subtitle file',
 					description: 'Generate subtitle files in multiple formats from a video or audio URL',
 				},
 				{
 					name: 'Get a Specific Subtitle File',
-					value: 'getSubtitleFile',
+					value: SubtitleFileAction.GET_SUBTITLE_FILE,
 					action: 'Get a subtitle file',
 					description: 'Fetches subtitle file data from the API using the subtitle file ID',
 				},
 			],
-			default: 'generateSubtitleFile',
+			default: SubtitleFileAction.GENERATE_SUBTITLE_FILE,
 		},
 	],
 	parameters: [
-		getNameParam('generateSubtitleFile', BookolyResourceType.File, 'The name of the subtitle file'),
-		getUrlParam('generateSubtitleFile', BookolyResourceType.File, 'URL'),
-		getTypeParam('generateSubtitleFile', BookolyResourceType.File),
-		...getSubtitleParameters('generateSubtitleFile'),
+		getNameParam(
+			SubtitleFileAction.GENERATE_SUBTITLE_FILE,
+			ResourceType.FILE,
+			'The name of the subtitle file',
+		),
+		getUrlParam(SubtitleFileAction.GENERATE_SUBTITLE_FILE, ResourceType.FILE, 'URL'),
+		getTypeParam(SubtitleFileAction.GENERATE_SUBTITLE_FILE, ResourceType.FILE),
+		...getSubtitleParameters(SubtitleFileAction.GENERATE_SUBTITLE_FILE),
 		getIdParam(
-			'getSubtitleFile',
-			BookolyResourceType.File,
+			SubtitleFileAction.GET_SUBTITLE_FILE,
+			ResourceType.FILE,
 			'subtitleFileId',
 			'Subtitle File ID',
 			'The ID of the Subtitle File',
 		),
 		getWaitParam(
-			'generateSubtitleFile',
-			BookolyResourceType.File,
+			SubtitleFileAction.GENERATE_SUBTITLE_FILE,
+			ResourceType.FILE,
 			'If enabled, the node pauses the workflow and checks the server until the subtitle file generation is finished, then returns the full subtitle file object. If disabled, only the ID and creation timestamp are returned.',
 		),
 		getWebhookUrlParam(
-			'generateSubtitleFile',
-			BookolyResourceType.File,
+			SubtitleFileAction.GENERATE_SUBTITLE_FILE,
+			ResourceType.FILE,
 			'Enter a valid URL to receive webhook notifications. Subtitle File ID and URL will be included.',
 		),
 	],

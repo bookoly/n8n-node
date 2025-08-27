@@ -1,4 +1,5 @@
 import { NodePropertyTypes } from 'n8n-workflow';
+import { VideoAction } from '../../types';
 
 export const audioUrlParam = {
 	displayName: 'Audio URL',
@@ -9,7 +10,11 @@ export const audioUrlParam = {
 	required: true,
 	displayOptions: {
 		show: {
-			operation: ['addAudioToVideo', 'addAudioWithSubtitlesToVideo', 'generateVideo'],
+			operation: [
+				VideoAction.ADD_AUDIO_TO_VIDEO,
+				VideoAction.ADD_AUDIO_WITH_SUBTITLES_TO_VIDEO,
+				VideoAction.GENERATE_VIDEO,
+			],
 		},
 	},
 };
@@ -22,7 +27,11 @@ export const trimAudioParam = {
 	description: 'Trim audio to match video length (if longer)',
 	displayOptions: {
 		show: {
-			operation: ['addAudioToVideo', 'addAudioWithSubtitlesToVideo', 'generateVideo'],
+			operation: [
+				VideoAction.ADD_AUDIO_TO_VIDEO,
+				VideoAction.ADD_AUDIO_WITH_SUBTITLES_TO_VIDEO,
+				VideoAction.GENERATE_VIDEO,
+			],
 		},
 	},
 };
@@ -36,7 +45,11 @@ export const audioVolumeParam = {
 		'Set audio volume from 0% to 100%. 100% is the original volume, and 50% is half the original volume.',
 	displayOptions: {
 		show: {
-			operation: ['addAudioToVideo', 'addAudioWithSubtitlesToVideo', 'generateVideo'],
+			operation: [
+				VideoAction.ADD_AUDIO_TO_VIDEO,
+				VideoAction.ADD_AUDIO_WITH_SUBTITLES_TO_VIDEO,
+				VideoAction.GENERATE_VIDEO,
+			],
 		},
 	},
 };

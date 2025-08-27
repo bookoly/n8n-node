@@ -1,4 +1,5 @@
 import { INodeProperties } from 'n8n-workflow';
+import { VideoAction } from '../../types';
 
 export const blurOptionParam: INodeProperties[] = [
 	{
@@ -10,7 +11,7 @@ export const blurOptionParam: INodeProperties[] = [
 		required: true,
 		displayOptions: {
 			show: {
-				operation: ['blurVideo'],
+				operation: [VideoAction.BLUR_VIDEO],
 			},
 		},
 	},
@@ -23,7 +24,7 @@ export const blurOptionParam: INodeProperties[] = [
 		required: true,
 		displayOptions: {
 			show: {
-				operation: ['blurVideo'],
+				operation: [VideoAction.BLUR_VIDEO],
 			},
 		},
 	},
@@ -36,7 +37,7 @@ export const blurOptionParam: INodeProperties[] = [
 		required: true,
 		displayOptions: {
 			show: {
-				operation: ['blurVideo'],
+				operation: [VideoAction.BLUR_VIDEO],
 			},
 		},
 	},
@@ -49,7 +50,7 @@ export const blurOptionParam: INodeProperties[] = [
 		required: true,
 		displayOptions: {
 			show: {
-				operation: ['blurVideo'],
+				operation: [VideoAction.BLUR_VIDEO],
 			},
 		},
 	},
@@ -57,13 +58,13 @@ export const blurOptionParam: INodeProperties[] = [
 		displayName: 'Power',
 		name: 'power',
 		type: 'number',
-		default: 1,
+		default: 10,
 		description:
 			'Controls the intensity of the blur. Higher values produce stronger blur. Recommended range: 10 to 25.',
 		required: true,
 		displayOptions: {
 			show: {
-				operation: ['blurVideo'],
+				operation: [VideoAction.BLUR_VIDEO],
 			},
 		},
 	},

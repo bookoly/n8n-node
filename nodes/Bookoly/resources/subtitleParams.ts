@@ -5,13 +5,14 @@ import {
 	fontFamilyOptions,
 	positionOptions,
 } from './static';
+import { FontFamily, Language, SubtitlePosition, SubtitleStyle } from '../types';
 
 export const getSubtitleParameters = (operation: string | string[]): INodeProperties[] => [
 	{
 		displayName: 'Subtitle - Style',
 		name: 'style',
 		type: 'options',
-		default: 'highlight_current_word',
+		default: SubtitleStyle.HIGHLIGHT_CURRENT_WORD,
 		required: true,
 		displayOptions: {
 			show: {
@@ -25,7 +26,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		displayName: 'Subtitle - Language',
 		name: 'language',
 		type: 'options',
-		default: 'en',
+		default: Language.EN,
 		required: true,
 		displayOptions: {
 			show: {
@@ -39,7 +40,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		displayName: 'Subtitle - Font Family',
 		name: 'font_family',
 		type: 'options',
-		default: 'Arial',
+		default: FontFamily.ARIAL,
 		required: true,
 		displayOptions: {
 			show: {
@@ -47,7 +48,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 			},
 		},
 		options: fontFamilyOptions,
-		description: 'The default subtitle font family is Arial',
+		description: `The default subtitle font family is ${FontFamily.ARIAL}`,
 	},
 	{
 		displayName: 'Subtitle - Font Size',
@@ -116,7 +117,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		displayName: 'Subtitle - Position',
 		name: 'position',
 		type: 'options',
-		default: 'mid_bottom_center',
+		default: SubtitlePosition.MID_BOTTOM_CENTER,
 		required: true,
 		displayOptions: {
 			show: {

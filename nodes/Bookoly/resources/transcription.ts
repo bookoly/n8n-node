@@ -1,10 +1,10 @@
 import { NodePropertyTypes } from 'n8n-workflow';
-import { BookolyResourceDefinition, BookolyResourceType } from '../types';
+import { Language, ResourceDefinition, ResourceType, TranscriptAction } from '../types';
 import { languageOptions, translationLanguageOptions } from './static';
 
-export const transcriptionResource: BookolyResourceDefinition = {
+export const transcriptionResource: ResourceDefinition = {
 	displayName: 'Transcription',
-	value: BookolyResourceType.Transcription,
+	value: ResourceType.TRANSCRIPT,
 	description: 'Manage transcription operations',
 	operations: [
 		{
@@ -14,25 +14,25 @@ export const transcriptionResource: BookolyResourceDefinition = {
 			noDataExpression: true,
 			displayOptions: {
 				show: {
-					resource: [BookolyResourceType.Transcription],
+					resource: [ResourceType.TRANSCRIPT],
 				},
 			},
 			options: [
 				{
 					name: 'Transcribe Audio or Video',
-					value: 'createTranscription',
+					value: TranscriptAction.CREATE_TRANSCRIPT,
 					action: 'Transcribe audio or video',
 					description:
 						'Transcribe your audio or video files into clear, accurate text with timestamps',
 				},
 				{
 					name: 'Get a Specific Transcription',
-					value: 'getTranscript',
+					value: TranscriptAction.GET_TRANSCRIPT,
 					action: 'Get a transcription',
 					description: 'Fetches transcript data from the API using the transcript ID',
 				},
 			],
-			default: 'createTranscription',
+			default: TranscriptAction.CREATE_TRANSCRIPT,
 		},
 	],
 	parameters: [
@@ -45,8 +45,8 @@ export const transcriptionResource: BookolyResourceDefinition = {
 			description: 'The ID of the Transcript',
 			displayOptions: {
 				show: {
-					operation: ['getTranscript'],
-					resource: [BookolyResourceType.Transcription],
+					operation: [TranscriptAction.GET_TRANSCRIPT],
+					resource: [ResourceType.TRANSCRIPT],
 				},
 			},
 		},
@@ -59,8 +59,8 @@ export const transcriptionResource: BookolyResourceDefinition = {
 			description: 'The name of the transcript',
 			displayOptions: {
 				show: {
-					operation: ['createTranscription'],
-					resource: [BookolyResourceType.Transcription],
+					operation: [TranscriptAction.CREATE_TRANSCRIPT],
+					resource: [ResourceType.TRANSCRIPT],
 				},
 			},
 		},
@@ -73,8 +73,8 @@ export const transcriptionResource: BookolyResourceDefinition = {
 			description: 'The public and downloadable URL of the audio or video file',
 			displayOptions: {
 				show: {
-					operation: ['createTranscription'],
-					resource: [BookolyResourceType.Transcription],
+					operation: [TranscriptAction.CREATE_TRANSCRIPT],
+					resource: [ResourceType.TRANSCRIPT],
 				},
 			},
 		},
@@ -83,13 +83,13 @@ export const transcriptionResource: BookolyResourceDefinition = {
 			name: 'language',
 			type: 'options',
 			required: true,
-			default: 'en',
+			default: Language.EN,
 			description: 'Choose the primary language spoken in your audio or video file',
 			options: languageOptions,
 			displayOptions: {
 				show: {
-					operation: ['createTranscription'],
-					resource: [BookolyResourceType.Transcription],
+					operation: [TranscriptAction.CREATE_TRANSCRIPT],
+					resource: [ResourceType.TRANSCRIPT],
 				},
 			},
 		},
@@ -102,8 +102,8 @@ export const transcriptionResource: BookolyResourceDefinition = {
 			options: translationLanguageOptions,
 			displayOptions: {
 				show: {
-					operation: ['createTranscription'],
-					resource: [BookolyResourceType.Transcription],
+					operation: [TranscriptAction.CREATE_TRANSCRIPT],
+					resource: [ResourceType.TRANSCRIPT],
 				},
 			},
 		},
@@ -114,8 +114,8 @@ export const transcriptionResource: BookolyResourceDefinition = {
 			default: true,
 			displayOptions: {
 				show: {
-					operation: ['createTranscription'],
-					resource: [BookolyResourceType.Transcription],
+					operation: [TranscriptAction.CREATE_TRANSCRIPT],
+					resource: [ResourceType.TRANSCRIPT],
 				},
 			},
 			description:
@@ -130,8 +130,8 @@ export const transcriptionResource: BookolyResourceDefinition = {
 				'Enter a valid URL to receive webhook notifications. Transcript ID and URL will be included.',
 			displayOptions: {
 				show: {
-					operation: ['createTranscription'],
-					resource: [BookolyResourceType.Transcription],
+					operation: [TranscriptAction.CREATE_TRANSCRIPT],
+					resource: [ResourceType.TRANSCRIPT],
 				},
 			},
 		},

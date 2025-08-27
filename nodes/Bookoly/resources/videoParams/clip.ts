@@ -1,4 +1,5 @@
 import { NodePropertyTypes } from 'n8n-workflow';
+import { VideoAction } from '../../types';
 
 export const clipOptionParam = {
 	displayName: 'Clip Options',
@@ -8,7 +9,7 @@ export const clipOptionParam = {
 	description: 'Configure the video clip settings',
 	displayOptions: {
 		show: {
-			operation: ['clipVideo'],
+			operation: [VideoAction.CLIP_VIDEO],
 		},
 	},
 	options: [
@@ -29,7 +30,7 @@ export const clipOptionParam = {
 					displayName: 'Clip Duration',
 					name: 'duration',
 					type: 'number' as NodePropertyTypes,
-					default: 0,
+					default: 1,
 					description:
 						'Set how long the clip should be (in seconds). Leave blank to include the remainder of the video.',
 					required: true,

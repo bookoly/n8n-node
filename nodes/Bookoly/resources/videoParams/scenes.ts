@@ -1,4 +1,5 @@
 import { NodePropertyTypes } from 'n8n-workflow';
+import { VideoAction } from '../../types';
 
 export const scenesParam = {
 	displayName: 'Scenes',
@@ -8,7 +9,7 @@ export const scenesParam = {
 	default: {},
 	description: 'Add multiple scenes to the slideshow',
 	displayOptions: {
-		show: { operation: ['createSlideshow', 'generateVideo'] },
+		show: { operation: [VideoAction.CREATE_SLIDESHOW, VideoAction.GENERATE_VIDEO] },
 	},
 	options: [
 		{

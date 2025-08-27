@@ -1,4 +1,5 @@
 import { NodePropertyTypes } from 'n8n-workflow';
+import { VideoAction } from '../../types';
 
 export const watermarkUrlParam = {
 	displayName: 'Watermark URL',
@@ -9,7 +10,7 @@ export const watermarkUrlParam = {
 	required: true,
 	displayOptions: {
 		show: {
-			operation: ['addWatermarkToVideo'],
+			operation: [VideoAction.ADD_WATERMARK_TO_VIDEO],
 		},
 	},
 };
@@ -22,7 +23,7 @@ export const watermarkPositionParam = {
 	description: 'Set the absolute position of the watermark from the top-left corner of the video',
 	displayOptions: {
 		show: {
-			operation: ['addWatermarkToVideo'],
+			operation: [VideoAction.ADD_WATERMARK_TO_VIDEO],
 		},
 	},
 	options: [

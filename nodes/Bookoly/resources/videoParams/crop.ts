@@ -1,4 +1,5 @@
 import { NodePropertyTypes } from 'n8n-workflow';
+import { VideoAction } from '../../types';
 
 export const xCoordinateParam = {
 	displayName: 'X Coordinate',
@@ -9,7 +10,7 @@ export const xCoordinateParam = {
 	required: true,
 	displayOptions: {
 		show: {
-			operation: ['cropVideo'],
+			operation: [VideoAction.CROP_VIDEO],
 		},
 	},
 };
@@ -23,7 +24,7 @@ export const yCoordinateParam = {
 	required: true,
 	displayOptions: {
 		show: {
-			operation: ['cropVideo'],
+			operation: [VideoAction.CROP_VIDEO],
 		},
 	},
 };
@@ -37,7 +38,7 @@ export const cropWidthParam = {
 	required: true,
 	displayOptions: {
 		show: {
-			operation: ['cropVideo'],
+			operation: [VideoAction.CROP_VIDEO],
 		},
 	},
 };
@@ -51,7 +52,7 @@ export const cropHeightParam = {
 	required: true,
 	displayOptions: {
 		show: {
-			operation: ['cropVideo'],
+			operation: [VideoAction.CROP_VIDEO],
 		},
 	},
 };
