@@ -1,48 +1,96 @@
-![Banner image](https://user-images.githubusercontent.com/10284570/173569848-c624317f-42b1-45a6-ab09-f0ea3c247648.png)
+# n8n-nodes-bookoly
 
-# n8n-nodes-starter
+This is an n8n community node. It lets you use bookoly in your n8n workflows.
 
-This repo contains example nodes to help you get started building your own custom integrations for [n8n](https://n8n.io). It includes the node linter and other dependencies.
+bookoly is a service that makes it easy to create, edit, and process your content automatically.
+With bookoly, you can generate slideshows, add subtitles, create voice-overs, split videos into multiple scenes, and 
+a lot more — all through a simple API.
 
-To make your custom node available to the community, you must create it as an npm package, and [submit it to the npm registry](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry).
+[n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/reference/license/) workflow automation platform.
 
-If you would like your node to be available on n8n cloud you can also [submit your node for verification](https://docs.n8n.io/integrations/creating-nodes/deploy/submit-community-nodes/).
+[Installation](#installation)  
+[Operations](#operations)  
+[Credentials](#credentials)  
+[Compatibility](#compatibility)  
+[Usage](#usage)  
+[Resources](#resources)  
+[Version history](#version-history)
 
-## Prerequisites
+## Installation
 
-You need the following installed on your development machine:
+Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation.
 
-* [git](https://git-scm.com/downloads)
-* Node.js and npm. Minimum version Node 20. You can find instructions on how to install both using nvm (Node Version Manager) for Linux, Mac, and WSL [here](https://github.com/nvm-sh/nvm). For Windows users, refer to Microsoft's guide to [Install NodeJS on Windows](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows).
-* Install n8n with:
-  ```
-  npm install n8n -g
-  ```
-* Recommended: follow n8n's guide to [set up your development environment](https://docs.n8n.io/integrations/creating-nodes/build/node-development-environment/).
+## Operations
 
-## Using this starter
+### 🎞️ Video
 
-These are the basic steps for working with the starter. For detailed guidance on creating and publishing nodes, refer to the [documentation](https://docs.n8n.io/integrations/creating-nodes/).
+* **Add Audio to a Video** – Add background music or a voice-over to a video.
+* **Add Audio with Subtitles to a Video** – Add a voice-over and automatically generate and add subtitles from the audio.
+* **Add Subtitles to a Video** – Automatically generate subtitles from the video’s audio and insert them into the file.
+* **Add Subtitles to a Video from a File** – Import and embed an external subtitle file (e.g. `.srt`, `.ass`) into a video.
+* **Add Watermark to a Video** – Overlay an image or text watermark onto a video.
+* **Blur a Video** – Apply a blur effect to the entire video or selected regions.
+* **Clip a Video** – Extract a specific section of a video by start time and duration.
+* **Create a Slideshow** – Generate a slideshow video from multiple images and video clips.
+* **Crop a Video** – Trim away unwanted edges of a video by defining crop dimensions.
+* **Extract Audio from a Video** – Save the audio track of a video as a separate sound file.
+* **Frame a Video** – Capture a single image from a video at the desired timestamp.
+* **Generate a Video** – Create a video from images and video clips with a voice-over and subtitles.
+* **Mute a Video** – Set the volume of a video to 0%.
+* **Rotate a Video** – Rotate a video by 90, 180, or 270 degrees.
+* **Split a Video into Scenes** – Split a video by automatic scene detection, fixed time intervals, or equal segments.
 
-1. [Generate a new repository](https://github.com/n8n-io/n8n-nodes-starter/generate) from this template repository.
-2. Clone your new repo:
-   ```
-   git clone https://github.com/<your organization>/<your-repo-name>.git
-   ```
-3. Run `npm i` to install dependencies.
-4. Open the project in your editor.
-5. Browse the examples in `/nodes` and `/credentials`. Modify the examples, or replace them with your own nodes.
-6. Update the `package.json` to match your details.
-7. Run `npm run lint` to check for errors or `npm run lintfix` to automatically fix errors when possible.
-8. Test your node locally. Refer to [Run your node locally](https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally/) for guidance.
-9. Replace this README with documentation for your node. Use the [README_TEMPLATE](README_TEMPLATE.md) to get started.
-10. Update the LICENSE file to use your details.
-11. [Publish](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry) your package to npm.
+### 🗣️ Speech
 
-## More information
+* **Create a Speech Synthesis** – Convert text into a natural-sounding speech with AI.
 
-Refer to our [documentation on creating nodes](https://docs.n8n.io/integrations/creating-nodes/) for detailed information on building your own nodes.
+### 📜 Transcript
 
-## License
+* **Transcribe Media** – Automatically transcribe the audio from a video or audio file.
 
-[MIT](https://github.com/n8n-io/n8n-nodes-starter/blob/master/LICENSE.md)
+### 🎼 Sound
+
+* **Combine Sounds** – Merge two or more audio files into a single track.
+* **Create a Sound Effect** – Generate a custom sound effect with AI.
+
+### 📂 File
+
+* **Generate a Subtitle File** – Create a subtitle file (e.g. `.srt`, `.vtt`) from a video or audio file.
+
+## Credentials
+
+To use the bookoly node, you need an API token:
+
+1. Sign up for an account at [bookoly](https://bookoly.com).
+2. Open your profile from the left menu and scroll down to the API Tokens section.
+3. Create a new API token. 
+   * Enable all permissions.
+   * (Optional) Set an expiration date.
+4. Copy the token and store it in a safe place.
+5. In n8n, create new credentials for bookoly and paste your token.
+
+## Compatibility
+
+* Minimum n8n version: 1.106.3
+* Tested with: n8n 1.106.3+
+* Known issues: None at this time.
+
+## Usage
+
+Once installed, you can add the bookoly node to your workflow to automate content generation and processing.
+
+📺 To see all examples in action check out the full bookoly YouTube tutorial [playlist](https://www.youtube.com/playlist?list=PLaZXufV_18nEe7EG_HNwwbd7f6lCbNL_g)
+
+If you’re new to n8n, check the [Try it out](https://docs.n8n.io/try-it-out/) guide
+
+## Resources
+
+* [bookoly api docs](https://bookoly.com/app/docs/v1/api#/)
+* [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
+
+## Version history
+
+1.0.0
+* Initial release with support for all bookoly operations.
+
+
