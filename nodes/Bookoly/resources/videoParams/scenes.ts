@@ -5,12 +5,15 @@ export const scenesParam = {
 	displayName: 'Scenes',
 	name: 'scenes',
 	type: 'fixedCollection' as NodePropertyTypes,
-	typeOptions: { multipleValues: true },
-	default: {},
-	description: 'Add multiple scenes to the slideshow',
+	typeOptions: {
+		multipleValues: true,
+		sortable: true,
+	},
+	placeholder: 'Add Scene',
 	displayOptions: {
 		show: { operation: [VideoAction.CREATE_SLIDESHOW, VideoAction.GENERATE_VIDEO] },
 	},
+	default: { scene: [{ type: 'image', src: '', duration: 1, effect: '' }] },
 	options: [
 		{
 			displayName: 'Scene',
@@ -70,4 +73,5 @@ export const scenesParam = {
 			],
 		},
 	],
+	description: 'Add multiple scenes to the slideshow',
 };
