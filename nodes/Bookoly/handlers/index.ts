@@ -1,14 +1,14 @@
-import { BookolyResourceType } from '../types';
+import { ResourceType } from '../types';
 import { soundHandlers } from './sound';
 import { speechHandlers } from './speech';
-import { transcriptionHandlers } from './transcription';
+import { transcriptionHandlers } from './transcript';
 import { fileHandlers } from './file';
 import { videoHandlers } from './video';
 
-export const HANDLERS: Record<BookolyResourceType, Record<string, Function>> = {
-	[BookolyResourceType.Sound]: soundHandlers,
-	[BookolyResourceType.Speech]: speechHandlers,
-	[BookolyResourceType.Transcription]: transcriptionHandlers,
-	[BookolyResourceType.File]: fileHandlers,
-	[BookolyResourceType.Video]: videoHandlers,
+export const HANDLERS: Record<ResourceType, Record<string, Function>> = {
+	[ResourceType.SOUND]: soundHandlers,
+	[ResourceType.SPEECH]: speechHandlers,
+	[ResourceType.TRANSCRIPT]: transcriptionHandlers,
+	[ResourceType.FILE]: fileHandlers,
+	[ResourceType.VIDEO]: videoHandlers,
 };
