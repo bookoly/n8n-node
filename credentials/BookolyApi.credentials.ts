@@ -4,13 +4,13 @@ import {
 	ICredentialType,
 	INodeProperties,
 } from 'n8n-workflow';
-import { BASE_URL } from '../nodes/Bookoly/Bookoly.node';
+import { API_V1_BASE_URL } from '../nodes/Bookoly/Bookoly.node';
+import { ApiEndpoints, HttpMethod } from '../nodes/Bookoly/types';
 
 export class BookolyApi implements ICredentialType {
-	name = 'bookolyApi';
-
-	displayName = 'Bookoly API';
-	documentationUrl = 'https://bookoly.com/app/docs/v1/api#/';
+	name: string = 'bookolyApi';
+	displayName: string = 'Bookoly API';
+	documentationUrl: string = 'https://bookoly.com/app/docs/v1/api#/';
 	properties: INodeProperties[] = [
 		{
 			displayName: 'API Token',
@@ -22,7 +22,6 @@ export class BookolyApi implements ICredentialType {
 			},
 		},
 	];
-
 	authenticate: IAuthenticateGeneric = {
 		type: 'generic',
 		properties: {
@@ -33,12 +32,11 @@ export class BookolyApi implements ICredentialType {
 			},
 		},
 	};
-
 	test: ICredentialTestRequest = {
 		request: {
-			baseURL: BASE_URL,
-			url: '/auth-check',
-			method: 'POST',
+			baseURL: API_V1_BASE_URL,
+			url: ApiEndpoints.AUTH_CHECK,
+			method: HttpMethod.POST,
 			headers: {
 				Authorization: '=Bearer {{$credentials.apiToken}}',
 				'Content-Type': 'application/json',
