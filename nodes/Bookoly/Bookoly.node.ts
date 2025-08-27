@@ -62,8 +62,8 @@ export class Bookoly implements INodeType {
 	};
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		const items: INodeExecutionData[] = this.getInputData();
 		const returnData: INodeExecutionData[] = [];
+		const items: INodeExecutionData[] = this.getInputData();
 
 		for (let i: number = 0; i < items.length; i++) {
 			const resource = this.getNodeParameter('resource', i) as ResourceType;
