@@ -39,7 +39,7 @@ export const videoOperations = [
 		action: 'Blur a video',
 	},
 	{
-		name: 'Clip A Video',
+		name: 'Clip a Video',
 		value: VideoAction.CLIP_VIDEO,
 		description: 'Extract a clip from a video using a start time and duration',
 		action: 'Clip a video',
