@@ -2,29 +2,29 @@ import { IExecuteFunctions } from 'n8n-workflow';
 import { bookolyApiRequest } from '../../helpers/apiClient';
 import { ApiEndpoints, HttpMethod, ResourceType } from '../../types';
 
-export async function createSpeech(ctx: IExecuteFunctions, itemIndex: number): Promise<any> {
+export async function createTranscript(ctx: IExecuteFunctions, itemIndex: number): Promise<any> {
 	const name = ctx.getNodeParameter('name', itemIndex) as string;
-	const text = ctx.getNodeParameter('text', itemIndex) as string;
-	const vendor_id = ctx.getNodeParameter('vendor_id', itemIndex) as string;
+	const src = ctx.getNodeParameter('src', itemIndex) as string;
+	const language = ctx.getNodeParameter('language', itemIndex) as string;
+	const translation_language = ctx.getNodeParameter('translationLanguage', itemIndex) as string;
 	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
 	const webhook_url = ctx.getNodeParameter('webhook_url', itemIndex, '') as string;
 
 	const requestBody = {
-		speech: {
+		transcript: {
 			name,
-			text,
+			src,
+			language,
+			translation_language,
 			webhook_url,
-			voice: {
-				vendor_id,
-			},
 		},
 	};
 
 	return await bookolyApiRequest(
 		ctx,
 		HttpMethod.POST,
-		ApiEndpoints.TEXT_TO_SPEECH,
-		ResourceType.SPEECH,
+		ApiEndpoints.CREATE_TRANSCRIPT,
+		ResourceType.TRANSCRIPT,
 		requestBody,
 		wait,
 	);

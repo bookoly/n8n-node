@@ -1,7 +1,6 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { LoggerProxy as Logger } from 'n8n-workflow';
-import { apiRequest } from '../../helpers/apiClient';
-import { getVideo } from './getVideo';
+import { bookolyApiRequest } from '../../helpers/apiClient';
+import { ApiEndpoints, HttpMethod, ResourceType } from '../../types';
 
 export async function addAudioWithSubtitlesToVideo(
 	ctx: IExecuteFunctions,
@@ -10,12 +9,9 @@ export async function addAudioWithSubtitlesToVideo(
 	const name = ctx.getNodeParameter('name', itemIndex, '') as string;
 	const url = ctx.getNodeParameter('url', itemIndex) as string;
 	const mute = ctx.getNodeParameter('mute', itemIndex, false) as boolean;
-	const webhook_url = ctx.getNodeParameter('webhook_url', itemIndex, '') as string;
-	const audioUrl = ctx.getNodeParameter('audio_url', itemIndex) as string;
+	const audio_url = ctx.getNodeParameter('audio_url', itemIndex) as string;
 	const trim = ctx.getNodeParameter('trim', itemIndex, false) as boolean;
 	const volume = ctx.getNodeParameter('volume', itemIndex, 100) as number;
-	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
-	// Subtitle parameters
 	const style = ctx.getNodeParameter('style', itemIndex) as string;
 	const language = ctx.getNodeParameter('language', itemIndex) as string;
 	const font_family = ctx.getNodeParameter('font_family', itemIndex) as string;
@@ -26,8 +22,10 @@ export async function addAudioWithSubtitlesToVideo(
 	const outline_width = ctx.getNodeParameter('outline_width', itemIndex) as number;
 	const position = ctx.getNodeParameter('position', itemIndex) as string;
 	const ltr = ctx.getNodeParameter('ltr', itemIndex) as boolean;
+	const webhook_url = ctx.getNodeParameter('webhook_url', itemIndex, '') as string;
+	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
 
-	const body = {
+	const requestBody = {
 		video: {
 			name,
 			url,
@@ -35,7 +33,7 @@ export async function addAudioWithSubtitlesToVideo(
 			webhook_url,
 		},
 		audio: {
-			url: audioUrl,
+			url: audio_url,
 			trim,
 			volume,
 		},
@@ -53,24 +51,12 @@ export async function addAudioWithSubtitlesToVideo(
 		},
 	};
 
-	Logger.info(`Adding audio with subtitles to video initiated`, {
-		videoName: name,
-		videoUrl: url,
-		audioUrl,
-	});
-
-	const response = await apiRequest(ctx, 'POST', 'add-audio-with-subtitle-to-video', body);
-	Logger.info(`Audio with subtitles added to video successfully`, { response });
-
-	if (wait && response?.id) {
-		// Check for response.id directly, not response.sound.id
-		Logger.info(`Waiting for video generation to complete ${response.id}`, {
-			videoId: response.id, // Use response.id directly
-			name,
-		});
-
-		return await getVideo(ctx, response.id);
-	}
-
-	return response;
+	return await bookolyApiRequest(
+		ctx,
+		HttpMethod.POST,
+		ApiEndpoints.ADD_AUDIO_WITH_SUBTITLE_TO_VIDEO,
+		ResourceType.VIDEO,
+		requestBody,
+		wait,
+	);
 }

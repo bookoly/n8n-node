@@ -1,7 +1,6 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { LoggerProxy as Logger } from 'n8n-workflow';
-import { apiRequest } from '../../helpers/apiClient';
-import { getVideo } from './getVideo';
+import { bookolyApiRequest } from '../../helpers/apiClient';
+import { ApiEndpoints, HttpMethod, ResourceType } from '../../types';
 
 export async function blurVideo(ctx: IExecuteFunctions, itemIndex: number): Promise<any> {
 	const name = ctx.getNodeParameter('name', itemIndex, '') as string;
@@ -11,11 +10,11 @@ export async function blurVideo(ctx: IExecuteFunctions, itemIndex: number): Prom
 	const y = ctx.getNodeParameter('y', itemIndex) as number;
 	const box_width = ctx.getNodeParameter('box_width', itemIndex) as number;
 	const box_height = ctx.getNodeParameter('box_height', itemIndex) as number;
-	const webhook_url = ctx.getNodeParameter('webhook_url', itemIndex, '') as string;
 	const power = ctx.getNodeParameter('power', itemIndex) as number;
 	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
+	const webhook_url = ctx.getNodeParameter('webhook_url', itemIndex, '') as string;
 
-	const body = {
+	const requestBody = {
 		video: {
 			name,
 			url,
@@ -33,20 +32,12 @@ export async function blurVideo(ctx: IExecuteFunctions, itemIndex: number): Prom
 		},
 	};
 
-	Logger.info(`Blurring video initiated`);
-
-	const response = await apiRequest(ctx, 'POST', 'blur-a-video', body);
-	Logger.info(`Video blurred successfully`, { response });
-
-	if (wait && response?.id) {
-		// Check for response.id directly, not response.sound.id
-		Logger.info(`Waiting for video generation to complete ${response.id}`, {
-			videoId: response.id, // Use response.id directly
-			name,
-		});
-
-		return await getVideo(ctx, response.id);
-	}
-
-	return response;
+	return await bookolyApiRequest(
+		ctx,
+		HttpMethod.POST,
+		ApiEndpoints.BLUR_A_VIDEO,
+		ResourceType.VIDEO,
+		requestBody,
+		wait,
+	);
 }

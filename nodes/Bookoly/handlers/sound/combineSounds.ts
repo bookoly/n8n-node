@@ -1,34 +1,28 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { LoggerProxy as Logger } from 'n8n-workflow';
-import { apiRequest } from '../../helpers/apiClient';
-import { getSound } from './getSound';
+import { bookolyApiRequest } from '../../helpers/apiClient';
+import { ApiEndpoints, HttpMethod, ResourceType } from '../../types';
 
 export async function combineSounds(ctx: IExecuteFunctions, itemIndex: number): Promise<any> {
 	const name = ctx.getNodeParameter('name', itemIndex) as string;
 	const segments = ((ctx.getNodeParameter('segmentList', itemIndex) as any).segmentValues ||
 		[]) as Array<{ src: string }>;
+	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
+	const webhook_url = ctx.getNodeParameter('webhook_url', itemIndex, '') as string;
 
-	const body = {
+	const requestBody = {
 		sound: {
 			name,
-			webhook_url: ctx.getNodeParameter('webhook_url', itemIndex, '') as string,
+			webhook_url,
 			segments: segments.map((s) => ({ src: s.src })),
 		},
 	};
 
-	const response = await apiRequest(ctx, 'POST', 'combine-sounds', body);
-	Logger.info(`Combine sounds response received ${JSON.stringify(response)}`, { response });
-
-	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
-	if (wait && response?.id) {
-		// Check for response.id directly, not response.sound.id
-		Logger.info(`Waiting for sound combination to complete ${response.id}`, {
-			soundId: response.id, // Use response.id directly
-			name,
-		});
-
-		return await getSound(ctx, response.id);
-	}
-
-	return response;
+	return await bookolyApiRequest(
+		ctx,
+		HttpMethod.POST,
+		ApiEndpoints.COMBINE_SOUNDS,
+		ResourceType.SOUND,
+		requestBody,
+		wait,
+	);
 }

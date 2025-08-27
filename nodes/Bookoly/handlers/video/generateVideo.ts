@@ -1,90 +1,94 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { LoggerProxy as Logger } from 'n8n-workflow';
-import { apiRequest } from '../../helpers/apiClient';
-import { getVideo } from './getVideo';
+import { bookolyApiRequest } from '../../helpers/apiClient';
 import { processScenes } from './getScenes';
+import {
+	ApiEndpoints,
+	BookolyScene,
+	FontFamily,
+	HttpMethod,
+	ResourceType,
+	SceneCollection,
+	SubtitlePosition,
+	VideoResolution,
+} from '../../types';
 
 export async function generateVideo(ctx: IExecuteFunctions, itemIndex: number): Promise<any> {
+	// Video parameters
 	const name = ctx.getNodeParameter('name', itemIndex, '') as string;
-	const webhook_url = ctx.getNodeParameter('webhook_url', itemIndex, '') as string;
-	const resolution = ctx.getNodeParameter('resolution', itemIndex, 'horizontal_hd') as string;
-	const scenesCollection = ctx.getNodeParameter('scenes', itemIndex, {}) as any;
+	const resolution = ctx.getNodeParameter(
+		'resolution',
+		itemIndex,
+		VideoResolution.HORIZONTAL_HD,
+	) as string;
+	const scenesCollection = ctx.getNodeParameter('scenes', itemIndex, {}) as SceneCollection;
+	const scenes: BookolyScene[] = processScenes(scenesCollection);
 
 	// Speech parameters
-	const speechText = ctx.getNodeParameter('text', itemIndex, '') as string;
-	const voiceVendorId = ctx.getNodeParameter('vendor_id', itemIndex, '') as string;
+	const text = ctx.getNodeParameter('text', itemIndex, '') as string;
+	const vendor_id = ctx.getNodeParameter('vendor_id', itemIndex, '') as string;
 
 	// Subtitle parameters
-	const subtitleStyle = ctx.getNodeParameter('style', itemIndex, 'simple') as string;
-	const subtitleLanguage = ctx.getNodeParameter('language', itemIndex, 'af') as string;
-	const fontFamily = ctx.getNodeParameter('font_family', itemIndex, 'Arial') as string;
-	const fontSize = ctx.getNodeParameter('font_size', itemIndex, 1) as number;
-	const wordColor = ctx.getNodeParameter('word_color', itemIndex, '') as string;
-	const lineColor = ctx.getNodeParameter('line_color', itemIndex, '') as string;
-	const lineWords = ctx.getNodeParameter('line_words', itemIndex, 1) as number;
-	const outlineWidth = ctx.getNodeParameter('outline_width', itemIndex, 1) as number;
-	const subtitlePosition = ctx.getNodeParameter(
+	const style = ctx.getNodeParameter('style', itemIndex, 'simple') as string;
+	const language = ctx.getNodeParameter('language', itemIndex, 'af') as string;
+	const font_family = ctx.getNodeParameter('font_family', itemIndex, FontFamily.ARIAL) as string;
+	const font_size = ctx.getNodeParameter('font_size', itemIndex, 1) as number;
+	const word_color = ctx.getNodeParameter('word_color', itemIndex, '') as string;
+	const line_color = ctx.getNodeParameter('line_color', itemIndex, '') as string;
+	const line_words = ctx.getNodeParameter('line_words', itemIndex, 1) as number;
+	const outline_width = ctx.getNodeParameter('outline_width', itemIndex, 1) as number;
+	const position = ctx.getNodeParameter(
 		'position',
 		itemIndex,
-		'mid_bottom_center',
+		SubtitlePosition.MID_BOTTOM_CENTER,
 	) as string;
 	const ltr = ctx.getNodeParameter('ltr', itemIndex, true) as boolean;
 
 	// Audio parameters
-	const audioUrl = ctx.getNodeParameter('audio_url', itemIndex, '') as string;
+	const audio_url = ctx.getNodeParameter('audio_url', itemIndex, '') as string;
 	const trim = ctx.getNodeParameter('trim', itemIndex, true) as boolean;
 	const volume = ctx.getNodeParameter('volume', itemIndex, 1) as number;
+
 	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
+	const webhook_url = ctx.getNodeParameter('webhook_url', itemIndex, '') as string;
 
-	// Process scenes using the shared function
-	const scenes = processScenes(scenesCollection);
-
-	const body = {
+	const requestBody = {
 		video: {
 			name,
 			resolution,
 			webhook_url,
-			scenes: scenes,
+			scenes,
 		},
 		speech: {
-			text: speechText,
+			text,
 			voice: {
-				vendor_id: voiceVendorId,
+				vendor_id,
 			},
 		},
 		subtitle: {
-			style: subtitleStyle,
-			language: subtitleLanguage,
-			font_family: fontFamily,
-			font_size: fontSize,
-			word_color: wordColor,
-			line_color: lineColor,
-			line_words: lineWords,
-			outline_width: outlineWidth,
-			position: subtitlePosition,
+			style,
+			language,
+			font_family,
+			font_size,
+			word_color,
+			line_color,
+			line_words,
+			outline_width,
+			position,
 			ltr,
 		},
 		audio: {
-			url: audioUrl,
+			url: audio_url,
 			trim,
 			volume,
 		},
 	};
 
-	Logger.info(`Generating video initiated: ${JSON.stringify(body)}`);
-
-	const response = await apiRequest(ctx, 'POST', 'generate-a-video', body);
-	Logger.info(`Video generation initiated successfully`, { response });
-
-	if (wait && response?.id) {
-		// Check for response.id directly, not response.sound.id
-		Logger.info(`Waiting for video generation to complete ${response.id}`, {
-			videoId: response.id, // Use response.id directly
-			name,
-		});
-
-		return await getVideo(ctx, response.id);
-	}
-
-	return response;
+	return await bookolyApiRequest(
+		ctx,
+		HttpMethod.POST,
+		ApiEndpoints.GENERATE_A_VIDEO,
+		ResourceType.VIDEO,
+		requestBody,
+		wait,
+	);
 }

@@ -1,25 +1,26 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { apiRequest } from '../../helpers/apiClient';
-import { getSound } from './getSound';
+import { bookolyApiRequest } from '../../helpers/apiClient';
+import { ApiEndpoints, HttpMethod, ResourceType } from '../../types';
 
 export async function createSoundEffect(ctx: IExecuteFunctions, itemIndex: number): Promise<any> {
 	const name = ctx.getNodeParameter('name', itemIndex) as string;
+	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
 
-	const body = {
+	const requestBody = {
 		sound: {
 			name,
 			webhook_url: ctx.getNodeParameter('webhook_url', itemIndex, '') as string,
 			effect_text: ctx.getNodeParameter('effect_text', itemIndex) as string,
-			effect_duration: ctx.getNodeParameter('effect_duration', itemIndex, 0.5) as number,
+			effect_duration: ctx.getNodeParameter('effect_duration', itemIndex, 1) as number,
 		},
 	};
 
-	const response = await apiRequest(ctx, 'POST', 'create-sound-effect', body);
-
-	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
-	if (wait && response?.id) {
-		return await getSound(ctx, response.id);
-	}
-
-	return response;
+	return await bookolyApiRequest(
+		ctx,
+		HttpMethod.POST,
+		ApiEndpoints.CREATE_SOUND_EFFECT,
+		ResourceType.SOUND,
+		requestBody,
+		wait,
+	);
 }
