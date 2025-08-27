@@ -4,8 +4,9 @@ import { ApiEndpoints, HttpMethod } from '../../types';
 
 export async function combineSounds(ctx: IExecuteFunctions, itemIndex: number): Promise<any> {
 	const name = ctx.getNodeParameter('name', itemIndex) as string;
-	const segments = ((ctx.getNodeParameter('segmentList', itemIndex) as any).segmentValues ||
-		[]) as Array<{ src: string }>;
+	const urls = ((ctx.getNodeParameter('audioList', itemIndex) as any).urls || []) as Array<{
+		src: string;
+	}>;
 	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
 	const webhook_url = ctx.getNodeParameter('webhook_url', itemIndex, '') as string;
 
@@ -13,7 +14,7 @@ export async function combineSounds(ctx: IExecuteFunctions, itemIndex: number): 
 		sound: {
 			name,
 			webhook_url,
-			segments: segments.map((s) => ({ src: s.src })),
+			segments: urls.map((s) => ({ src: s.src })),
 		},
 	};
 

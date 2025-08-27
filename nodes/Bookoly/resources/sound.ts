@@ -115,38 +115,38 @@ export const soundResource: ResourceDefinition = {
 			description: 'The name of the sound',
 		},
 		{
-			displayName: 'Segments',
-			name: 'segmentList',
+			displayName: 'Audio',
+			name: 'audioList',
 			type: 'fixedCollection' as NodePropertyTypes,
 			typeOptions: {
 				multipleValues: true,
 				sortable: true,
-				addButtonText: 'Add Segment',
 			},
+			placeholder: 'Add Audio URL',
 			displayOptions: {
 				show: {
 					operation: [SoundAction.COMBINE_SOUNDS],
 					resource: [ResourceType.SOUND],
 				},
 			},
-			default: { segmentValues: [{ src: '' }] },
+			default: { urls: [{ src: '' }, { src: '' }] },
 			options: [
 				{
-					name: 'segmentValues',
+					name: 'urls',
 					displayName: 'URL',
 					values: [
 						{
-							displayName: 'URL',
+							displayName: 'Audio URL',
 							name: 'src',
 							type: 'string' as NodePropertyTypes,
 							default: '',
-							description: 'List the segments of your sound here',
+							description: 'The public and downloadable URL of the audio file',
 							required: true,
 						},
 					],
 				},
 			],
-			description: 'List the segments of your sound here',
+			description: "Enter the all the public and downloadable URL's of your audio files here",
 		},
 		{
 			displayName: 'Wait for Completion',
