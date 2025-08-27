@@ -56,6 +56,11 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		type: 'number',
 		default: 20,
 		required: true,
+		typeOptions: {
+			minValue: 1,
+			maxValue: 100,
+			numberPrecision: 0,
+		},
 		displayOptions: {
 			show: {
 				operation: Array.isArray(operation) ? operation : [operation],
@@ -93,6 +98,11 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		type: 'number',
 		default: 4,
 		required: true,
+		typeOptions: {
+			minValue: 1,
+			maxValue: 10,
+			numberPrecision: 0,
+		},
 		displayOptions: {
 			show: {
 				operation: Array.isArray(operation) ? operation : [operation],
@@ -106,6 +116,11 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		type: 'number',
 		default: 5,
 		required: true,
+		typeOptions: {
+			minValue: 1,
+			maxValue: 100,
+			numberPrecision: 0,
+		},
 		displayOptions: {
 			show: {
 				operation: Array.isArray(operation) ? operation : [operation],

@@ -43,6 +43,11 @@ export const audioVolumeParam = {
 	default: 100,
 	description:
 		'Set audio volume from 0% to 100%. 100% is the original volume, and 50% is half the original volume.',
+	typeOptions: {
+		minValue: 1,
+		maxValue: 100,
+		numberPrecision: 0,
+	},
 	displayOptions: {
 		show: {
 			operation: [

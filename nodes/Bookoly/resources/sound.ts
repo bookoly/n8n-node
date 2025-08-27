@@ -86,6 +86,10 @@ export const soundResource: ResourceDefinition = {
 			displayName: 'Effect Duration',
 			name: 'effect_duration',
 			type: 'number' as NodePropertyTypes,
+			typeOptions: {
+				minValue: 0.5,
+				maxValue: 22,
+			},
 			displayOptions: {
 				show: {
 					operation: [SoundAction.CREATE_SOUND_EFFECT],
@@ -95,10 +99,6 @@ export const soundResource: ResourceDefinition = {
 			default: 1,
 			description:
 				'The duration of the sound which will be generated in seconds. Must be at least 0.5 and at most 22. We will guess the optimal duration using the text if the duration is not set',
-			typeOptions: {
-				minValue: 0.5,
-				maxValue: 22,
-			},
 		},
 		{
 			displayName: 'Name',

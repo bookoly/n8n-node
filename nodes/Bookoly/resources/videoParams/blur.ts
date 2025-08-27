@@ -9,6 +9,10 @@ export const blurOptionParam: INodeProperties[] = [
 		default: 0,
 		description: 'Horizontal position of the top-left corner of the blur area',
 		required: true,
+		typeOptions: {
+			minValue: 0,
+			numberPrecision: 0,
+		},
 		displayOptions: {
 			show: {
 				operation: [VideoAction.BLUR_VIDEO],
@@ -22,6 +26,10 @@ export const blurOptionParam: INodeProperties[] = [
 		default: 0,
 		description: 'Vertical position of the top-left corner of the blur area',
 		required: true,
+		typeOptions: {
+			minValue: 0,
+			numberPrecision: 0,
+		},
 		displayOptions: {
 			show: {
 				operation: [VideoAction.BLUR_VIDEO],
@@ -35,6 +43,10 @@ export const blurOptionParam: INodeProperties[] = [
 		default: 1,
 		description: 'Width of the blur box in pixels. Must not exceed the video width.',
 		required: true,
+		typeOptions: {
+			minValue: 1,
+			numberPrecision: 0,
+		},
 		displayOptions: {
 			show: {
 				operation: [VideoAction.BLUR_VIDEO],
@@ -48,6 +60,10 @@ export const blurOptionParam: INodeProperties[] = [
 		default: 1,
 		description: 'Height of the blur box in pixels. Must not exceed the video height.',
 		required: true,
+		typeOptions: {
+			minValue: 1,
+			numberPrecision: 0,
+		},
 		displayOptions: {
 			show: {
 				operation: [VideoAction.BLUR_VIDEO],
@@ -62,6 +78,11 @@ export const blurOptionParam: INodeProperties[] = [
 		description:
 			'Controls the intensity of the blur. Higher values produce stronger blur. Recommended range: 10 to 25.',
 		required: true,
+		typeOptions: {
+			maxValue: 100,
+			minValue: 1,
+			numberPrecision: 0,
+		},
 		displayOptions: {
 			show: {
 				operation: [VideoAction.BLUR_VIDEO],

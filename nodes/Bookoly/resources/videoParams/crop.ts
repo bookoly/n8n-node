@@ -8,6 +8,10 @@ export const xCoordinateParam = {
 	default: 0,
 	description: 'Horizontal position of the crop’s top-left corner',
 	required: true,
+	typeOptions: {
+		minValue: 0,
+		numberPrecision: 0,
+	},
 	displayOptions: {
 		show: {
 			operation: [VideoAction.CROP_VIDEO],
@@ -22,6 +26,10 @@ export const yCoordinateParam = {
 	default: 0,
 	description: 'Vertical position of the crop’s top-left corner',
 	required: true,
+	typeOptions: {
+		minValue: 0,
+		numberPrecision: 0,
+	},
 	displayOptions: {
 		show: {
 			operation: [VideoAction.CROP_VIDEO],
@@ -36,6 +44,10 @@ export const cropWidthParam = {
 	default: 100,
 	description: 'Width of the cropped area in pixels. Must not exceed the video width.',
 	required: true,
+	typeOptions: {
+		minValue: 1,
+		numberPrecision: 0,
+	},
 	displayOptions: {
 		show: {
 			operation: [VideoAction.CROP_VIDEO],
@@ -50,6 +62,10 @@ export const cropHeightParam = {
 	default: 100,
 	description: 'Height of the cropped area in pixels. Must not exceed the video height.',
 	required: true,
+	typeOptions: {
+		minValue: 1,
+		numberPrecision: 0,
+	},
 	displayOptions: {
 		show: {
 			operation: [VideoAction.CROP_VIDEO],

@@ -203,6 +203,10 @@ export const getSecParam = (operation: string | string[], resource?: string) => 
 	default: 0,
 	description:
 		'The point in time (in seconds) from which the frame should be captured. For example: 5.2 means 5.2 seconds into the video.',
+	typeOptions: {
+		minValue: 0,
+		numberPrecision: 2,
+	},
 	displayOptions: {
 		show: {
 			...(resource ? { resource: [resource] } : {}),

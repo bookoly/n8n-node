@@ -27,6 +27,10 @@ export const splitOptionParams: INodeProperties[] = [
 		default: 4,
 		description: 'Splits the video into equal segments of the specified duration (in seconds)',
 		required: true,
+		typeOptions: {
+			minValue: 1,
+			numberPrecision: 0,
+		},
 		displayOptions: {
 			show: {
 				type: ['time'],
@@ -41,6 +45,10 @@ export const splitOptionParams: INodeProperties[] = [
 		default: 2,
 		description: 'Splits the video into the specified total number of equal-length segments',
 		required: true,
+		typeOptions: {
+			minValue: 1,
+			numberPrecision: 0,
+		},
 		displayOptions: {
 			show: {
 				type: ['count'],
@@ -55,6 +63,10 @@ export const splitOptionParams: INodeProperties[] = [
 		default: 1,
 		description: 'The minimum length of each automatically detected scene',
 		required: true,
+		typeOptions: {
+			minValue: 0.1,
+			numberPrecision: 2,
+		},
 		displayOptions: {
 			show: {
 				type: ['auto'],
@@ -69,6 +81,10 @@ export const splitOptionParams: INodeProperties[] = [
 		default: 2,
 		description: 'The maximum length of each automatically detected scene',
 		required: true,
+		typeOptions: {
+			minValue: 0.1,
+			numberPrecision: 2,
+		},
 		displayOptions: {
 			show: {
 				type: ['auto'],
@@ -84,6 +100,11 @@ export const splitOptionParams: INodeProperties[] = [
 		description:
 			'Lower values detect more scene changes; higher values detect fewer. Range: 0.1 – 1.',
 		required: true,
+		typeOptions: {
+			minValue: 0.1,
+			maxValue: 1,
+			numberPrecision: 2,
+		},
 		displayOptions: {
 			show: {
 				type: ['auto'],
