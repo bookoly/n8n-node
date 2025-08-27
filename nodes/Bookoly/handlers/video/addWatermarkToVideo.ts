@@ -7,12 +7,8 @@ export async function addWatermarkToVideo(ctx: IExecuteFunctions, itemIndex: num
 	const url = ctx.getNodeParameter('url', itemIndex) as string;
 	const mute = ctx.getNodeParameter('mute', itemIndex, false) as boolean;
 	const watermark_url = ctx.getNodeParameter('watermark_url', itemIndex) as string;
-	const watermark_position = ctx.getNodeParameter('watermarkPosition', itemIndex, {}) as {
-		position?: {
-			x: number;
-			y: number;
-		};
-	};
+	const x = ctx.getNodeParameter('watermark_point_x', itemIndex, false) as number;
+	const y = ctx.getNodeParameter('watermark_point_y', itemIndex, false) as number;
 	const webhook_url = ctx.getNodeParameter('webhook_url', itemIndex, '') as string;
 	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
 
@@ -25,8 +21,8 @@ export async function addWatermarkToVideo(ctx: IExecuteFunctions, itemIndex: num
 		},
 		watermark: {
 			point: {
-				x: watermark_position.position?.x ?? 0,
-				y: watermark_position.position?.y ?? 0,
+				x,
+				y,
 			},
 			url: watermark_url,
 		},

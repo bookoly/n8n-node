@@ -16,9 +16,9 @@ import {
 	getWaitParam,
 } from './commonParams';
 import { scenesParam } from './videoParams/scenes';
-import { watermarkUrlParam, watermarkPositionParam } from './videoParams/watermark';
+import { watermarkParams } from './videoParams/watermark';
 import { blurOptionParam } from './videoParams/blur';
-import { clipOptionParam } from './videoParams/clip';
+import { clipOptionParams } from './videoParams/clip';
 import {
 	xCoordinateParam,
 	yCoordinateParam,
@@ -123,9 +123,8 @@ export const videoResource: ResourceDefinition = {
 		trimAudioParam,
 		audioVolumeParam,
 		scenesParam,
-		watermarkUrlParam,
-		watermarkPositionParam,
-		clipOptionParam,
+		...watermarkParams,
+		...clipOptionParams,
 		xCoordinateParam,
 		yCoordinateParam,
 		cropWidthParam,

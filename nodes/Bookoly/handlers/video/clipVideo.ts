@@ -1,11 +1,12 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { bookolyApiRequest } from '../../helpers/apiClient';
-import { ApiEndpoints, ClipOption, HttpMethod } from '../../types';
+import { ApiEndpoints, HttpMethod } from '../../types';
 
 export async function clipVideo(ctx: IExecuteFunctions, itemIndex: number): Promise<any> {
 	const name = ctx.getNodeParameter('name', itemIndex, '') as string;
 	const url = ctx.getNodeParameter('url', itemIndex) as string;
-	const clipOption = ctx.getNodeParameter('clip_option', itemIndex, {}) as ClipOption;
+	const start = ctx.getNodeParameter('start', itemIndex) as number;
+	const duration = ctx.getNodeParameter('duration', itemIndex) as number;
 	const mute = ctx.getNodeParameter('mute', itemIndex, false) as boolean;
 	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
 	const webhook_url = ctx.getNodeParameter('webhook_url', itemIndex, '') as string;
@@ -18,8 +19,8 @@ export async function clipVideo(ctx: IExecuteFunctions, itemIndex: number): Prom
 			webhook_url,
 		},
 		clip_option: {
-			start: clipOption?.clipOptions?.start || 0,
-			duration: clipOption?.clipOptions?.duration || 1,
+			start,
+			duration,
 		},
 	};
 

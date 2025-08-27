@@ -33,13 +33,6 @@ export interface BookolyScene {
 	effect: '' | 'zoom_in';
 }
 
-export interface ClipOption {
-	clipOptions: {
-		start: number;
-		duration: number;
-	};
-}
-
 export enum ResourceType {
 	SOUND = 'sound',
 	SPEECH = 'speech',
