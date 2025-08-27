@@ -17,7 +17,6 @@ export const soundResource: ResourceDefinition = {
 				},
 			},
 			options: [
-				// routing removed; handled in execute()
 				{
 					name: 'Combine Sounds',
 					value: SoundAction.COMBINE_SOUNDS,
