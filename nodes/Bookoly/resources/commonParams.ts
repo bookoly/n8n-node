@@ -127,6 +127,9 @@ export const getTextParam = (operation: string | string[], resource?: string) =>
 	name: 'text',
 	type: 'string' as NodePropertyTypes,
 	required: true,
+	typeOptions: {
+		rows: 4,
+	},
 	default: '',
 	description: 'The text to create the speech synthesis from',
 	displayOptions: {
