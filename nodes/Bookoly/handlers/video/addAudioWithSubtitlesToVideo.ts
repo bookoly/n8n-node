@@ -1,6 +1,6 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { bookolyApiRequest } from '../../helpers/apiClient';
-import { ApiEndpoints, HttpMethod, ResourceType } from '../../types';
+import { ApiEndpoints, HttpMethod } from '../../types';
 
 export async function addAudioWithSubtitlesToVideo(
 	ctx: IExecuteFunctions,
@@ -55,7 +55,6 @@ export async function addAudioWithSubtitlesToVideo(
 		ctx,
 		HttpMethod.POST,
 		ApiEndpoints.ADD_AUDIO_WITH_SUBTITLE_TO_VIDEO,
-		ResourceType.VIDEO,
 		requestBody,
 		wait,
 	);

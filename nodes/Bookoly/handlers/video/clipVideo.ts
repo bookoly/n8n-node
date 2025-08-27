@@ -1,6 +1,6 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { bookolyApiRequest } from '../../helpers/apiClient';
-import { ApiEndpoints, ClipOption, HttpMethod, ResourceType } from '../../types';
+import { ApiEndpoints, ClipOption, HttpMethod } from '../../types';
 
 export async function clipVideo(ctx: IExecuteFunctions, itemIndex: number): Promise<any> {
 	const name = ctx.getNodeParameter('name', itemIndex, '') as string;
@@ -27,7 +27,6 @@ export async function clipVideo(ctx: IExecuteFunctions, itemIndex: number): Prom
 		ctx,
 		HttpMethod.POST,
 		ApiEndpoints.CLIP_A_VIDEO,
-		ResourceType.VIDEO,
 		requestBody,
 		wait,
 	);

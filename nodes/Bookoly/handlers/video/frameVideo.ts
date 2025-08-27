@@ -1,6 +1,6 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { bookolyApiRequest } from '../../helpers/apiClient';
-import { ApiEndpoints, HttpMethod, ResourceType } from '../../types';
+import { ApiEndpoints, HttpMethod } from '../../types';
 
 export async function frameVideo(ctx: IExecuteFunctions, itemIndex: number): Promise<any> {
 	const name = ctx.getNodeParameter('name', itemIndex, '') as string;
@@ -24,7 +24,6 @@ export async function frameVideo(ctx: IExecuteFunctions, itemIndex: number): Pro
 		ctx,
 		HttpMethod.POST,
 		ApiEndpoints.FRAME_A_VIDEO,
-		ResourceType.VIDEO,
 		requestBody,
 		wait,
 	);

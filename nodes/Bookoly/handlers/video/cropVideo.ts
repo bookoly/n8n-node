@@ -1,6 +1,6 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { bookolyApiRequest } from '../../helpers/apiClient';
-import { ApiEndpoints, HttpMethod, ResourceType } from '../../types';
+import { ApiEndpoints, HttpMethod } from '../../types';
 
 export async function cropVideo(ctx: IExecuteFunctions, itemIndex: number): Promise<any> {
 	const name = ctx.getNodeParameter('name', itemIndex, '') as string;
@@ -34,7 +34,6 @@ export async function cropVideo(ctx: IExecuteFunctions, itemIndex: number): Prom
 		ctx,
 		HttpMethod.POST,
 		ApiEndpoints.CROP_A_VIDEO,
-		ResourceType.VIDEO,
 		requestBody,
 		wait,
 	);

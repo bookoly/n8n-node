@@ -1,6 +1,6 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { bookolyApiRequest } from '../../helpers/apiClient';
-import { ApiEndpoints, HttpMethod, ResourceType } from '../../types';
+import { ApiEndpoints, HttpMethod } from '../../types';
 
 export async function createSpeech(ctx: IExecuteFunctions, itemIndex: number): Promise<any> {
 	const name = ctx.getNodeParameter('name', itemIndex) as string;
@@ -24,7 +24,6 @@ export async function createSpeech(ctx: IExecuteFunctions, itemIndex: number): P
 		ctx,
 		HttpMethod.POST,
 		ApiEndpoints.TEXT_TO_SPEECH,
-		ResourceType.SPEECH,
 		requestBody,
 		wait,
 	);

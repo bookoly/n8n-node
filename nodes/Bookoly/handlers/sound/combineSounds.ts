@@ -1,6 +1,6 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { bookolyApiRequest } from '../../helpers/apiClient';
-import { ApiEndpoints, HttpMethod, ResourceType } from '../../types';
+import { ApiEndpoints, HttpMethod } from '../../types';
 
 export async function combineSounds(ctx: IExecuteFunctions, itemIndex: number): Promise<any> {
 	const name = ctx.getNodeParameter('name', itemIndex) as string;
@@ -21,7 +21,6 @@ export async function combineSounds(ctx: IExecuteFunctions, itemIndex: number): 
 		ctx,
 		HttpMethod.POST,
 		ApiEndpoints.COMBINE_SOUNDS,
-		ResourceType.SOUND,
 		requestBody,
 		wait,
 	);

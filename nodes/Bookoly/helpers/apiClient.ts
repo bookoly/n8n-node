@@ -7,7 +7,6 @@ export async function bookolyApiRequest(
 	ctx: IExecuteFunctions,
 	method: HttpMethod,
 	endpoint: string,
-	resourceType: ResourceType,
 	body?: IDataObject,
 	wait?: boolean,
 	qs?: IDataObject,

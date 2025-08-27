@@ -1,7 +1,7 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { bookolyApiRequest } from '../../helpers/apiClient';
 import { processScenes } from './getScenes';
-import { ApiEndpoints, HttpMethod, ResourceType, SceneCollection } from '../../types';
+import { ApiEndpoints, HttpMethod, SceneCollection } from '../../types';
 
 export async function createSlideshow(ctx: IExecuteFunctions, itemIndex: number): Promise<any> {
 	const name = ctx.getNodeParameter('name', itemIndex, '') as string;
@@ -25,7 +25,6 @@ export async function createSlideshow(ctx: IExecuteFunctions, itemIndex: number)
 		ctx,
 		HttpMethod.POST,
 		ApiEndpoints.ASSETS_TO_VIDEO,
-		ResourceType.VIDEO,
 		requestBody,
 		wait,
 	);

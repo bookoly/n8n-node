@@ -6,7 +6,6 @@ import {
 	BookolyScene,
 	FontFamily,
 	HttpMethod,
-	ResourceType,
 	SceneCollection,
 	SubtitlePosition,
 	VideoResolution,
@@ -87,7 +86,6 @@ export async function generateVideo(ctx: IExecuteFunctions, itemIndex: number): 
 		ctx,
 		HttpMethod.POST,
 		ApiEndpoints.GENERATE_A_VIDEO,
-		ResourceType.VIDEO,
 		requestBody,
 		wait,
 	);

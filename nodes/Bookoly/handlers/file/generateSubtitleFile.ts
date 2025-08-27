@@ -1,6 +1,6 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { bookolyApiRequest } from '../../helpers/apiClient';
-import { ApiEndpoints, HttpMethod, ResourceType, SubtitleFileType } from '../../types';
+import { ApiEndpoints, HttpMethod, SubtitleFileType } from '../../types';
 
 export async function generateSubtitleFile(
 	ctx: IExecuteFunctions,
@@ -45,7 +45,6 @@ export async function generateSubtitleFile(
 		ctx,
 		HttpMethod.POST,
 		ApiEndpoints.GENERATE_SUBTITLE_FILE,
-		ResourceType.FILE,
 		requestBody,
 		wait,
 	);

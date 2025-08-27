@@ -1,6 +1,6 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { bookolyApiRequest } from '../../helpers/apiClient';
-import { ApiEndpoints, HttpMethod, ResourceType } from '../../types';
+import { ApiEndpoints, HttpMethod } from '../../types';
 
 export async function addWatermarkToVideo(ctx: IExecuteFunctions, itemIndex: number): Promise<any> {
 	const name = ctx.getNodeParameter('name', itemIndex, '') as string;
@@ -36,7 +36,6 @@ export async function addWatermarkToVideo(ctx: IExecuteFunctions, itemIndex: num
 		ctx,
 		HttpMethod.POST,
 		ApiEndpoints.ADD_WATERMARK_TO_VIDEO,
-		ResourceType.VIDEO,
 		requestBody,
 		wait,
 	);

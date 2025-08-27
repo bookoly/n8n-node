@@ -1,6 +1,6 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { bookolyApiRequest } from '../../helpers/apiClient';
-import { ApiEndpoints, HttpMethod, ResourceType } from '../../types';
+import { ApiEndpoints, HttpMethod } from '../../types';
 
 export async function extractAudioFromVideo(
 	ctx: IExecuteFunctions,
@@ -23,7 +23,6 @@ export async function extractAudioFromVideo(
 		ctx,
 		HttpMethod.POST,
 		ApiEndpoints.EXTRACT_AUDIO_FROM_VIDEO,
-		ResourceType.VIDEO,
 		requestBody,
 		wait,
 	);

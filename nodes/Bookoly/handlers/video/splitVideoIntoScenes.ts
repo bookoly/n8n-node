@@ -1,6 +1,6 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { bookolyApiRequest } from '../../helpers/apiClient';
-import { ApiEndpoints, HttpMethod, ResourceType } from '../../types';
+import { ApiEndpoints, HttpMethod } from '../../types';
 
 export async function splitVideoIntoScenes(
 	ctx: IExecuteFunctions,
@@ -41,7 +41,6 @@ export async function splitVideoIntoScenes(
 		ctx,
 		HttpMethod.POST,
 		ApiEndpoints.SPLIT_VIDEO_INTO_SCENES,
-		ResourceType.VIDEO,
 		requestBody,
 		wait,
 	);

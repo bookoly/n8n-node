@@ -1,6 +1,6 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { bookolyApiRequest } from '../../helpers/apiClient';
-import { ApiEndpoints, HttpMethod, ResourceType } from '../../types';
+import { ApiEndpoints, HttpMethod } from '../../types';
 
 export async function muteVideo(ctx: IExecuteFunctions, itemIndex: number): Promise<any> {
 	const name = ctx.getNodeParameter('name', itemIndex, '') as string;
@@ -20,7 +20,6 @@ export async function muteVideo(ctx: IExecuteFunctions, itemIndex: number): Prom
 		ctx,
 		HttpMethod.POST,
 		ApiEndpoints.MUTE_A_VIDEO,
-		ResourceType.VIDEO,
 		requestBody,
 		wait,
 	);
