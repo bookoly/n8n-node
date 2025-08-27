@@ -21,7 +21,7 @@ export interface Scene {
 }
 
 export interface SceneCollection {
-	scene: Scene[];
+	scenes: Scene[];
 }
 
 export interface BookolyScene {

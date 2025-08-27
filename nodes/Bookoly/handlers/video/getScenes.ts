@@ -1,10 +1,12 @@
-import { BookolyScene, SceneCollection } from '../../types';
+import { BookolyScene, Scene, SceneCollection } from '../../types';
 
 export function processScenes(scenesCollection: SceneCollection): BookolyScene[] {
-	const scenes: BookolyScene[] = [];
+	const bookolyScenes: BookolyScene[] = [];
 
-	if (scenesCollection && scenesCollection.scene && Array.isArray(scenesCollection.scene)) {
-		for (const scene of scenesCollection.scene) {
+	const scenes: Scene[] = scenesCollection?.scenes;
+
+	if (scenes && Array.isArray(scenes)) {
+		for (const scene of scenes) {
 			if (scene && typeof scene === 'object') {
 				const bookolyScene: BookolyScene = {
 					asset: {
@@ -15,10 +17,10 @@ export function processScenes(scenesCollection: SceneCollection): BookolyScene[]
 					duration: scene.duration,
 				};
 
-				scenes.push(bookolyScene);
+				bookolyScenes.push(bookolyScene);
 			}
 		}
 	}
 
-	return scenes;
+	return bookolyScenes;
 }

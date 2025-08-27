@@ -3,7 +3,7 @@ import { VideoAction } from '../../types';
 
 export const scenesParam = {
 	displayName: 'Scenes',
-	name: 'scenes',
+	name: 'scene_collection',
 	type: 'fixedCollection' as NodePropertyTypes,
 	typeOptions: {
 		multipleValues: true,
@@ -13,11 +13,11 @@ export const scenesParam = {
 	displayOptions: {
 		show: { operation: [VideoAction.CREATE_SLIDESHOW, VideoAction.GENERATE_VIDEO] },
 	},
-	default: { scene: [{ type: 'image', src: '', duration: 1, effect: '' }] },
+	default: { scenes: [{ type: 'image', src: '', duration: 1, effect: '' }] },
 	options: [
 		{
 			displayName: 'Scene',
-			name: 'scene',
+			name: 'scenes',
 			values: [
 				{
 					displayName: 'Type',

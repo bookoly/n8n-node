@@ -19,7 +19,7 @@ export async function generateVideo(ctx: IExecuteFunctions, itemIndex: number): 
 		itemIndex,
 		VideoResolution.HORIZONTAL_HD,
 	) as string;
-	const scenesCollection = ctx.getNodeParameter('scenes', itemIndex, {}) as SceneCollection;
+	const scenesCollection = ctx.getNodeParameter('scene_collection', itemIndex) as SceneCollection;
 	const scenes: BookolyScene[] = processScenes(scenesCollection);
 
 	// Speech parameters

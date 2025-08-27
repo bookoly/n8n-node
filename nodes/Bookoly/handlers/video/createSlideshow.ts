@@ -9,7 +9,7 @@ export async function createSlideshow(ctx: IExecuteFunctions, itemIndex: number)
 	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
 	const webhook_url = ctx.getNodeParameter('webhook_url', itemIndex, '') as string;
 
-	const scenesCollection = ctx.getNodeParameter('scenes', itemIndex, {}) as SceneCollection;
+	const scenesCollection = ctx.getNodeParameter('scene_collection', itemIndex) as SceneCollection;
 	const scenes = processScenes(scenesCollection);
 
 	const requestBody = {
