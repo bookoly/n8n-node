@@ -62,14 +62,14 @@ export class Bookoly implements INodeType {
 	};
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		const items = this.getInputData();
+		const items: INodeExecutionData[] = this.getInputData();
 		const returnData: INodeExecutionData[] = [];
 
-		for (let i = 0; i < items.length; i++) {
-			const resource = this.getNodeParameter('resource', i) as BookolyResourceType;
+		for (let i: number = 0; i < items.length; i++) {
+			const resource = this.getNodeParameter('resource', i) as ResourceType;
 			const operation = this.getNodeParameter('operation', i) as string;
 
-			const handler = HANDLERS[resource]?.[operation];
+			const handler: Function = HANDLERS[resource]?.[operation];
 			if (!handler) {
 				throw new NodeOperationError(
 					this.getNode(),
@@ -78,7 +78,7 @@ export class Bookoly implements INodeType {
 			}
 
 			try {
-				const result = await handler(this, i);
+				const result: any = await handler(this, i);
 				returnData.push({ json: result });
 			} catch (error) {
 				if (error.name === 'NodeOperationError') {
