@@ -1,23 +1,22 @@
-import {
-	IDataObject,
-	IExecuteFunctions,
-	IHttpRequestOptions,
-	LoggerProxy as Logger,
-} from 'n8n-workflow';
-import { BASE_URL } from '../Bookoly.node';
+import { IDataObject, IExecuteFunctions, IHttpRequestOptions } from 'n8n-workflow';
+import { API_V1_BASE_URL } from '../Bookoly.node';
+import { HttpMethod, ResourceType } from '../types';
+import { getVideo } from '../handlers/video/getVideo';
+import { getSpeech } from '../handlers/speech/getSpeech';
+import { getTranscript } from '../handlers/transcript/getTranscript';
+import { getSound } from '../handlers/sound/getSound';
+import { getSubtitleFile } from '../handlers/file/getSubtitleFile';
 
-Logger.info(`BASE_URL: ${BASE_URL}`);
-
-export async function apiRequest(
+export async function bookolyApiRequest(
 	ctx: IExecuteFunctions,
-	method: 'GET' | 'POST' | 'PUT' | 'DELETE',
+	method: HttpMethod,
 	endpoint: string,
+	resourceType: ResourceType,
 	body?: IDataObject,
+	wait?: boolean,
 	qs?: IDataObject,
 	authentication = 'bookolyApi',
 ): Promise<any> {
-	Logger.info(`apiRequest: ${BASE_URL}/${endpoint.replace(/^\//, '')}`);
-
 	const options: IHttpRequestOptions = {
 		headers: {
 			Accept: 'application/json',
@@ -26,22 +25,34 @@ export async function apiRequest(
 		method,
 		body,
 		qs,
-		url: `${BASE_URL}/${endpoint.replace(/^\//, '')}`,
+		url: `${API_V1_BASE_URL}/${endpoint}`,
 		json: true,
 	};
 
 	try {
-		return await ctx.helpers.requestWithAuthentication.call(ctx, authentication, options);
-	} catch (error) {
-		Logger.error(`API request failed:${JSON.stringify(error)}`, {
-			endpoint,
-			method,
-			error: error.message,
-			status: error.statusCode,
-		});
+		const response = await ctx.helpers.requestWithAuthentication.call(ctx, authentication, options);
 
+		const resourceId = response?.id;
+
+		if (wait && resourceId) {
+			switch (resourceType) {
+				case ResourceType.VIDEO:
+					return getVideo(ctx, resourceId);
+				case ResourceType.SPEECH:
+					return getSpeech(ctx, resourceId);
+				case ResourceType.TRANSCRIPT:
+					return getTranscript(ctx, resourceId);
+				case ResourceType.SOUND:
+					return getSound(ctx, resourceId);
+				case ResourceType.FILE:
+					return getSubtitleFile(ctx, resourceId);
+			}
+		}
+
+		return response;
+	} catch (error) {
 		// Create a new error with the description as the message
-		const apiError = new Error(error.description || error.message || 'API request failed');
+		const apiError = new Error(error.description || error.message || 'The api request failed');
 
 		// Preserve the original error properties
 		Object.assign(apiError, {
