@@ -38,7 +38,7 @@ export async function getResource(
 			);
 		}
 
-		await new Promise(() => sleep(delay));
+		await sleep(delay);
 	}
 
 	throw new NodeOperationError(
