@@ -19,12 +19,7 @@ import { scenesParam } from './videoParams/scenes';
 import { watermarkParams } from './videoParams/watermark';
 import { blurOptionParam } from './videoParams/blur';
 import { clipOptionParams } from './videoParams/clip';
-import {
-	xCoordinateParam,
-	yCoordinateParam,
-	cropWidthParam,
-	cropHeightParam,
-} from './videoParams/crop';
+import { cropOptionParams } from './videoParams/crop';
 import { audioUrlParam, trimAudioParam, audioVolumeParam } from './videoParams/audio';
 import { splitOptionParams } from './videoParams/split';
 import { videoOperations } from './videoParams/operations';
@@ -125,10 +120,7 @@ export const videoResource: ResourceDefinition = {
 		scenesParam,
 		...watermarkParams,
 		...clipOptionParams,
-		xCoordinateParam,
-		yCoordinateParam,
-		cropWidthParam,
-		cropHeightParam,
+		...cropOptionParams,
 		// Subtitle parameters for relevant operations
 		...blurOptionParam,
 		...splitOptionParams,
