@@ -1,4 +1,4 @@
-import { IExecuteFunctions, NodeOperationError } from 'n8n-workflow';
+import { IExecuteFunctions, NodeOperationError, sleep } from 'n8n-workflow';
 import { bookolyApiRequest } from '../helpers/apiClient';
 import { ApiEndpoints, HttpMethod, ResourceState, ResourceType } from '../types';
 import { APP_BASE_URL } from '../Bookoly.node';
@@ -38,7 +38,7 @@ export async function getResource(
 			);
 		}
 
-		await new Promise((resolve) => setTimeout(resolve, delay));
+		await new Promise((resolve) => sleep(delay));
 	}
 
 	throw new NodeOperationError(
