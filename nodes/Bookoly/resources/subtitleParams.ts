@@ -5,7 +5,7 @@ import {
 	fontFamilyOptions,
 	positionOptions,
 } from './static';
-import { FontFamily, Language, SubtitlePosition, SubtitleStyle } from '../types';
+import { FontFamily } from '../types';
 import castArray from 'lodash/castArray';
 
 export const getSubtitleParameters = (operation: string | string[]): INodeProperties[] => [
@@ -13,7 +13,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		displayName: 'Subtitle - Style',
 		name: 'style',
 		type: 'options',
-		default: SubtitleStyle.HIGHLIGHT_CURRENT_WORD,
+		default: 'highlight_current_word',
 		required: true,
 		displayOptions: {
 			show: {
@@ -27,7 +27,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		displayName: 'Subtitle - Language',
 		name: 'language',
 		type: 'options',
-		default: Language.EN,
+		default: 'en',
 		required: true,
 		displayOptions: {
 			show: {
@@ -41,7 +41,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		displayName: 'Subtitle - Font Family',
 		name: 'font_family',
 		type: 'options',
-		default: FontFamily.ARIAL,
+		default: 'Luckiest Guy',
 		required: true,
 		displayOptions: {
 			show: {
@@ -133,7 +133,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		displayName: 'Subtitle - Position',
 		name: 'position',
 		type: 'options',
-		default: SubtitlePosition.MID_BOTTOM_CENTER,
+		default: 'mid_bottom_center',
 		required: true,
 		displayOptions: {
 			show: {

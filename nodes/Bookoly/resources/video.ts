@@ -40,7 +40,7 @@ export const videoResource: ResourceDefinition = {
 				},
 			},
 			options: videoOperations,
-			default: VideoAction.GENERATE_VIDEO,
+			default: 'generateVideo',
 		},
 	],
 	parameters: [

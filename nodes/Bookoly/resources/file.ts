@@ -38,7 +38,7 @@ export const fileResource: ResourceDefinition = {
 					description: 'Fetches subtitle file data from the API using the subtitle file ID',
 				},
 			],
-			default: SubtitleFileAction.GENERATE_SUBTITLE_FILE,
+			default: 'generateSubtitleFile',
 		},
 	],
 	parameters: [

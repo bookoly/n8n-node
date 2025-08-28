@@ -1,5 +1,5 @@
 import { NodePropertyTypes } from 'n8n-workflow';
-import { Language, ResourceDefinition, ResourceType, TranscriptAction } from '../types';
+import { ResourceDefinition, ResourceType, TranscriptAction } from '../types';
 import { languageOptions, translationLanguageOptions } from './static';
 
 export const transcriptionResource: ResourceDefinition = {
@@ -32,7 +32,7 @@ export const transcriptionResource: ResourceDefinition = {
 					description: 'Fetches transcript data from the API using the transcript ID',
 				},
 			],
-			default: TranscriptAction.CREATE_TRANSCRIPT,
+			default: 'createTranscript',
 		},
 	],
 	parameters: [
@@ -83,7 +83,7 @@ export const transcriptionResource: ResourceDefinition = {
 			name: 'language',
 			type: 'options',
 			required: true,
-			default: Language.EN,
+			default: 'en',
 			description: 'Choose the primary language spoken in your audio or video file',
 			options: languageOptions,
 			displayOptions: {
