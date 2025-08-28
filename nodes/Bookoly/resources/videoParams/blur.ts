@@ -40,11 +40,11 @@ export const blurOptionParam: INodeProperties[] = [
 		displayName: 'Box Width',
 		name: 'box_width',
 		type: 'number',
-		default: 1,
+		default: 5,
 		description: 'Width of the blur box in pixels. Must not exceed the video width.',
 		required: true,
 		typeOptions: {
-			minValue: 1,
+			minValue: 5,
 			numberPrecision: 0,
 		},
 		displayOptions: {
@@ -57,11 +57,11 @@ export const blurOptionParam: INodeProperties[] = [
 		displayName: 'Box Height',
 		name: 'box_height',
 		type: 'number',
-		default: 1,
+		default: 5,
 		description: 'Height of the blur box in pixels. Must not exceed the video height.',
 		required: true,
 		typeOptions: {
-			minValue: 1,
+			minValue: 5,
 			numberPrecision: 0,
 		},
 		displayOptions: {

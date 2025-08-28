@@ -90,6 +90,9 @@ If you’re new to n8n, check the [Try it out](https://docs.n8n.io/try-it-out/) 
 
 ## Version history
 
+1.0.2
+* Raised the minimum allowed dimensions (width and height) for the blur operation.
+
 1.0.1
 * Removed lodash dependency.
 
