@@ -1,7 +1,7 @@
-import { NodePropertyTypes } from 'n8n-workflow';
+import { INodeProperties, NodePropertyTypes } from 'n8n-workflow';
 import { VideoAction } from '../../types';
 
-export const watermarkParams = [
+export const watermarkParams: INodeProperties[] = [
 	{
 		displayName: 'Watermark - URL',
 		name: 'watermark_url',

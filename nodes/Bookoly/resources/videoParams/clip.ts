@@ -1,7 +1,7 @@
-import { NodePropertyTypes } from 'n8n-workflow';
+import { INodeProperties, NodePropertyTypes } from 'n8n-workflow';
 import { VideoAction } from '../../types';
 
-export const clipOptionParams = [
+export const clipOptionParams: INodeProperties[] = [
 	{
 		displayName: 'Clip - Start Time',
 		name: 'start',
