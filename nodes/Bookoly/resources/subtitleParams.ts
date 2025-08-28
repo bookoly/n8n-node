@@ -17,7 +17,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		required: true,
 		displayOptions: {
 			show: {
-				operation: castArray(operation),
+				operation: Array.isArray(operation) ? operation : [operation],
 			},
 		},
 		options: subtitleStyleOptions,
@@ -31,7 +31,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		required: true,
 		displayOptions: {
 			show: {
-				operation: castArray(operation),
+				operation: Array.isArray(operation) ? operation : [operation],
 			},
 		},
 		options: languageOptions,
@@ -45,7 +45,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		required: true,
 		displayOptions: {
 			show: {
-				operation: castArray(operation),
+				operation: Array.isArray(operation) ? operation : [operation],
 			},
 		},
 		options: fontFamilyOptions,
@@ -64,7 +64,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		},
 		displayOptions: {
 			show: {
-				operation: castArray(operation),
+				operation: Array.isArray(operation) ? operation : [operation],
 			},
 		},
 		description: 'The default subtitle font size is 20',
@@ -76,7 +76,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		default: '#FEEE15',
 		displayOptions: {
 			show: {
-				operation: castArray(operation),
+				operation: Array.isArray(operation) ? operation : [operation],
 			},
 		},
 		description: 'The subtitle word color given in HEX e.g. #FEEE15 = Yellow',
@@ -88,7 +88,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		default: '#FFFFFF',
 		displayOptions: {
 			show: {
-				operation: castArray(operation),
+				operation: Array.isArray(operation) ? operation : [operation],
 			},
 		},
 		description: 'The subtitle line color given in HEX e.g. #FFFFFF = White',
@@ -106,7 +106,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		},
 		displayOptions: {
 			show: {
-				operation: castArray(operation),
+				operation: Array.isArray(operation) ? operation : [operation],
 			},
 		},
 		description: 'Defines how many words are displayed at a time. Min. = 1, Max. = 10',
@@ -124,7 +124,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		},
 		displayOptions: {
 			show: {
-				operation: castArray(operation),
+				operation: Array.isArray(operation) ? operation : [operation],
 			},
 		},
 		description: 'The default subtitle outline width is 5',
@@ -137,7 +137,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		required: true,
 		displayOptions: {
 			show: {
-				operation: castArray(operation),
+				operation: Array.isArray(operation) ? operation : [operation],
 			},
 		},
 		options: positionOptions,
@@ -162,7 +162,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		default: true,
 		displayOptions: {
 			show: {
-				operation: castArray(operation),
+				operation: Array.isArray(operation) ? operation : [operation],
 			},
 		},
 		description: 'Choose the subtitle text orientation',

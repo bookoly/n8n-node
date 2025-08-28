@@ -40,7 +40,6 @@
     ]
   },
   "devDependencies": {
-    "@types/lodash.castarray": "^4.4.9",
     "@types/request": "^2.48.12",
     "@typescript-eslint/parser": "~8.32.0",
     "eslint": "^8.57.0",
@@ -51,8 +50,5 @@
   },
   "peerDependencies": {
     "n8n-workflow": "*"
-  },
-  "dependencies": {
-    "lodash": "^4.17.21"
   }
 }
