@@ -6,7 +6,6 @@ import {
 	positionOptions,
 } from './static';
 import { FontFamily } from '../types';
-import castArray from 'lodash/castArray';
 
 export const getSubtitleParameters = (operation: string | string[]): INodeProperties[] => [
 	{
