@@ -1,6 +1,7 @@
 import { voiceOptions, resolutionOptions } from './static';
 import { NodePropertyTypes } from 'n8n-workflow';
 import { SubtitleFileType, VideoResolution, Voice } from '../types';
+import castArray from 'lodash/castArray';
 
 export const getNameParam = (
 	operation: string | string[],
@@ -16,7 +17,7 @@ export const getNameParam = (
 	displayOptions: {
 		show: {
 			...(resource ? { resource: [resource] } : {}),
-			operation: Array.isArray(operation) ? operation : [operation],
+			operation: castArray(operation),
 		},
 	},
 });
@@ -35,7 +36,7 @@ export const getUrlParam = (
 	displayOptions: {
 		show: {
 			...(resource ? { resource: [resource] } : {}),
-			operation: Array.isArray(operation) ? operation : [operation],
+			operation: castArray(operation),
 		},
 	},
 });
@@ -50,7 +51,7 @@ export const getSubtitleUrlParam = (operation: string | string[], resource?: str
 	displayOptions: {
 		show: {
 			...(resource ? { resource: [resource] } : {}),
-			operation: Array.isArray(operation) ? operation : [operation],
+			operation: castArray(operation),
 		},
 	},
 });
@@ -68,7 +69,7 @@ export const getWebhookUrlParam = (
 	displayOptions: {
 		show: {
 			...(resource ? { resource: [resource] } : {}),
-			operation: Array.isArray(operation) ? operation : [operation],
+			operation: castArray(operation),
 		},
 	},
 });
@@ -84,7 +85,7 @@ export const getVoiceParam = (operation: string | string[], resource?: string) =
 	displayOptions: {
 		show: {
 			...(resource ? { resource: [resource] } : {}),
-			operation: Array.isArray(operation) ? operation : [operation],
+			operation: castArray(operation),
 		},
 	},
 });
@@ -102,7 +103,7 @@ export const getWaitParam = (
 	displayOptions: {
 		show: {
 			...(resource ? { resource: [resource] } : {}),
-			operation: Array.isArray(operation) ? operation : [operation],
+			operation: castArray(operation),
 		},
 	},
 });
@@ -117,7 +118,7 @@ export const getTypeParam = (operation: string | string[], resource?: string) =>
 	displayOptions: {
 		show: {
 			...(resource ? { resource: [resource] } : {}),
-			operation: Array.isArray(operation) ? operation : [operation],
+			operation: castArray(operation),
 		},
 	},
 });
@@ -135,7 +136,7 @@ export const getTextParam = (operation: string | string[], resource?: string) =>
 	displayOptions: {
 		show: {
 			...(resource ? { resource: [resource] } : {}),
-			operation: Array.isArray(operation) ? operation : [operation],
+			operation: castArray(operation),
 		},
 	},
 });
@@ -156,7 +157,7 @@ export const getIdParam = (
 	displayOptions: {
 		show: {
 			resource: [resource],
-			operation: Array.isArray(operation) ? operation : [operation],
+			operation: castArray(operation),
 		},
 	},
 });
@@ -177,7 +178,7 @@ export const getResolutionParam = (
 	displayOptions: {
 		show: {
 			...(resource ? { resource: [resource] } : {}),
-			operation: Array.isArray(operation) ? operation : [operation],
+			operation: castArray(operation),
 		},
 	},
 });
@@ -191,7 +192,7 @@ export const getMuteParam = (operation: string | string[], resource?: string) =>
 	displayOptions: {
 		show: {
 			...(resource ? { resource: [resource] } : {}),
-			operation: Array.isArray(operation) ? operation : [operation],
+			operation: castArray(operation),
 		},
 	},
 });
@@ -210,7 +211,7 @@ export const getSecParam = (operation: string | string[], resource?: string) => 
 	displayOptions: {
 		show: {
 			...(resource ? { resource: [resource] } : {}),
-			operation: Array.isArray(operation) ? operation : [operation],
+			operation: castArray(operation),
 		},
 	},
 });
@@ -230,7 +231,7 @@ export const getRotateParam = (operation: string | string[], resource?: string) 
 	displayOptions: {
 		show: {
 			...(resource ? { resource: [resource] } : {}),
-			operation: Array.isArray(operation) ? operation : [operation],
+			operation: castArray(operation),
 		},
 	},
 });

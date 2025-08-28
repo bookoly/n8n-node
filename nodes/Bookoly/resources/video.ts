@@ -132,9 +132,11 @@ export const videoResource: ResourceDefinition = {
 		// Subtitle parameters for relevant operations
 		...blurOptionParam,
 		...splitOptionParams,
-		...getSubtitleParameters(VideoAction.ADD_AUDIO_WITH_SUBTITLES_TO_VIDEO),
-		...getSubtitleParameters(VideoAction.ADD_SUBTITLES_TO_VIDEO),
-		...getSubtitleParameters(VideoAction.GENERATE_VIDEO),
+		...getSubtitleParameters([
+			VideoAction.ADD_AUDIO_WITH_SUBTITLES_TO_VIDEO,
+			VideoAction.ADD_SUBTITLES_TO_VIDEO,
+			VideoAction.GENERATE_VIDEO,
+		]),
 		getWaitParam(
 			[
 				VideoAction.ADD_AUDIO_TO_VIDEO,
