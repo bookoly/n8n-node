@@ -3,7 +3,7 @@ import { VideoAction } from '../../types';
 
 export const splitOptionParams: INodeProperties[] = [
 	{
-		displayName: 'Mode',
+		displayName: 'Split - Mode',
 		name: 'type',
 		type: 'options' as NodePropertyTypes,
 		default: 'auto',
@@ -21,7 +21,7 @@ export const splitOptionParams: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Segment Length',
+		displayName: 'Split - Segment Length',
 		name: 'amount',
 		type: 'number' as NodePropertyTypes,
 		default: 4,
@@ -39,7 +39,7 @@ export const splitOptionParams: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Number of Segments',
+		displayName: 'Split - Number of Segments',
 		name: 'amount',
 		type: 'number' as NodePropertyTypes,
 		default: 2,
@@ -57,7 +57,7 @@ export const splitOptionParams: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Min Scene Duration (Sec)',
+		displayName: 'Split - Min Scene Duration (Sec)',
 		name: 'min_duration',
 		type: 'number' as NodePropertyTypes,
 		default: 1,
@@ -75,7 +75,7 @@ export const splitOptionParams: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Max Scene Duration (Sec)',
+		displayName: 'Split - Max Scene Duration (Sec)',
 		name: 'max_duration',
 		type: 'number' as NodePropertyTypes,
 		default: 2,
@@ -93,7 +93,7 @@ export const splitOptionParams: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Scene Change Threshold',
+		displayName: 'Split - Scene Change Threshold',
 		name: 'scene_change_threshold',
 		type: 'number' as NodePropertyTypes,
 		default: 0.2,

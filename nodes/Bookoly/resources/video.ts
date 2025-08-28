@@ -121,7 +121,6 @@ export const videoResource: ResourceDefinition = {
 		...watermarkParams,
 		...clipOptionParams,
 		...cropOptionParams,
-		// Subtitle parameters for relevant operations
 		...blurOptionParam,
 		...splitOptionParams,
 		...getSubtitleParameters([
