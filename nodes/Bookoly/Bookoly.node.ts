@@ -27,6 +27,7 @@ export class Bookoly implements INodeType {
 		defaults: {
 			name: 'bookoly',
 		},
+		usableAsTool: true,
 		inputs: [NodeConnectionType.Main],
 		outputs: [NodeConnectionType.Main],
 		requestDefaults: {

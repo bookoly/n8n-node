@@ -90,5 +90,8 @@ If you’re new to n8n, check the [Try it out](https://docs.n8n.io/try-it-out/) 
 
 ## Version history
 
+1.0.5
+* Make the bookoly node usable as a tool.
+
 1.0.4
 * Initial release with support for all bookoly operations.
