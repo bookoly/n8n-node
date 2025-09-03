@@ -1,12 +1,10 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { bookolyApiRequest } from '../../helpers/apiClient';
-import { processScenes } from './getScenes';
+import { parseScenes } from './parseScenes';
 import {
 	ApiEndpoints,
-	BookolyScene,
 	FontFamily,
 	HttpMethod,
-	SceneCollection,
 	SubtitlePosition,
 	VideoResolution,
 } from '../../types';
@@ -19,8 +17,7 @@ export async function generateVideo(ctx: IExecuteFunctions, itemIndex: number): 
 		itemIndex,
 		VideoResolution.HORIZONTAL_HD,
 	) as string;
-	const scenesCollection = ctx.getNodeParameter('scene_collection', itemIndex) as SceneCollection;
-	const scenes: BookolyScene[] = processScenes(scenesCollection);
+	const scenes = parseScenes(ctx.getNodeParameter('scenes', itemIndex) as string);
 
 	// Speech parameters
 	const text = ctx.getNodeParameter('text', itemIndex, '') as string;
