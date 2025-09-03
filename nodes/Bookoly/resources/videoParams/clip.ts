@@ -11,7 +11,7 @@ export const clipOptionParams: INodeProperties[] = [
 			minValue: 0,
 			numberPrecision: 2,
 		},
-		default: 0,
+		default: 0.0,
 		description: 'Set the start time of the clip (in seconds) from the beginning of the video',
 		displayOptions: {
 			show: {
@@ -24,10 +24,10 @@ export const clipOptionParams: INodeProperties[] = [
 		name: 'duration',
 		type: 'number' as NodePropertyTypes,
 		typeOptions: {
-			minValue: 0.1,
+			minValue: 1,
 			numberPrecision: 2,
 		},
-		default: '',
+		default: 1,
 		description:
 			'Set how long the clip should be (in seconds). Leave blank to include the remainder of the video.',
 		displayOptions: {
