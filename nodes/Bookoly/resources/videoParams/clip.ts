@@ -8,11 +8,11 @@ export const clipOptionParams: INodeProperties[] = [
 		type: 'number' as NodePropertyTypes,
 		required: true,
 		typeOptions: {
-			minValue: 0,
+			minValue: 0.0,
 			numberPrecision: 2,
 		},
 		default: 0.0,
-		description: 'Set the start time of the clip (in seconds) from the beginning of the video',
+		description: 'Set the clip start time in seconds from the start of the video',
 		displayOptions: {
 			show: {
 				operation: [VideoAction.CLIP_VIDEO],
@@ -20,7 +20,7 @@ export const clipOptionParams: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Clip - Duration',
+		displayName: 'Clip - End Time',
 		name: 'duration',
 		type: 'number' as NodePropertyTypes,
 		typeOptions: {
@@ -29,7 +29,7 @@ export const clipOptionParams: INodeProperties[] = [
 		},
 		default: 1,
 		description:
-			'Set how long the clip should be (in seconds). Leave blank to include the remainder of the video.',
+			'Set the clip end time in seconds from the start of the video. Leave empty to use the video’s end.',
 		displayOptions: {
 			show: {
 				operation: [VideoAction.CLIP_VIDEO],
