@@ -79,7 +79,7 @@ To use the bookoly node, you need an API token:
 
 Once installed, you can add the bookoly node to your workflow to automate content generation and processing.
 
-📺 To see all examples in action check out the full bookoly YouTube tutorial [playlist](https://www.youtube.com/playlist?list=PLaZXufV_18nEe7EG_HNwwbd7f6lCbNL_g)
+📺 To see all examples in action check out the full bookoly YouTube tutorial [playlist](https://www.youtube.com/playlist?list=PLaZXufV_18nEQ_P79pD3ccuR8xQwjcJqu)
 
 If you’re new to n8n, check the [Try it out](https://docs.n8n.io/try-it-out/) guide
 
