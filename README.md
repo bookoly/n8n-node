@@ -90,6 +90,9 @@ If you’re new to n8n, check the [Try it out](https://docs.n8n.io/try-it-out/) 
 
 ## Version history
 
+1.0.8
+* Update youtube playlist url in readme.
+
 1.0.7
 * Refine video clip parameters for clarity.
 
