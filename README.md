@@ -40,9 +40,13 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 * **Rotate a Video** – Rotate a video by 90, 180, or 270 degrees.
 * **Split a Video into Scenes** – Split a video by automatic scene detection, fixed time intervals, or equal segments.
 
-### 🗣️ Speech
+### 🎙️️ Speech
 
 * **Create a Speech Synthesis** – Convert text into a natural-sounding speech with AI.
+
+### 🗣️ Speech Dialogue
+
+* **Create a Speech Dialogue** – Generate a conversation between multiple AI voices.
 
 ### 📜 Transcript
 
@@ -89,6 +93,10 @@ If you’re new to n8n, check the [Try it out](https://docs.n8n.io/try-it-out/) 
 * [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
 
 ## Version history
+
+1.0.9
+* Added 'Create a speech dialogue' action.
+* Updated 'Combine sounds' action, to expect JSON input for Audio.
 
 1.0.8
 * Update youtube playlist url in readme.

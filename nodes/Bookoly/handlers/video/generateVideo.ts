@@ -1,6 +1,6 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { bookolyApiRequest } from '../../helpers/apiClient';
-import { parseScenes } from './parseScenes';
+import { parseJson } from './parseJson';
 import {
 	ApiEndpoints,
 	FontFamily,
@@ -17,7 +17,7 @@ export async function generateVideo(ctx: IExecuteFunctions, itemIndex: number): 
 		itemIndex,
 		VideoResolution.HORIZONTAL_HD,
 	) as string;
-	const scenes = parseScenes(ctx.getNodeParameter('scenes', itemIndex) as string);
+	const scenes = parseJson(ctx.getNodeParameter('scenes', itemIndex) as string, 'Scenes (JSON)');
 
 	// Speech parameters
 	const text = ctx.getNodeParameter('text', itemIndex, '') as string;

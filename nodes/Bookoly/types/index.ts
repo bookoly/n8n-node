@@ -36,6 +36,7 @@ export interface BookolyScene {
 export enum ResourceType {
 	SOUND = 'sound',
 	SPEECH = 'speech',
+	SPEECH_DIALOGUE = 'speech_dialogue',
 	FILE = 'file',
 	TRANSCRIPT = 'transcript',
 	VIDEO = 'video',
@@ -63,6 +64,7 @@ export enum ApiEndpoints {
 	CLIP_A_VIDEO = 'clip-a-video',
 	COMBINE_SOUNDS = 'combine-sounds',
 	CREATE_SOUND_EFFECT = 'create-sound-effect',
+	CREATE_SPEECH_DIALOGUE = 'create-speech-dialogue',
 	CREATE_TRANSCRIPT = 'create-transcript',
 	CROP_A_VIDEO = 'crop-a-video',
 	EXTRACT_AUDIO_FROM_VIDEO = 'extract-audio-from-video',
@@ -73,6 +75,7 @@ export enum ApiEndpoints {
 	ROTATE_A_VIDEO = 'rotate-a-video',
 	SOUNDS = 'sounds',
 	SPEECHES = 'speeches',
+	SPEECH_DIALOGUES = 'speechDialogues',
 	SPLIT_VIDEO_INTO_SCENES = 'split-video-into-scenes',
 	SUBTITLE_FILES = 'subtitleFiles',
 	TEXT_TO_SPEECH = 'text-to-speech',
@@ -108,6 +111,11 @@ export enum SoundAction {
 export enum SpeechAction {
 	CREATE_SPEECH = 'createSpeech',
 	GET_SPEECH = 'getSpeech',
+}
+
+export enum SpeechDialogueAction {
+	CREATE_SPEECH_DIALOGUE = 'createSpeechDialogue',
+	GET_SPEECH_DIALOGUE = 'getSpeechDialogue',
 }
 
 export enum TranscriptAction {

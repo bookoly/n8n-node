@@ -115,37 +115,21 @@ export const soundResource: ResourceDefinition = {
 			description: 'The name of the sound',
 		},
 		{
-			displayName: 'Audio',
-			name: 'audioList',
-			type: 'fixedCollection' as NodePropertyTypes,
-			typeOptions: {
-				multipleValues: true,
-				sortable: true,
-			},
-			placeholder: 'Add Audio URL',
+			displayName: 'Sounds (JSON)',
+			name: 'segments',
+			type: 'json' as NodePropertyTypes,
 			displayOptions: {
-				show: {
-					operation: [SoundAction.COMBINE_SOUNDS],
-					resource: [ResourceType.SOUND],
-				},
+				show: { operation: [SoundAction.COMBINE_SOUNDS], resource: [ResourceType.SOUND] },
 			},
-			default: { urls: [{ src: '' }, { src: '' }] },
-			options: [
-				{
-					name: 'urls',
-					displayName: 'URL',
-					values: [
-						{
-							displayName: 'Audio URL',
-							name: 'src',
-							type: 'string' as NodePropertyTypes,
-							default: '',
-							description: 'The public and downloadable URL of the audio file',
-							required: true,
-						},
-					],
-				},
-			],
+			default:
+				'[\n' +
+				'  {\n' +
+				'    "src": ""\n' +
+				'  },\n' +
+				'  {\n' +
+				'    "src": ""\n' +
+				'  }\n' +
+				']',
 			description: "Enter the all the public and downloadable URL's of your audio files here",
 		},
 		{

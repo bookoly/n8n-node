@@ -22,7 +22,7 @@ export async function getResource(
 		const response: any = await bookolyApiRequest(
 			ctx,
 			HttpMethod.GET,
-			getEndpoint(resourceId, resourceType),
+			getResourceEndpoint(resourceId, resourceType),
 		);
 
 		const responseState = response?.state;
@@ -61,6 +61,9 @@ function getResourceId(
 		case ResourceType.SPEECH:
 			parameterName = 'speechId';
 			break;
+		case ResourceType.SPEECH_DIALOGUE:
+			parameterName = 'speechDialogueId';
+			break;
 		case ResourceType.TRANSCRIPT:
 			parameterName = 'transcriptId';
 			break;
@@ -75,31 +78,19 @@ function getResourceId(
 	return ctx.getNodeParameter(parameterName, itemIndex) as string;
 }
 
-function getEndpoint(resourceId: string, resourceType: ResourceType): string {
-	let endpoint = null;
-
-	switch (resourceType) {
-		case ResourceType.VIDEO:
-			endpoint = ApiEndpoints.VIDEOS;
-			break;
-		case ResourceType.SPEECH:
-			endpoint = ApiEndpoints.SPEECHES;
-			break;
-		case ResourceType.TRANSCRIPT:
-			endpoint = ApiEndpoints.TRANSCRIPTS;
-			break;
-		case ResourceType.SOUND:
-			endpoint = ApiEndpoints.SOUNDS;
-			break;
-		case ResourceType.FILE:
-			endpoint = ApiEndpoints.SUBTITLE_FILES;
-			break;
-	}
+function getResourceEndpoint(resourceId: string, resourceType: ResourceType): string {
+	let endpoint = getEndpoint(resourceType);
 
 	return `${endpoint}/${resourceId}`;
 }
 
 function getResourceUrl(resourceId: string, resourceType: ResourceType): string {
+	const endpoint = getEndpoint(resourceType);
+
+	return `${APP_BASE_URL}/${endpoint}/${resourceId}`;
+}
+
+function getEndpoint(resourceType: ResourceType) {
 	let endpoint = null;
 
 	switch (resourceType) {
@@ -108,6 +99,9 @@ function getResourceUrl(resourceId: string, resourceType: ResourceType): string 
 			break;
 		case ResourceType.SPEECH:
 			endpoint = ApiEndpoints.SPEECHES;
+			break;
+		case ResourceType.SPEECH_DIALOGUE:
+			endpoint = ApiEndpoints.SPEECH_DIALOGUES;
 			break;
 		case ResourceType.TRANSCRIPT:
 			endpoint = ApiEndpoints.TRANSCRIPTS;
@@ -120,5 +114,5 @@ function getResourceUrl(resourceId: string, resourceType: ResourceType): string 
 			break;
 	}
 
-	return `${APP_BASE_URL}/${endpoint}/${resourceId}`;
+	return endpoint;
 }
