@@ -94,6 +94,9 @@ If you’re new to n8n, check the [Try it out](https://docs.n8n.io/try-it-out/) 
 
 ## Version history
 
+1.0.10
+* Handle errors with continueOnFail
+
 1.0.9
 * Added 'Create a speech dialogue' action.
 * Updated 'Combine sounds' action, to expect JSON input for Audio.
