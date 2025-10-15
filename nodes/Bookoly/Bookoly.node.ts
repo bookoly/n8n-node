@@ -78,17 +78,16 @@ export class Bookoly implements INodeType {
 				);
 			}
 
+			const continueOnFail = this.continueOnFail();
 			try {
 				const result: any = await handler(this, i);
-				returnData.push({ json: result });
+				returnData.push({ json: result, pairedItem: { item: i } });
 			} catch (error) {
-				if (error.name === 'NodeOperationError') {
-					throw error;
+				if (continueOnFail) {
+					returnData.push({ json: { error: error.message }, pairedItem: { item: i } });
+					continue;
 				}
-				throw new NodeOperationError(
-					this.getNode(),
-					`Failed to execute ${operation}: ${error.message}`,
-				);
+				throw error;
 			}
 		}
 
