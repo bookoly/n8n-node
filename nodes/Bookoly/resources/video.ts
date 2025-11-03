@@ -1,26 +1,27 @@
-import { VideoAction, ResourceDefinition, ResourceType } from '../types';
+import { ResourceDefinition, ResourceType, VideoAction } from '../types';
 import { getSubtitleParameters } from './subtitleParams';
 import {
-	getNameParam,
-	getUrlParam,
-	getWebhookUrlParam,
-	getVoiceParam,
+	getDurationBasisParam,
 	getIdParam,
-	getResolutionParam,
 	getMuteParam,
-	getTypeParam,
-	getSubtitleUrlParam,
-	getSecParam,
-	getTextParam,
+	getNameParam,
+	getResolutionParam,
 	getRotateParam,
+	getSecParam,
+	getSubtitleUrlParam,
+	getTextParam,
+	getTypeParam,
+	getUrlParam,
+	getVoiceParam,
 	getWaitParam,
+	getWebhookUrlParam,
 } from './commonParams';
 import { scenesParam } from './videoParams/scenes';
 import { watermarkParams } from './videoParams/watermark';
 import { blurOptionParam } from './videoParams/blur';
 import { clipOptionParams } from './videoParams/clip';
 import { cropOptionParams } from './videoParams/crop';
-import { audioUrlParam, trimAudioParam, audioVolumeParam } from './videoParams/audio';
+import { audioUrlParam, audioVolumeParam, trimAudioParam } from './videoParams/audio';
 import { splitOptionParams } from './videoParams/split';
 import { videoOperations } from './videoParams/operations';
 
@@ -107,17 +108,18 @@ export const videoResource: ResourceDefinition = {
 			[VideoAction.CREATE_SLIDESHOW, VideoAction.GENERATE_VIDEO],
 			ResourceType.VIDEO,
 		),
+		getDurationBasisParam([VideoAction.GENERATE_VIDEO], ResourceType.VIDEO),
+		scenesParam,
 		getTextParam([VideoAction.GENERATE_VIDEO], ResourceType.VIDEO),
-		getVoiceParam(VideoAction.GENERATE_VIDEO, ResourceType.VIDEO),
+		getVoiceParam([VideoAction.GENERATE_VIDEO], ResourceType.VIDEO),
 		getTypeParam([VideoAction.ADD_SUBTITLES_TO_VIDEO_FROM_FILE], ResourceType.VIDEO),
 		getSubtitleUrlParam([VideoAction.ADD_SUBTITLES_TO_VIDEO_FROM_FILE], ResourceType.VIDEO),
 		getSecParam([VideoAction.FRAME_VIDEO], ResourceType.VIDEO),
 		getRotateParam([VideoAction.ROTATE_VIDEO], ResourceType.VIDEO),
 		// Extracted unique/complex parameter groups
 		audioUrlParam,
-		trimAudioParam,
 		audioVolumeParam,
-		scenesParam,
+		trimAudioParam,
 		...watermarkParams,
 		...clipOptionParams,
 		...cropOptionParams,

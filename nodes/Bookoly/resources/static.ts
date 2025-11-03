@@ -39,6 +39,7 @@ export const voiceOptions: Option[] = [
 	{ value: Voice.LILY, name: 'Lily' },
 	{ value: Voice.MARK, name: 'Mark' },
 	{ value: Voice.MATILDA, name: 'Matilda' },
+	{ value: Voice.NONE, name: 'None' },
 	{ value: Voice.NOVA, name: 'Nova' },
 	{ value: Voice.ONYX, name: 'Onyx' },
 	{ value: Voice.RACHEL, name: 'Rachel' },
@@ -196,13 +197,13 @@ export const positionOptions: Option[] = [
 ];
 
 export const resolutionOptions: Option[] = [
-	{ value: VideoResolution.HORIZONTAL_HD, name: 'Horizontal - 1080p (HD): 1920x1080' },
-	{ value: VideoResolution.HORIZONTAL_2K, name: 'Horizontal - 1440p (2K): 2560x1440' },
-	{ value: VideoResolution.HORIZONTAL_4K, name: 'Horizontal - 2160p (4K): 3840x2160' },
-	{ value: VideoResolution.VERTICAL_HD, name: 'Vertical - 1080p (HD): 1080x1920' },
-	{ value: VideoResolution.VERTICAL_2K, name: 'Vertical - 1440p (2K): 1440x2560' },
-	{ value: VideoResolution.VERTICAL_4K, name: 'Vertical - 2160p (4K): 2160x3840' },
-	{ value: VideoResolution.SQUARE_HD, name: 'Square - 1080p (HD): 1080x1080' },
-	{ value: VideoResolution.SQUARE_2K, name: 'Square - 1440p (2K): 1440x1440' },
-	{ value: VideoResolution.SQUARE_4K, name: 'Square - 2160p (4K): 2160x2160' },
+	{ value: VideoResolution.HORIZONTAL_HD, name: 'Horizontal: Full HD (1920x1080)' },
+	{ value: VideoResolution.HORIZONTAL_2K, name: 'Horizontal: 2K (2560x1440)' },
+	{ value: VideoResolution.HORIZONTAL_4K, name: 'Horizontal: 4K (3840x2160)' },
+	{ value: VideoResolution.VERTICAL_HD, name: 'Vertical: Full HD (1080x1920)' },
+	{ value: VideoResolution.VERTICAL_2K, name: 'Vertical: 2K (1440x2560)' },
+	{ value: VideoResolution.VERTICAL_4K, name: 'Vertical: 4K (2160x3840)' },
+	{ value: VideoResolution.SQUARE_HD, name: 'Square: Full HD (1080x1080)' },
+	{ value: VideoResolution.SQUARE_2K, name: 'Square: 2K (1440x1440)' },
+	{ value: VideoResolution.SQUARE_4K, name: 'Square: 4K (2160x2160)' },
 ];

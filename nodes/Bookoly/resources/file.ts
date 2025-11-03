@@ -47,8 +47,12 @@ export const fileResource: ResourceDefinition = {
 			ResourceType.FILE,
 			'The name of the subtitle file',
 		),
-		getUrlParam(SubtitleFileAction.GENERATE_SUBTITLE_FILE, ResourceType.FILE, 'URL'),
 		getTypeParam(SubtitleFileAction.GENERATE_SUBTITLE_FILE, ResourceType.FILE),
+		getUrlParam(
+			SubtitleFileAction.GENERATE_SUBTITLE_FILE,
+			ResourceType.FILE,
+			'Subtitle File - URL',
+		),
 		...getSubtitleParameters(SubtitleFileAction.GENERATE_SUBTITLE_FILE),
 		getIdParam(
 			SubtitleFileAction.GET_SUBTITLE_FILE,

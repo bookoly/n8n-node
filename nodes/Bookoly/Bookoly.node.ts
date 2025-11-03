@@ -10,10 +10,10 @@ import {
 
 import { RESOURCE_DEFINITIONS } from './resources';
 import { HANDLERS } from './handlers';
-import { ResourceType } from './types';
+import { ApiVersion, ResourceType } from './types';
 
 export const APP_BASE_URL = 'https://bookoly.com/app';
-export const API_V1_BASE_URL = 'https://bookoly.com/api/v1';
+export const API_BASE_URL = 'https://bookoly.com/api';
 
 export class Bookoly implements INodeType {
 	description: INodeTypeDescription = {
@@ -31,7 +31,7 @@ export class Bookoly implements INodeType {
 		inputs: [NodeConnectionType.Main],
 		outputs: [NodeConnectionType.Main],
 		requestDefaults: {
-			baseURL: API_V1_BASE_URL,
+			baseURL: `${API_BASE_URL}/${ApiVersion.V1}`,
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json',

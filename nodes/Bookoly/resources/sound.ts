@@ -36,7 +36,7 @@ export const soundResource: ResourceDefinition = {
 					description: 'Fetches sound data from the API using the sound ID',
 				},
 			],
-			default: SoundAction.CREATE_SOUND_EFFECT,
+			default: 'createSoundEffect',
 		},
 	],
 	parameters: [
@@ -55,7 +55,7 @@ export const soundResource: ResourceDefinition = {
 			description: 'The ID of the sound',
 		},
 		{
-			displayName: 'Name',
+			displayName: 'Sound Effect - Name',
 			name: 'name',
 			type: 'string' as NodePropertyTypes,
 			required: true,
@@ -69,7 +69,7 @@ export const soundResource: ResourceDefinition = {
 			description: 'The name of the sound effect',
 		},
 		{
-			displayName: 'Text',
+			displayName: 'Sound Effect - Text',
 			name: 'effect_text',
 			type: 'string' as NodePropertyTypes,
 			required: true,
@@ -83,7 +83,7 @@ export const soundResource: ResourceDefinition = {
 			description: 'The text that will get converted into a sound effect',
 		},
 		{
-			displayName: 'Effect Duration',
+			displayName: 'Sound Effect - Duration',
 			name: 'effect_duration',
 			type: 'number' as NodePropertyTypes,
 			typeOptions: {
@@ -101,7 +101,7 @@ export const soundResource: ResourceDefinition = {
 				'The duration of the sound which will be generated in seconds. Must be at least 0.5 and at most 22. We will guess the optimal duration using the text if the duration is not set',
 		},
 		{
-			displayName: 'Name',
+			displayName: 'Sound - Name',
 			name: 'name',
 			type: 'string' as NodePropertyTypes,
 			required: true,
@@ -115,7 +115,7 @@ export const soundResource: ResourceDefinition = {
 			description: 'The name of the sound',
 		},
 		{
-			displayName: 'Sounds (JSON)',
+			displayName: 'Sound - Sounds (JSON)',
 			name: 'segments',
 			type: 'json' as NodePropertyTypes,
 			displayOptions: {

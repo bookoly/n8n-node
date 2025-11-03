@@ -8,7 +8,10 @@ export async function createSlideshow(ctx: IExecuteFunctions, itemIndex: number)
 	const resolution = ctx.getNodeParameter('resolution', itemIndex) as string;
 	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
 	const webhook_url = ctx.getNodeParameter('webhook_url', itemIndex, '') as string;
-	const scenes = parseJson(ctx.getNodeParameter('scenes', itemIndex) as string, 'Scenes (JSON)');
+	const scenes = parseJson(
+		ctx.getNodeParameter('scenes', itemIndex) as string,
+		'Video - Scenes (JSON)',
+	);
 
 	const requestBody = {
 		video: {

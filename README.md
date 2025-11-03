@@ -94,6 +94,12 @@ If you’re new to n8n, check the [Try it out](https://docs.n8n.io/try-it-out/) 
 
 ## Version history
 
+1.0.11
+* Improved the 'Generate a Video' node for more flexibility.
+* Added punctuation and text case options for subtitles.
+* Added mute option for scenes.
+* Added transitions that can be used between scenes.
+
 1.0.10
 * Handle errors with continueOnFail
 

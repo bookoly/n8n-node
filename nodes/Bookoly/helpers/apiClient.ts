@@ -1,6 +1,6 @@
 import { IDataObject, IExecuteFunctions, IHttpRequestOptions } from 'n8n-workflow';
-import { API_V1_BASE_URL } from '../Bookoly.node';
-import { HttpMethod } from '../types';
+import { API_BASE_URL } from '../Bookoly.node';
+import { ApiVersion, HttpMethod } from '../types';
 import { getResource } from '../handlers/getResource';
 
 export async function bookolyApiRequest(
@@ -9,6 +9,7 @@ export async function bookolyApiRequest(
 	endpoint: string,
 	body?: IDataObject,
 	wait?: boolean,
+	apiVersion: ApiVersion = ApiVersion.V1,
 	qs?: IDataObject,
 	authentication = 'bookolyApi',
 ): Promise<any> {
@@ -20,7 +21,7 @@ export async function bookolyApiRequest(
 		method,
 		body,
 		qs,
-		url: `${API_V1_BASE_URL}/${endpoint}`,
+		url: `${API_BASE_URL}/${apiVersion}/${endpoint}`,
 		json: true,
 	};
 

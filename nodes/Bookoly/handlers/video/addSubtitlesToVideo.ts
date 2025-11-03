@@ -1,6 +1,6 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { bookolyApiRequest } from '../../helpers/apiClient';
-import { ApiEndpoints, HttpMethod } from '../../types';
+import { ApiEndpoints, HttpMethod, TextCase } from '../../types';
 
 export async function addSubtitlesToVideo(ctx: IExecuteFunctions, itemIndex: number): Promise<any> {
 	const name = ctx.getNodeParameter('name', itemIndex, '') as string;
@@ -15,6 +15,8 @@ export async function addSubtitlesToVideo(ctx: IExecuteFunctions, itemIndex: num
 	const outline_width = ctx.getNodeParameter('outline_width', itemIndex) as number;
 	const position = ctx.getNodeParameter('position', itemIndex) as string;
 	const ltr = ctx.getNodeParameter('ltr', itemIndex) as boolean;
+	const punctuation = ctx.getNodeParameter('punctuation', itemIndex, true) as boolean;
+	const text_case = ctx.getNodeParameter('text_base', itemIndex, TextCase.DEFAULT) as string;
 	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
 	const webhook_url = ctx.getNodeParameter('webhook_url', itemIndex, '') as string;
 
@@ -35,6 +37,8 @@ export async function addSubtitlesToVideo(ctx: IExecuteFunctions, itemIndex: num
 			outline_width,
 			position,
 			ltr,
+			punctuation,
+			text_case,
 		},
 	};
 

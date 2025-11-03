@@ -1,30 +1,55 @@
-import { voiceOptions, resolutionOptions } from './static';
+import { resolutionOptions, voiceOptions } from './static';
 import { NodePropertyTypes } from 'n8n-workflow';
-import { SubtitleFileType, VideoResolution, Voice } from '../types';
+import { DurationBasis, ResourceType, SubtitleFileType, VideoResolution, Voice } from '../types';
 
 export const getNameParam = (
 	operation: string | string[],
 	resource?: string,
-	description = 'Name',
-) => ({
-	displayName: 'Name',
-	name: 'name',
-	type: 'string' as NodePropertyTypes,
-	required: true,
-	default: '',
-	description,
-	displayOptions: {
-		show: {
-			...(resource ? { resource: [resource] } : {}),
-			operation: Array.isArray(operation) ? operation : [operation],
+	description: string = 'Name',
+) => {
+	let resourceName = '';
+
+	switch (resource) {
+		case ResourceType.VIDEO:
+			resourceName = 'Video - ';
+			break;
+		case ResourceType.FILE:
+			resourceName = 'Subtitle File - ';
+			break;
+		case ResourceType.SOUND:
+			resourceName = 'Sound - ';
+			break;
+		case ResourceType.SPEECH:
+			resourceName = 'Speech Synthesis - ';
+			break;
+		case ResourceType.SPEECH_DIALOGUE:
+			resourceName = 'Speech Dialogue - ';
+			break;
+		case ResourceType.TRANSCRIPT:
+			resourceName = 'Transcript - ';
+			break;
+	}
+
+	return {
+		displayName: resourceName + 'Name',
+		name: 'name',
+		type: 'string' as NodePropertyTypes,
+		required: true,
+		default: '',
+		description,
+		displayOptions: {
+			show: {
+				...(resource ? { resource: [resource] } : {}),
+				operation: Array.isArray(operation) ? operation : [operation],
+			},
 		},
-	},
-});
+	};
+};
 
 export const getUrlParam = (
 	operation: string | string[],
 	resource?: string,
-	displayName = 'Video URL',
+	displayName: string = 'Video - URL',
 ) => ({
 	displayName: displayName,
 	name: 'url',
@@ -41,7 +66,7 @@ export const getUrlParam = (
 });
 
 export const getSubtitleUrlParam = (operation: string | string[], resource?: string) => ({
-	displayName: 'Subtitle URL',
+	displayName: 'Subtitle File - URL',
 	name: 'subtitle_url',
 	type: 'string' as NodePropertyTypes,
 	required: true,
@@ -74,11 +99,11 @@ export const getWebhookUrlParam = (
 });
 
 export const getVoiceParam = (operation: string | string[], resource?: string) => ({
-	displayName: 'Voice',
+	displayName: 'Speech Synthesis - Voice',
 	name: 'vendor_id',
 	type: 'options' as NodePropertyTypes,
-	required: true,
-	default: Voice.ECHO,
+	required: resource === ResourceType.SPEECH,
+	default: resource === ResourceType.SPEECH ? Voice.ECHO : Voice.NONE,
 	description: 'The name of the voice',
 	options: voiceOptions,
 	displayOptions: {
@@ -92,7 +117,7 @@ export const getVoiceParam = (operation: string | string[], resource?: string) =
 export const getWaitParam = (
 	operation: string | string[],
 	resource?: string,
-	description = 'If enabled, the node pauses the workflow and checks the server until the resource generation is finished, then returns the full resource object. If disabled, only the ID and creation timestamp are returned.',
+	description: string = 'If enabled, the node pauses the workflow and checks the server until the resource generation is finished, then returns the full resource object. If disabled, only the ID and creation timestamp are returned.',
 ) => ({
 	displayName: 'Wait for Completion',
 	name: 'wait',
@@ -108,7 +133,7 @@ export const getWaitParam = (
 });
 
 export const getTypeParam = (operation: string | string[], resource?: string) => ({
-	displayName: 'Type',
+	displayName: 'Subtitle File - Type',
 	name: 'type',
 	type: 'options' as NodePropertyTypes,
 	default: SubtitleFileType.ASS,
@@ -123,10 +148,10 @@ export const getTypeParam = (operation: string | string[], resource?: string) =>
 });
 
 export const getTextParam = (operation: string | string[], resource?: string) => ({
-	displayName: 'Text',
+	displayName: 'Speech Synthesis - Text',
 	name: 'text',
 	type: 'string' as NodePropertyTypes,
-	required: true,
+	required: resource === ResourceType.SPEECH,
 	typeOptions: {
 		rows: 4,
 	},
@@ -164,10 +189,10 @@ export const getIdParam = (
 export const getResolutionParam = (
 	operation: string | string[],
 	resource?: string,
-	required = true,
-	description = 'The resolution of the video',
+	required: boolean = true,
+	description: string = 'The resolution of the video',
 ) => ({
-	displayName: 'Resolution',
+	displayName: 'Video - Resolution',
 	name: 'resolution',
 	type: 'options' as NodePropertyTypes,
 	required,
@@ -182,8 +207,45 @@ export const getResolutionParam = (
 	},
 });
 
+export const getDurationBasisParam = (
+	operation: string | string[],
+	resource?: string,
+	required: boolean = true,
+	description: string = 'Select how the final video duration will be determined',
+) => ({
+	displayName: 'Video - Duration',
+	name: 'duration_basis',
+	type: 'options' as NodePropertyTypes,
+	required,
+	default: DurationBasis.VIDEO,
+	description,
+	options: [
+		{
+			name: 'Audio',
+			value: DurationBasis.AUDIO,
+			description: 'Use the duration of the audio',
+		},
+		{
+			name: 'Speech Synthesis',
+			value: DurationBasis.SPEECH,
+			description: 'Use the duration of the speech synthesis',
+		},
+		{
+			name: 'Video',
+			value: DurationBasis.VIDEO,
+			description: 'Use the duration of all scenes',
+		},
+	],
+	displayOptions: {
+		show: {
+			...(resource ? { resource: [resource] } : {}),
+			operation: Array.isArray(operation) ? operation : [operation],
+		},
+	},
+});
+
 export const getMuteParam = (operation: string | string[], resource?: string) => ({
-	displayName: 'Mute Video',
+	displayName: 'Video - Mute',
 	name: 'mute',
 	type: 'boolean' as NodePropertyTypes,
 	default: false,
@@ -197,7 +259,7 @@ export const getMuteParam = (operation: string | string[], resource?: string) =>
 });
 
 export const getSecParam = (operation: string | string[], resource?: string) => ({
-	displayName: 'Timestamp (Seconds)',
+	displayName: 'Video - Timestamp (Seconds)',
 	name: 'seconds',
 	type: 'number' as NodePropertyTypes,
 	default: 0,
@@ -216,7 +278,7 @@ export const getSecParam = (operation: string | string[], resource?: string) => 
 });
 
 export const getRotateParam = (operation: string | string[], resource?: string) => ({
-	displayName: 'Rotation (Degrees)',
+	displayName: 'Video - Rotation (Degrees)',
 	name: 'rotation_degrees',
 	type: 'options' as NodePropertyTypes,
 	default: 90,

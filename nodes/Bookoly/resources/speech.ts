@@ -17,7 +17,6 @@ export const speechResource: ResourceDefinition = {
 			displayName: 'Operation',
 			name: 'operation',
 			type: 'options',
-			default: '',
 			noDataExpression: true,
 			displayOptions: {
 				show: {
@@ -38,6 +37,7 @@ export const speechResource: ResourceDefinition = {
 					description: 'Fetches speech data from the API using the speech ID',
 				},
 			],
+			default: 'createSpeech',
 		},
 	],
 	parameters: [

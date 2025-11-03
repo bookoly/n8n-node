@@ -1,13 +1,42 @@
-import { INodeProperties } from 'n8n-workflow';
+import { INodeProperties, NodePropertyTypes } from 'n8n-workflow';
 import {
-	languageOptions,
-	subtitleStyleOptions,
 	fontFamilyOptions,
+	languageOptions,
 	positionOptions,
+	subtitleStyleOptions,
 } from './static';
-import { FontFamily } from '../types';
+import { FontFamily, Source, TextCase } from '../types';
 
 export const getSubtitleParameters = (operation: string | string[]): INodeProperties[] => [
+	{
+		displayName: 'Subtitle - Source',
+		name: 'source',
+		type: 'options',
+		options: [
+			{
+				name: 'None',
+				value: Source.NONE,
+				description: 'Skip subtitle generation',
+			},
+			{
+				name: 'Speech Synthesis',
+				value: Source.SPEECH,
+				description: 'From speech synthesis',
+			},
+			{
+				name: 'Audio',
+				value: Source.VIDEO_AUDIO,
+				description: 'From audio',
+			},
+		],
+		default: 'speech',
+		displayOptions: {
+			show: {
+				operation: Array.isArray(operation) ? operation : [operation],
+			},
+		},
+		description: 'Select the input source for subtitle generation',
+	},
 	{
 		displayName: 'Subtitle - Style',
 		name: 'style',
@@ -165,5 +194,47 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 			},
 		},
 		description: 'Choose the subtitle text orientation',
+	},
+	{
+		displayName: 'Subtitle - Punctuation',
+		name: 'punctuation',
+		type: 'boolean' as NodePropertyTypes,
+		default: true,
+		displayOptions: {
+			show: {
+				operation: Array.isArray(operation) ? operation : [operation],
+			},
+		},
+		description:
+			'If enabled, the subtitles will include punctuation (commas, periods, question marks, etc.). If disabled, the subtitles will be plain text without any punctuation.',
+	},
+	{
+		displayName: 'Subtitle - Text Case',
+		name: 'text_case',
+		type: 'options',
+		options: [
+			{
+				name: 'Default',
+				value: TextCase.DEFAULT,
+				description: 'Keep the original casing',
+			},
+			{
+				name: 'Lowercase',
+				value: TextCase.LOWERCASE,
+				description: 'Convert all letters to lower case',
+			},
+			{
+				name: 'Uppercase',
+				value: TextCase.UPPERCASE,
+				description: 'Convert all letters to upper case',
+			},
+		],
+		default: 'default',
+		displayOptions: {
+			show: {
+				operation: Array.isArray(operation) ? operation : [operation],
+			},
+		},
+		description: 'Select how the subtitle text should be formatted',
 	},
 ];

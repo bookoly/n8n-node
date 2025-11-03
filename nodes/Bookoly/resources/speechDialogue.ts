@@ -11,7 +11,6 @@ export const speechDialogueResource: ResourceDefinition = {
 			displayName: 'Operation',
 			name: 'operation',
 			type: 'options',
-			default: '',
 			noDataExpression: true,
 			displayOptions: {
 				show: {
@@ -32,6 +31,7 @@ export const speechDialogueResource: ResourceDefinition = {
 					description: 'Fetches speech dialogue data from the API using the speech dialogue ID',
 				},
 			],
+			default: 'createSpeechDialogue',
 		},
 	],
 	parameters: [
@@ -48,7 +48,7 @@ export const speechDialogueResource: ResourceDefinition = {
 			'The name of the speech dialogue',
 		),
 		{
-			displayName: 'Segments (JSON)',
+			displayName: 'Speech Dialogue - Segments (JSON)',
 			name: 'segments',
 			type: 'json' as NodePropertyTypes,
 			displayOptions: {

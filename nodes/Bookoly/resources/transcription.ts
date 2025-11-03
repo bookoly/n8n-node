@@ -51,7 +51,7 @@ export const transcriptionResource: ResourceDefinition = {
 			},
 		},
 		{
-			displayName: 'Name',
+			displayName: 'Transcript - Name',
 			name: 'name',
 			type: 'string',
 			required: true,
@@ -65,7 +65,7 @@ export const transcriptionResource: ResourceDefinition = {
 			},
 		},
 		{
-			displayName: 'URL',
+			displayName: 'Transcript - URL',
 			name: 'src',
 			type: 'string',
 			required: true,
@@ -79,7 +79,7 @@ export const transcriptionResource: ResourceDefinition = {
 			},
 		},
 		{
-			displayName: 'Language',
+			displayName: 'Transcript - Language',
 			name: 'language',
 			type: 'options',
 			required: true,
@@ -94,7 +94,7 @@ export const transcriptionResource: ResourceDefinition = {
 			},
 		},
 		{
-			displayName: 'Translation Language',
+			displayName: 'Transcript - Translation Language',
 			name: 'translationLanguage',
 			type: 'options',
 			default: '',

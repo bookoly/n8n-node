@@ -3,10 +3,13 @@ import { bookolyApiRequest } from '../../helpers/apiClient';
 import { parseJson } from './parseJson';
 import {
 	ApiEndpoints,
+	ApiVersion,
 	FontFamily,
 	HttpMethod,
 	SubtitlePosition,
+	TextCase,
 	VideoResolution,
+	Voice,
 } from '../../types';
 
 export async function generateVideo(ctx: IExecuteFunctions, itemIndex: number): Promise<any> {
@@ -17,13 +20,18 @@ export async function generateVideo(ctx: IExecuteFunctions, itemIndex: number): 
 		itemIndex,
 		VideoResolution.HORIZONTAL_HD,
 	) as string;
-	const scenes = parseJson(ctx.getNodeParameter('scenes', itemIndex) as string, 'Scenes (JSON)');
+	const duration_basis = ctx.getNodeParameter('duration_basis', itemIndex) as string;
+	const scenes = parseJson(
+		ctx.getNodeParameter('scenes', itemIndex) as string,
+		'Video - Scenes (JSON)',
+	);
 
 	// Speech parameters
 	const text = ctx.getNodeParameter('text', itemIndex, '') as string;
 	const vendor_id = ctx.getNodeParameter('vendor_id', itemIndex, '') as string;
 
 	// Subtitle parameters
+	const source = ctx.getNodeParameter('source', itemIndex, 'speech') as string;
 	const style = ctx.getNodeParameter('style', itemIndex, 'simple') as string;
 	const language = ctx.getNodeParameter('language', itemIndex, 'af') as string;
 	const font_family = ctx.getNodeParameter('font_family', itemIndex, FontFamily.ARIAL) as string;
@@ -38,11 +46,12 @@ export async function generateVideo(ctx: IExecuteFunctions, itemIndex: number): 
 		SubtitlePosition.MID_BOTTOM_CENTER,
 	) as string;
 	const ltr = ctx.getNodeParameter('ltr', itemIndex, true) as boolean;
+	const punctuation = ctx.getNodeParameter('punctuation', itemIndex, true) as boolean;
+	const text_case = ctx.getNodeParameter('text_base', itemIndex, TextCase.DEFAULT) as string;
 
 	// Audio parameters
 	const audio_url = ctx.getNodeParameter('audio_url', itemIndex, '') as string;
-	const trim = ctx.getNodeParameter('trim', itemIndex, true) as boolean;
-	const volume = ctx.getNodeParameter('volume', itemIndex, 1) as number;
+	const volume = ctx.getNodeParameter('volume', itemIndex, '') as any;
 
 	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
 	const webhook_url = ctx.getNodeParameter('webhook_url', itemIndex, '') as string;
@@ -51,33 +60,51 @@ export async function generateVideo(ctx: IExecuteFunctions, itemIndex: number): 
 		video: {
 			name,
 			resolution,
+			duration_basis,
 			webhook_url,
 			scenes,
 		},
-		speech: {
-			text,
-			voice: {
-				vendor_id,
-			},
-		},
-		subtitle: {
-			style,
-			language,
-			font_family,
-			font_size,
-			word_color,
-			line_color,
-			line_words,
-			outline_width,
-			position,
-			ltr,
-		},
-		audio: {
-			url: audio_url,
-			trim,
-			volume,
-		},
 	};
+
+	if (source !== 'none') {
+		Object.assign(requestBody, {
+			subtitle: {
+				source,
+				style,
+				language,
+				font_family,
+				font_size,
+				word_color,
+				line_color,
+				line_words,
+				outline_width,
+				position,
+				ltr,
+				punctuation,
+				text_case,
+			},
+		});
+	}
+
+	if (audio_url || volume) {
+		Object.assign(requestBody, {
+			audio: {
+				url: audio_url,
+				volume,
+			},
+		});
+	}
+
+	if (text || (vendor_id && vendor_id !== Voice.NONE)) {
+		Object.assign(requestBody, {
+			speech: {
+				text,
+				voice: {
+					vendor_id,
+				},
+			},
+		});
+	}
 
 	return await bookolyApiRequest(
 		ctx,
@@ -85,5 +112,6 @@ export async function generateVideo(ctx: IExecuteFunctions, itemIndex: number): 
 		ApiEndpoints.GENERATE_A_VIDEO,
 		requestBody,
 		wait,
+		ApiVersion.V2,
 	);
 }

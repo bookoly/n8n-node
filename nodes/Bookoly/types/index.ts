@@ -32,6 +32,10 @@ export interface BookolyScene {
 	duration: number | null;
 	effect: '' | 'zoom_in';
 }
+export enum ApiVersion {
+	V1 = 'v1',
+	V2 = 'v2',
+}
 
 export enum ResourceType {
 	SOUND = 'sound',
@@ -173,6 +177,18 @@ export enum SubtitlePosition {
 	MID_BOTTOM_CENTER = 'mid_bottom_center',
 }
 
+export enum TextCase {
+	DEFAULT = 'default',
+	LOWERCASE = 'lowercase',
+	UPPERCASE = 'uppercase',
+}
+
+export enum Source {
+	NONE = 'none',
+	SPEECH = 'speech',
+	VIDEO_AUDIO = 'video_audio',
+}
+
 export enum VideoResolution {
 	HORIZONTAL_HD = 'horizontal_hd',
 	HORIZONTAL_2K = 'horizontal_2k',
@@ -183,6 +199,12 @@ export enum VideoResolution {
 	SQUARE_HD = 'square_hd',
 	SQUARE_2K = 'square_2k',
 	SQUARE_4K = 'square_4k',
+}
+
+export enum DurationBasis {
+	AUDIO = 'audio',
+	SPEECH = 'speech',
+	VIDEO = 'video',
 }
 
 export enum TranslationLanguage {
@@ -309,6 +331,7 @@ export enum Voice {
 	LILY = 'pFZP5JQG7iQjIQuC4Bku',
 	MARK = 'UgBBYS2sOqTuMpoF3BR0',
 	MATILDA = 'XrExE9yKIg1WjnnlVkGX',
+	NONE = 'none',
 	NOVA = 'nova',
 	ONYX = 'onyx',
 	RACHEL = 'LHgFk7RaIiyNE5I3pC1d',
