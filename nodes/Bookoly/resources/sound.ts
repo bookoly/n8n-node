@@ -1,5 +1,4 @@
 import { ResourceDefinition, ResourceType, SoundAction } from '../types';
-import { NodePropertyTypes } from 'n8n-workflow';
 
 export const soundResource: ResourceDefinition = {
 	displayName: 'Sound',
@@ -9,7 +8,7 @@ export const soundResource: ResourceDefinition = {
 		{
 			displayName: 'Operation',
 			name: 'operation',
-			type: 'options' as NodePropertyTypes,
+			type: 'options',
 			noDataExpression: true,
 			displayOptions: {
 				show: {
@@ -43,7 +42,7 @@ export const soundResource: ResourceDefinition = {
 		{
 			displayName: 'Sound ID',
 			name: 'soundId',
-			type: 'string' as NodePropertyTypes,
+			type: 'string',
 			required: true,
 			displayOptions: {
 				show: {
@@ -57,7 +56,7 @@ export const soundResource: ResourceDefinition = {
 		{
 			displayName: 'Sound Effect - Name',
 			name: 'name',
-			type: 'string' as NodePropertyTypes,
+			type: 'string',
 			required: true,
 			displayOptions: {
 				show: {
@@ -71,7 +70,7 @@ export const soundResource: ResourceDefinition = {
 		{
 			displayName: 'Sound Effect - Text',
 			name: 'effect_text',
-			type: 'string' as NodePropertyTypes,
+			type: 'string',
 			required: true,
 			displayOptions: {
 				show: {
@@ -85,7 +84,7 @@ export const soundResource: ResourceDefinition = {
 		{
 			displayName: 'Sound Effect - Duration',
 			name: 'effect_duration',
-			type: 'number' as NodePropertyTypes,
+			type: 'number',
 			typeOptions: {
 				minValue: 0.5,
 				maxValue: 22,
@@ -103,7 +102,7 @@ export const soundResource: ResourceDefinition = {
 		{
 			displayName: 'Sound - Name',
 			name: 'name',
-			type: 'string' as NodePropertyTypes,
+			type: 'string',
 			required: true,
 			displayOptions: {
 				show: {
@@ -117,7 +116,7 @@ export const soundResource: ResourceDefinition = {
 		{
 			displayName: 'Sound - Sounds (JSON)',
 			name: 'segments',
-			type: 'json' as NodePropertyTypes,
+			type: 'json',
 			displayOptions: {
 				show: { operation: [SoundAction.COMBINE_SOUNDS], resource: [ResourceType.SOUND] },
 			},
@@ -135,7 +134,7 @@ export const soundResource: ResourceDefinition = {
 		{
 			displayName: 'Wait for Completion',
 			name: 'wait',
-			type: 'boolean' as NodePropertyTypes,
+			type: 'boolean',
 			default: true,
 			displayOptions: {
 				show: {
@@ -144,12 +143,12 @@ export const soundResource: ResourceDefinition = {
 				},
 			},
 			description:
-				'If enabled, the node pauses the workflow and checks the server until the sound generation is finished, then returns the full sound object. If disabled, only the ID and creation timestamp are returned.',
+				'Whether the node pauses the workflow and checks the server until the sound generation is finished, then returns the full sound object. If disabled, only the ID and creation timestamp are returned.',
 		},
 		{
 			displayName: 'Webhook URL',
 			name: 'webhook_url',
-			type: 'string' as NodePropertyTypes,
+			type: 'string',
 			displayOptions: {
 				show: {
 					operation: [SoundAction.CREATE_SOUND_EFFECT, SoundAction.COMBINE_SOUNDS],

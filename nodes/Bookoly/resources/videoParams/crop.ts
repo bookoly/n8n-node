@@ -1,11 +1,11 @@
-import { INodeProperties, NodePropertyTypes } from 'n8n-workflow';
+import { INodeProperties } from 'n8n-workflow';
 import { VideoAction } from '../../types';
 
 export const cropOptionParams: INodeProperties[] = [
 	{
 		displayName: 'Crop - X Coordinate',
 		name: 'x',
-		type: 'number' as NodePropertyTypes,
+		type: 'number',
 		default: 0,
 		description: 'Horizontal position of the crop’s top-left corner',
 		required: true,
@@ -22,7 +22,7 @@ export const cropOptionParams: INodeProperties[] = [
 	{
 		displayName: 'Crop - Y Coordinate',
 		name: 'y',
-		type: 'number' as NodePropertyTypes,
+		type: 'number',
 		default: 0,
 		description: 'Vertical position of the crop’s top-left corner',
 		required: true,
@@ -39,7 +39,7 @@ export const cropOptionParams: INodeProperties[] = [
 	{
 		displayName: 'Crop - Width',
 		name: 'width',
-		type: 'number' as NodePropertyTypes,
+		type: 'number',
 		default: 100,
 		description: 'Width of the cropped area in pixels. Must not exceed the video width.',
 		required: true,
@@ -56,7 +56,7 @@ export const cropOptionParams: INodeProperties[] = [
 	{
 		displayName: 'Crop - Height',
 		name: 'height',
-		type: 'number' as NodePropertyTypes,
+		type: 'number',
 		default: 100,
 		description: 'Height of the cropped area in pixels. Must not exceed the video height.',
 		required: true,

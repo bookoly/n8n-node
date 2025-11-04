@@ -3,7 +3,6 @@ import {
 	INodeType,
 	INodeTypeDescription,
 	NodeConnectionType,
-	NodePropertyTypes,
 	IExecuteFunctions,
 	NodeOperationError,
 } from 'n8n-workflow';
@@ -40,7 +39,7 @@ export class Bookoly implements INodeType {
 			{
 				displayName: 'Resource',
 				name: 'resource',
-				type: 'options' as NodePropertyTypes,
+				type: 'options',
 				noDataExpression: true,
 				options: Object.values(RESOURCE_DEFINITIONS).map(({ displayName, value }) => ({
 					name: displayName,

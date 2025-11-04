@@ -1,4 +1,3 @@
-import { NodePropertyTypes } from 'n8n-workflow';
 import { ResourceDefinition, ResourceType, TranscriptAction } from '../types';
 import { languageOptions, translationLanguageOptions } from './static';
 
@@ -110,7 +109,7 @@ export const transcriptionResource: ResourceDefinition = {
 		{
 			displayName: 'Wait for Completion',
 			name: 'wait',
-			type: 'boolean' as NodePropertyTypes,
+			type: 'boolean',
 			default: true,
 			displayOptions: {
 				show: {
@@ -119,7 +118,7 @@ export const transcriptionResource: ResourceDefinition = {
 				},
 			},
 			description:
-				'If enabled, the node pauses the workflow and checks the server until the transcript generation is finished, then returns the full transcript object. If disabled, only the ID and creation timestamp are returned.',
+				'Whether the node pauses the workflow and checks the server until the transcript generation is finished, then returns the full transcript object. If disabled, only the ID and creation timestamp are returned.',
 		},
 		{
 			displayName: 'Webhook URL',

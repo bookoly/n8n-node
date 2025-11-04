@@ -1,6 +1,5 @@
 import { getIdParam, getNameParam, getWaitParam, getWebhookUrlParam } from './commonParams';
 import { ResourceDefinition, ResourceType, SpeechDialogueAction } from '../types';
-import { NodePropertyTypes } from 'n8n-workflow';
 
 export const speechDialogueResource: ResourceDefinition = {
 	displayName: 'Speech Dialogue',
@@ -50,7 +49,7 @@ export const speechDialogueResource: ResourceDefinition = {
 		{
 			displayName: 'Speech Dialogue - Segments (JSON)',
 			name: 'segments',
-			type: 'json' as NodePropertyTypes,
+			type: 'json',
 			displayOptions: {
 				show: { operation: [SpeechDialogueAction.CREATE_SPEECH_DIALOGUE] },
 			},

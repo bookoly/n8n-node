@@ -1,11 +1,11 @@
-import { INodeProperties, NodePropertyTypes } from 'n8n-workflow';
+import { INodeProperties } from 'n8n-workflow';
 import { VideoAction } from '../../types';
 
 export const watermarkParams: INodeProperties[] = [
 	{
 		displayName: 'Watermark - URL',
 		name: 'watermark_url',
-		type: 'string' as NodePropertyTypes,
+		type: 'string',
 		default: '',
 		description: 'The public and downloadable URL of the image file (e.g., PNG or JPG)',
 		required: true,
@@ -18,7 +18,7 @@ export const watermarkParams: INodeProperties[] = [
 	{
 		displayName: 'Watermark - X Coordinate',
 		name: 'watermark_point_y',
-		type: 'number' as NodePropertyTypes,
+		type: 'number',
 		required: true,
 		typeOptions: {
 			minValue: 0,
@@ -35,7 +35,7 @@ export const watermarkParams: INodeProperties[] = [
 	{
 		displayName: 'Watermark - Y Coordinate',
 		name: 'watermark_point_x',
-		type: 'number' as NodePropertyTypes,
+		type: 'number',
 		required: true,
 		typeOptions: {
 			minValue: 0,

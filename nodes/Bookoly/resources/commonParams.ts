@@ -1,12 +1,12 @@
 import { resolutionOptions, voiceOptions } from './static';
-import { NodePropertyTypes } from 'n8n-workflow';
-import { DurationBasis, ResourceType, SubtitleFileType, VideoResolution, Voice } from '../types';
+import { DurationBasis, ResourceType, SubtitleFileType } from '../types';
+import { INodeProperties } from 'n8n-workflow';
 
 export const getNameParam = (
 	operation: string | string[],
 	resource?: string,
 	description: string = 'Name',
-) => {
+): INodeProperties => {
 	let resourceName = '';
 
 	switch (resource) {
@@ -33,7 +33,7 @@ export const getNameParam = (
 	return {
 		displayName: resourceName + 'Name',
 		name: 'name',
-		type: 'string' as NodePropertyTypes,
+		type: 'string',
 		required: true,
 		default: '',
 		description,
@@ -50,10 +50,10 @@ export const getUrlParam = (
 	operation: string | string[],
 	resource?: string,
 	displayName: string = 'Video - URL',
-) => ({
+): INodeProperties => ({
 	displayName: displayName,
 	name: 'url',
-	type: 'string' as NodePropertyTypes,
+	type: 'string',
 	required: true,
 	default: '',
 	description: 'The public and downloadable URL of the video file',
@@ -65,10 +65,13 @@ export const getUrlParam = (
 	},
 });
 
-export const getSubtitleUrlParam = (operation: string | string[], resource?: string) => ({
+export const getSubtitleUrlParam = (
+	operation: string | string[],
+	resource?: string,
+): INodeProperties => ({
 	displayName: 'Subtitle File - URL',
 	name: 'subtitle_url',
-	type: 'string' as NodePropertyTypes,
+	type: 'string',
 	required: true,
 	default: '',
 	description: 'The public and downloadable URL of the subtitle file',
@@ -84,10 +87,10 @@ export const getWebhookUrlParam = (
 	operation: string | string[],
 	resource?: string,
 	description = 'Enter a valid URL to receive webhook notifications.',
-) => ({
+): INodeProperties => ({
 	displayName: 'Webhook URL',
 	name: 'webhook_url',
-	type: 'string' as NodePropertyTypes,
+	type: 'string',
 	default: '',
 	description,
 	displayOptions: {
@@ -98,12 +101,15 @@ export const getWebhookUrlParam = (
 	},
 });
 
-export const getVoiceParam = (operation: string | string[], resource?: string) => ({
+export const getVoiceParam = (
+	operation: string | string[],
+	resource?: string,
+): INodeProperties => ({
 	displayName: 'Speech Synthesis - Voice',
 	name: 'vendor_id',
-	type: 'options' as NodePropertyTypes,
+	type: 'options',
 	required: resource === ResourceType.SPEECH,
-	default: resource === ResourceType.SPEECH ? Voice.ECHO : Voice.NONE,
+	default: 'none',
 	description: 'The name of the voice',
 	options: voiceOptions,
 	displayOptions: {
@@ -118,10 +124,10 @@ export const getWaitParam = (
 	operation: string | string[],
 	resource?: string,
 	description: string = 'If enabled, the node pauses the workflow and checks the server until the resource generation is finished, then returns the full resource object. If disabled, only the ID and creation timestamp are returned.',
-) => ({
+): INodeProperties => ({
 	displayName: 'Wait for Completion',
 	name: 'wait',
-	type: 'boolean' as NodePropertyTypes,
+	type: 'boolean',
 	default: true,
 	description,
 	displayOptions: {
@@ -132,11 +138,11 @@ export const getWaitParam = (
 	},
 });
 
-export const getTypeParam = (operation: string | string[], resource?: string) => ({
+export const getTypeParam = (operation: string | string[], resource?: string): INodeProperties => ({
 	displayName: 'Subtitle File - Type',
 	name: 'type',
-	type: 'options' as NodePropertyTypes,
-	default: SubtitleFileType.ASS,
+	type: 'options',
+	default: 'ass',
 	options: [{ name: 'Advanced SubStation Alpha (ASS)', value: SubtitleFileType.ASS }],
 	description: 'Choose the format for your subtitle. ASS is selected by default.',
 	displayOptions: {
@@ -147,10 +153,10 @@ export const getTypeParam = (operation: string | string[], resource?: string) =>
 	},
 });
 
-export const getTextParam = (operation: string | string[], resource?: string) => ({
+export const getTextParam = (operation: string | string[], resource?: string): INodeProperties => ({
 	displayName: 'Speech Synthesis - Text',
 	name: 'text',
-	type: 'string' as NodePropertyTypes,
+	type: 'string',
 	required: resource === ResourceType.SPEECH,
 	typeOptions: {
 		rows: 4,
@@ -171,10 +177,10 @@ export const getIdParam = (
 	name: string,
 	displayName: string,
 	description: string,
-) => ({
+): INodeProperties => ({
 	displayName,
 	name,
-	type: 'string' as NodePropertyTypes,
+	type: 'string',
 	required: true,
 	default: '',
 	description,
@@ -191,12 +197,12 @@ export const getResolutionParam = (
 	resource?: string,
 	required: boolean = true,
 	description: string = 'The resolution of the video',
-) => ({
+): INodeProperties => ({
 	displayName: 'Video - Resolution',
 	name: 'resolution',
-	type: 'options' as NodePropertyTypes,
+	type: 'options',
 	required,
-	default: VideoResolution.HORIZONTAL_HD,
+	default: 'horizontal_hd',
 	description,
 	options: resolutionOptions,
 	displayOptions: {
@@ -212,12 +218,12 @@ export const getDurationBasisParam = (
 	resource?: string,
 	required: boolean = true,
 	description: string = 'Select how the final video duration will be determined',
-) => ({
+): INodeProperties => ({
 	displayName: 'Video - Duration',
 	name: 'duration_basis',
-	type: 'options' as NodePropertyTypes,
+	type: 'options',
 	required,
-	default: DurationBasis.VIDEO,
+	default: 'video',
 	description,
 	options: [
 		{
@@ -244,10 +250,10 @@ export const getDurationBasisParam = (
 	},
 });
 
-export const getMuteParam = (operation: string | string[], resource?: string) => ({
+export const getMuteParam = (operation: string | string[], resource?: string): INodeProperties => ({
 	displayName: 'Video - Mute',
 	name: 'mute',
-	type: 'boolean' as NodePropertyTypes,
+	type: 'boolean',
 	default: false,
 	description: 'Whether to mute the original video audio',
 	displayOptions: {
@@ -258,10 +264,10 @@ export const getMuteParam = (operation: string | string[], resource?: string) =>
 	},
 });
 
-export const getSecParam = (operation: string | string[], resource?: string) => ({
+export const getSecParam = (operation: string | string[], resource?: string): INodeProperties => ({
 	displayName: 'Video - Timestamp (Seconds)',
 	name: 'seconds',
-	type: 'number' as NodePropertyTypes,
+	type: 'number',
 	default: 0,
 	description:
 		'The point in time (in seconds) from which the frame should be captured. For example: 5.2 means 5.2 seconds into the video.',
@@ -277,10 +283,13 @@ export const getSecParam = (operation: string | string[], resource?: string) => 
 	},
 });
 
-export const getRotateParam = (operation: string | string[], resource?: string) => ({
+export const getRotateParam = (
+	operation: string | string[],
+	resource?: string,
+): INodeProperties => ({
 	displayName: 'Video - Rotation (Degrees)',
 	name: 'rotation_degrees',
-	type: 'options' as NodePropertyTypes,
+	type: 'options',
 	default: 90,
 	description:
 		'The angle of rotation in degrees. Positive values rotate clockwise, negative values rotate counter-clockwise.',

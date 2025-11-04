@@ -1,10 +1,10 @@
 import { VideoAction } from '../../types';
-import { NodePropertyTypes } from 'n8n-workflow';
+import { INodeProperties } from 'n8n-workflow';
 
-export const scenesParam = {
+export const scenesParam: INodeProperties = {
 	displayName: 'Video - Scenes (JSON)',
 	name: 'scenes',
-	type: 'json' as NodePropertyTypes,
+	type: 'json',
 	displayOptions: {
 		show: { operation: [VideoAction.CREATE_SLIDESHOW, VideoAction.GENERATE_VIDEO] },
 	},

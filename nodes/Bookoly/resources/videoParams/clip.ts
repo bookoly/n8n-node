@@ -1,11 +1,11 @@
-import { INodeProperties, NodePropertyTypes } from 'n8n-workflow';
+import { INodeProperties } from 'n8n-workflow';
 import { VideoAction } from '../../types';
 
 export const clipOptionParams: INodeProperties[] = [
 	{
 		displayName: 'Clip - Start Time',
 		name: 'start',
-		type: 'number' as NodePropertyTypes,
+		type: 'number',
 		required: true,
 		typeOptions: {
 			minValue: 0.0,
@@ -22,7 +22,7 @@ export const clipOptionParams: INodeProperties[] = [
 	{
 		displayName: 'Clip - End Time',
 		name: 'duration',
-		type: 'number' as NodePropertyTypes,
+		type: 'number',
 		typeOptions: {
 			minValue: 1,
 			numberPrecision: 2,

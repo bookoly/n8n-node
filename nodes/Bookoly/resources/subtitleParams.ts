@@ -1,4 +1,4 @@
-import { INodeProperties, NodePropertyTypes } from 'n8n-workflow';
+import { INodeProperties } from 'n8n-workflow';
 import {
 	fontFamilyOptions,
 	languageOptions,
@@ -198,7 +198,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 	{
 		displayName: 'Subtitle - Punctuation',
 		name: 'punctuation',
-		type: 'boolean' as NodePropertyTypes,
+		type: 'boolean',
 		default: true,
 		displayOptions: {
 			show: {
@@ -206,7 +206,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 			},
 		},
 		description:
-			'If enabled, the subtitles will include punctuation (commas, periods, question marks, etc.). If disabled, the subtitles will be plain text without any punctuation.',
+			'Whether the subtitles will include punctuation (commas, periods, question marks, etc.). If disabled, the subtitles will be plain text without any punctuation.',
 	},
 	{
 		displayName: 'Subtitle - Text Case',
