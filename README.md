@@ -89,7 +89,7 @@ If you’re new to n8n, check the [Try it out](https://docs.n8n.io/try-it-out/) 
 
 ## Resources
 
-* [bookoly api docs](https://bookoly.com/app/docs/v1/api#/)
+* [bookoly api docs](https://bookoly.com/docs/api/v1#/)
 * [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
 
 ## Version history

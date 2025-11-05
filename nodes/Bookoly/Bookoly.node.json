@@ -6,12 +6,12 @@
 	"resources": {
 		"credentialDocumentation": [
 			{
-				"url": "https://bookoly.com/app/docs/v1/api#/operations/authCheckApi"
+				"url": "https://bookoly.com/docs/api/v1#/operations/authCheckApi"
 			}
 		],
 		"primaryDocumentation": [
 			{
-				"url": "https://bookoly.com/app/docs/v1/api#"
+				"url": "https://bookoly.com/docs/api/v1#/"
 			}
 		]
 	}

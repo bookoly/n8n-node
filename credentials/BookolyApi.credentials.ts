@@ -10,7 +10,7 @@ import { API_BASE_URL } from '../nodes/Bookoly/Bookoly.node';
 export class BookolyApi implements ICredentialType {
 	name: string = 'bookolyApi';
 	displayName: string = 'Bookoly API';
-	documentationUrl: string = 'https://bookoly.com/app/docs/v1/api#/';
+	documentationUrl: string = 'https://bookoly.com/docs/api/v1#/';
 	properties: INodeProperties[] = [
 		{
 			displayName: 'API Token',
