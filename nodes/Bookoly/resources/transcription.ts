@@ -1,4 +1,4 @@
-import { ResourceDefinition, ResourceType, TranscriptAction } from '../types';
+import { Language, ResourceDefinition, ResourceType, TranscriptAction } from '../types';
 import { languageOptions, translationLanguageOptions } from './static';
 
 export const transcriptionResource: ResourceDefinition = {
@@ -82,7 +82,7 @@ export const transcriptionResource: ResourceDefinition = {
 			name: 'language',
 			type: 'options',
 			required: true,
-			default: 'en',
+			default: Language.EN,
 			description: 'Choose the primary language spoken in your audio or video file',
 			options: languageOptions,
 			displayOptions: {

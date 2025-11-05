@@ -1,5 +1,5 @@
 import { resolutionOptions, voiceOptions } from './static';
-import { DurationBasis, ResourceType, SubtitleFileType } from '../types';
+import { DurationBasis, ResourceType, SubtitleFileType, VideoResolution, Voice } from '../types';
 import { INodeProperties } from 'n8n-workflow';
 
 export const getNameParam = (
@@ -109,7 +109,7 @@ export const getVoiceParam = (
 	name: 'vendor_id',
 	type: 'options',
 	required: resource === ResourceType.SPEECH,
-	default: 'none',
+	default: resource === ResourceType.SPEECH ? Voice.ECHO : Voice.NONE,
 	description: 'The name of the voice',
 	options: voiceOptions,
 	displayOptions: {
@@ -142,7 +142,7 @@ export const getTypeParam = (operation: string | string[], resource?: string): I
 	displayName: 'Subtitle File - Type',
 	name: 'type',
 	type: 'options',
-	default: 'ass',
+	default: SubtitleFileType.ASS,
 	options: [{ name: 'Advanced SubStation Alpha (ASS)', value: SubtitleFileType.ASS }],
 	description: 'Choose the format for your subtitle. ASS is selected by default.',
 	displayOptions: {
@@ -202,7 +202,7 @@ export const getResolutionParam = (
 	name: 'resolution',
 	type: 'options',
 	required,
-	default: 'horizontal_hd',
+	default: VideoResolution.HORIZONTAL_HD,
 	description,
 	options: resolutionOptions,
 	displayOptions: {
@@ -223,7 +223,7 @@ export const getDurationBasisParam = (
 	name: 'duration_basis',
 	type: 'options',
 	required,
-	default: 'video',
+	default: DurationBasis.VIDEO,
 	description,
 	options: [
 		{

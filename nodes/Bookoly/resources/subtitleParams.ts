@@ -5,7 +5,7 @@ import {
 	positionOptions,
 	subtitleStyleOptions,
 } from './static';
-import { FontFamily, Source, TextCase } from '../types';
+import { FontFamily, Language, Source, SubtitlePosition, SubtitleStyle, TextCase } from '../types';
 
 export const getSubtitleParameters = (operation: string | string[]): INodeProperties[] => [
 	{
@@ -29,7 +29,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 				description: 'From audio',
 			},
 		],
-		default: 'speech',
+		default: Source.SPEECH,
 		displayOptions: {
 			show: {
 				operation: Array.isArray(operation) ? operation : [operation],
@@ -41,7 +41,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		displayName: 'Subtitle - Style',
 		name: 'style',
 		type: 'options',
-		default: 'highlight_current_word',
+		default: SubtitleStyle.HIGHLIGHT_CURRENT_WORD,
 		required: true,
 		displayOptions: {
 			show: {
@@ -55,7 +55,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		displayName: 'Subtitle - Language',
 		name: 'language',
 		type: 'options',
-		default: 'en',
+		default: Language.EN,
 		required: true,
 		displayOptions: {
 			show: {
@@ -69,7 +69,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		displayName: 'Subtitle - Font Family',
 		name: 'font_family',
 		type: 'options',
-		default: 'Luckiest Guy',
+		default: FontFamily.LUCKIEST_GUY,
 		required: true,
 		displayOptions: {
 			show: {
@@ -161,7 +161,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 		displayName: 'Subtitle - Position',
 		name: 'position',
 		type: 'options',
-		default: 'mid_bottom_center',
+		default: SubtitlePosition.MID_BOTTOM_CENTER,
 		required: true,
 		displayOptions: {
 			show: {
@@ -229,7 +229,7 @@ export const getSubtitleParameters = (operation: string | string[]): INodeProper
 				description: 'Convert all letters to upper case',
 			},
 		],
-		default: 'default',
+		default: TextCase.DEFAULT,
 		displayOptions: {
 			show: {
 				operation: Array.isArray(operation) ? operation : [operation],
