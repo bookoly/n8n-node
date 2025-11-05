@@ -2,9 +2,9 @@ import {
 	INodeExecutionData,
 	INodeType,
 	INodeTypeDescription,
-	NodeConnectionType,
 	IExecuteFunctions,
 	NodeOperationError,
+	NodeConnectionTypes,
 } from 'n8n-workflow';
 
 import { RESOURCE_DEFINITIONS } from './resources';
@@ -27,8 +27,8 @@ export class Bookoly implements INodeType {
 			name: 'bookoly',
 		},
 		usableAsTool: true,
-		inputs: [NodeConnectionType.Main],
-		outputs: [NodeConnectionType.Main],
+		inputs: [NodeConnectionTypes.Main],
+		outputs: [NodeConnectionTypes.Main],
 		credentials: [
 			{
 				name: 'bookolyApi',
