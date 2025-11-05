@@ -26,7 +26,11 @@ export async function bookolyApiRequest(
 	};
 
 	try {
-		const response = await ctx.helpers.requestWithAuthentication.call(ctx, authentication, options);
+		const response = await ctx.helpers.httpRequestWithAuthentication.call(
+			ctx,
+			authentication,
+			options,
+		);
 
 		const resourceId = response?.id;
 
