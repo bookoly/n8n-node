@@ -94,6 +94,9 @@ If you’re new to n8n, check the [Try it out](https://docs.n8n.io/try-it-out/) 
 
 ## Version history
 
+1.0.14
+* Replace hardcoded default values with enums
+
 1.0.13
 * Minor performance improvements
 
