@@ -94,6 +94,9 @@ If you’re new to n8n, check the [Try it out](https://docs.n8n.io/try-it-out/) 
 
 ## Version history
 
+1.0.16
+* Fix type for subtitle text case
+
 1.0.15
 * Performance improvements and bug fixes
 
