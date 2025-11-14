@@ -47,7 +47,7 @@ export async function generateVideo(ctx: IExecuteFunctions, itemIndex: number): 
 	) as string;
 	const ltr = ctx.getNodeParameter('ltr', itemIndex, true) as boolean;
 	const punctuation = ctx.getNodeParameter('punctuation', itemIndex, true) as boolean;
-	const text_case = ctx.getNodeParameter('text_base', itemIndex, TextCase.DEFAULT) as string;
+	const text_case = ctx.getNodeParameter('text_case', itemIndex, TextCase.DEFAULT) as string;
 
 	// Audio parameters
 	const audio_url = ctx.getNodeParameter('audio_url', itemIndex, '') as string;
