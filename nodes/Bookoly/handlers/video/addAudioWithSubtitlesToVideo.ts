@@ -23,7 +23,7 @@ export async function addAudioWithSubtitlesToVideo(
 	const position = ctx.getNodeParameter('position', itemIndex) as string;
 	const ltr = ctx.getNodeParameter('ltr', itemIndex) as boolean;
 	const punctuation = ctx.getNodeParameter('punctuation', itemIndex, true) as boolean;
-	const text_case = ctx.getNodeParameter('text_base', itemIndex, TextCase.DEFAULT) as string;
+	const text_case = ctx.getNodeParameter('text_case', itemIndex, TextCase.DEFAULT) as string;
 	const webhook_url = ctx.getNodeParameter('webhook_url', itemIndex, '') as string;
 	const wait = ctx.getNodeParameter('wait', itemIndex, false) as boolean;
 
