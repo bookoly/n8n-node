@@ -11,8 +11,9 @@ import { RESOURCE_DEFINITIONS } from './resources';
 import { HANDLERS } from './handlers';
 import { ResourceType } from './types';
 
-export const APP_BASE_URL = 'https://bookoly.com/app';
-export const API_BASE_URL = 'https://bookoly.com/api';
+export const BASE_URL = 'https://bookoly.com';
+export const APP_BASE_URL = `${BASE_URL}/app`;
+export const API_BASE_URL = `${BASE_URL}/api`;
 
 export class Bookoly implements INodeType {
 	description: INodeTypeDescription = {
