@@ -94,6 +94,9 @@ If you’re new to n8n, check the [Try it out](https://docs.n8n.io/try-it-out/) 
 
 ## Version history
 
+1.0.17
+* Enhanced speech synthesis with 38 premium AI voices for more natural and diverse text-to-speech output.
+
 1.0.16
 * Fix type for subtitle text case
 
