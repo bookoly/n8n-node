@@ -33,6 +33,7 @@ export const voiceOptions: Option[] = [
 	{ value: Voice.KORE, name: 'Kore' },
 	{ value: Voice.LAOMEDEIA, name: 'Laomedeia' },
 	{ value: Voice.LEDA, name: 'Leda' },
+	{ value: Voice.NONE, name: 'None' },
 	{ value: Voice.NOVA, name: 'Nova' },
 	{ value: Voice.ONYX, name: 'Onyx' },
 	{ value: Voice.ORUS, name: 'Orus' },

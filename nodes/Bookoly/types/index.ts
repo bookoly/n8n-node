@@ -325,6 +325,7 @@ export enum Voice {
 	KORE = 'Kore',
 	LAOMEDEIA = 'Laomedeia',
 	LEDA = 'Leda',
+	NONE = 'none',
 	NOVA = 'nova',
 	ONYX = 'onyx',
 	ORUS = 'Orus',
