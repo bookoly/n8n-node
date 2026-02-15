@@ -37,8 +37,11 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 * **Frame a Video** – Capture a single image from a video at the desired timestamp.
 * **Generate a Video** – Create a video from images and video clips with a voice-over and subtitles.
 * **Mute a Video** – Set the volume of a video to 0%.
+* **Overlay Videos** – Overlay one video on top of another at a specified position with customizable scale and offset.
 * **Rotate a Video** – Rotate a video by 90, 180, or 270 degrees.
+* **Scale a Video** – Scale videos to different dimensions using various scaling modes (fit, fill, exact, etc.).
 * **Split a Video into Scenes** – Split a video by automatic scene detection, fixed time intervals, or equal segments.
+* **Stack Videos** – Stack two videos together horizontally or vertically.
 
 ### 🎙️️ Speech
 
@@ -55,7 +58,6 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 ### 🎼 Sound
 
 * **Combine Sounds** – Merge two or more audio files into a single track.
-* **Create a Sound Effect** – Generate a custom sound effect with AI.
 
 ### 📂 File
 
@@ -93,6 +95,12 @@ If you’re new to n8n, check the [Try it out](https://docs.n8n.io/try-it-out/) 
 * [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
 
 ## Version history
+
+1.0.19
+* Added 'Stack Videos' operation to stack two videos horizontally or vertically.
+* Added 'Overlay Videos' operation to overlay one video on top of another with position, scale, and offset options.
+* Added 'Scale a Video' operation with multiple scaling modes (scale to width/height, fit, fill, exact, keep aspect ratio).
+* Removed 'Create a Sound Effect' operation.
 
 1.0.18
 * Add the voice option 'None' for speech synthesis
