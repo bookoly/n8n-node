@@ -370,7 +370,7 @@ export enum Voice {
 	SHIMMER = 'shimmer',
 	SULAFAT = 'Sulafat',
 	UMBRIEL = 'Umbriel',
-	VINDEMATRIX = 'Vindemiatrix',
+	VINDEMIATRIX = 'Vindemiatrix',
 	ZEPHYR = 'Zephyr',
 	ZUBENELGENUBI = 'Zubenelgenubi',
 }

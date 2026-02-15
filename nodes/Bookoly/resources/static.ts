@@ -47,7 +47,7 @@ export const voiceOptions: Option[] = [
 	{ value: Voice.SHIMMER, name: 'Shimmer' },
 	{ value: Voice.SULAFAT, name: 'Sulafat' },
 	{ value: Voice.UMBRIEL, name: 'Umbriel' },
-	{ value: Voice.VINDEMATRIX, name: 'Vindemiatrix' },
+	{ value: Voice.VINDEMIATRIX, name: 'Vindemiatrix' },
 	{ value: Voice.ZEPHYR, name: 'Zephyr' },
 	{ value: Voice.ZUBENELGENUBI, name: 'Zubenelgenubi' },
 ];
