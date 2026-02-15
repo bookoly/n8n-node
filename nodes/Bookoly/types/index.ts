@@ -79,6 +79,7 @@ export enum ApiEndpoints {
 	MUTE_A_VIDEO = 'mute-a-video',
 	OVERLAY_VIDEOS = 'overlay-videos',
 	ROTATE_A_VIDEO = 'rotate-a-video',
+	SCALE_A_VIDEO = 'scale-a-video',
 	SOUNDS = 'sounds',
 	SPEECHES = 'speeches',
 	SPEECH_DIALOGUES = 'speechDialogues',
@@ -107,6 +108,7 @@ export enum VideoAction {
 	MUTE_VIDEO = 'muteVideo',
 	OVERLAY_VIDEOS = 'overlayVideos',
 	ROTATE_VIDEO = 'rotateVideo',
+	SCALE_VIDEO = 'scaleVideo',
 	SPLIT_VIDEO_INTO_SCENES = 'splitVideoIntoScenes',
 	STACK_VIDEOS = 'stackVideos',
 }
@@ -215,6 +217,15 @@ export enum DurationBasis {
 export enum Layout {
 	HORIZONTAL = 'horizontal',
 	VERTICAL = 'vertical',
+}
+
+export enum ScaleMode {
+	SCALE_TO_WIDTH = 'scale_to_width',
+	SCALE_TO_HEIGHT = 'scale_to_height',
+	SCALE_TO_FIT = 'scale_to_fit',
+	SCALE_TO_FILL = 'scale_to_fill',
+	SCALE_EXACT = 'scale_exact',
+	SCALE_KEEP_ASPECT_RATIO = 'scale_keep_aspect_ratio',
 }
 
 export enum Position {

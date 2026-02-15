@@ -13,6 +13,7 @@ import { generateVideo } from './generateVideo';
 import { muteVideo } from './muteVideo';
 import { overlayVideos } from './overlayVideos';
 import { rotateVideo } from './rotateVideo';
+import { scaleVideo } from './scaleVideo';
 import { splitVideoIntoScenes } from './splitVideoIntoScenes';
 import { stackVideos } from './stackVideos';
 import { getResource as getVideo } from '../getResource';
@@ -33,6 +34,7 @@ export const videoHandlers = {
 	muteVideo,
 	overlayVideos,
 	rotateVideo,
+	scaleVideo,
 	splitVideoIntoScenes,
 	stackVideos,
 	getVideo,

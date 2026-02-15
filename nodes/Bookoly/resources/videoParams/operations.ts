@@ -101,6 +101,12 @@ export const videoOperations = [
 		action: 'Rotate a video',
 	},
 	{
+		name: 'Scale a Video',
+		value: VideoAction.SCALE_VIDEO,
+		description: 'Scale a video to different dimensions with various scaling modes',
+		action: 'Scale a video',
+	},
+	{
 		name: 'Split a Video Into Scenes',
 		value: VideoAction.SPLIT_VIDEO_INTO_SCENES,
 		description:

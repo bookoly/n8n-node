@@ -25,6 +25,7 @@ import { audioUrlParam, audioVolumeParam, trimAudioParam } from './videoParams/a
 import { splitOptionParams } from './videoParams/split';
 import { stackVideoParams } from './videoParams/stack';
 import { overlayVideoParams } from './videoParams/overlay';
+import { scaleVideoParams } from './videoParams/scale';
 import { videoOperations } from './videoParams/operations';
 
 export const videoResource: ResourceDefinition = {
@@ -71,6 +72,7 @@ export const videoResource: ResourceDefinition = {
 				VideoAction.MUTE_VIDEO,
 				VideoAction.OVERLAY_VIDEOS,
 				VideoAction.ROTATE_VIDEO,
+				VideoAction.SCALE_VIDEO,
 				VideoAction.SPLIT_VIDEO_INTO_SCENES,
 				VideoAction.STACK_VIDEOS,
 			],
@@ -92,6 +94,7 @@ export const videoResource: ResourceDefinition = {
 				VideoAction.MUTE_VIDEO,
 				VideoAction.OVERLAY_VIDEOS,
 				VideoAction.ROTATE_VIDEO,
+				VideoAction.SCALE_VIDEO,
 				VideoAction.SPLIT_VIDEO_INTO_SCENES,
 				VideoAction.STACK_VIDEOS,
 			],
@@ -107,6 +110,7 @@ export const videoResource: ResourceDefinition = {
 				VideoAction.CROP_VIDEO,
 				VideoAction.OVERLAY_VIDEOS,
 				VideoAction.ROTATE_VIDEO,
+				VideoAction.SCALE_VIDEO,
 				VideoAction.SPLIT_VIDEO_INTO_SCENES,
 				VideoAction.STACK_VIDEOS,
 			],
@@ -135,6 +139,7 @@ export const videoResource: ResourceDefinition = {
 		...splitOptionParams,
 		...stackVideoParams,
 		...overlayVideoParams,
+		...scaleVideoParams,
 		...getSubtitleParameters([
 			VideoAction.ADD_AUDIO_WITH_SUBTITLES_TO_VIDEO,
 			VideoAction.ADD_SUBTITLES_TO_VIDEO,
@@ -157,6 +162,7 @@ export const videoResource: ResourceDefinition = {
 				VideoAction.MUTE_VIDEO,
 				VideoAction.OVERLAY_VIDEOS,
 				VideoAction.ROTATE_VIDEO,
+				VideoAction.SCALE_VIDEO,
 				VideoAction.SPLIT_VIDEO_INTO_SCENES,
 				VideoAction.STACK_VIDEOS,
 			],
@@ -180,6 +186,7 @@ export const videoResource: ResourceDefinition = {
 				VideoAction.MUTE_VIDEO,
 				VideoAction.OVERLAY_VIDEOS,
 				VideoAction.ROTATE_VIDEO,
+				VideoAction.SCALE_VIDEO,
 				VideoAction.SPLIT_VIDEO_INTO_SCENES,
 				VideoAction.STACK_VIDEOS,
 			],
