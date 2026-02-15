@@ -77,6 +77,7 @@ export enum ApiEndpoints {
 	GENERATE_A_VIDEO = 'generate-a-video',
 	GENERATE_SUBTITLE_FILE = 'generate-subtitle-file',
 	MUTE_A_VIDEO = 'mute-a-video',
+	OVERLAY_VIDEOS = 'overlay-videos',
 	ROTATE_A_VIDEO = 'rotate-a-video',
 	SOUNDS = 'sounds',
 	SPEECHES = 'speeches',
@@ -104,6 +105,7 @@ export enum VideoAction {
 	GENERATE_VIDEO = 'generateVideo',
 	GET_VIDEO = 'getVideo',
 	MUTE_VIDEO = 'muteVideo',
+	OVERLAY_VIDEOS = 'overlayVideos',
 	ROTATE_VIDEO = 'rotateVideo',
 	SPLIT_VIDEO_INTO_SCENES = 'splitVideoIntoScenes',
 	STACK_VIDEOS = 'stackVideos',
@@ -213,6 +215,18 @@ export enum DurationBasis {
 export enum Layout {
 	HORIZONTAL = 'horizontal',
 	VERTICAL = 'vertical',
+}
+
+export enum Position {
+	TOP_LEFT = 'top_left',
+	TOP_RIGHT = 'top_right',
+	BOTTOM_LEFT = 'bottom_left',
+	BOTTOM_RIGHT = 'bottom_right',
+	CENTER = 'center',
+	CENTER_TOP = 'center_top',
+	CENTER_BOTTOM = 'center_bottom',
+	CENTER_LEFT = 'center_left',
+	CENTER_RIGHT = 'center_right',
 }
 
 export enum TranslationLanguage {

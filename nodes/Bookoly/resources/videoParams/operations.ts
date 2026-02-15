@@ -89,6 +89,12 @@ export const videoOperations = [
 		action: 'Mute a video',
 	},
 	{
+		name: 'Overlay Videos',
+		value: VideoAction.OVERLAY_VIDEOS,
+		description: 'Overlay one video on top of another at a specified position',
+		action: 'Overlay videos',
+	},
+	{
 		name: 'Rotate a Video',
 		value: VideoAction.ROTATE_VIDEO,
 		description: 'Rotate a video by 90, 180, or 270 degrees clockwise',

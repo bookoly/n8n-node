@@ -11,6 +11,7 @@ import { extractAudioFromVideo } from './extractAudioFromVideo';
 import { frameVideo } from './frameVideo';
 import { generateVideo } from './generateVideo';
 import { muteVideo } from './muteVideo';
+import { overlayVideos } from './overlayVideos';
 import { rotateVideo } from './rotateVideo';
 import { splitVideoIntoScenes } from './splitVideoIntoScenes';
 import { stackVideos } from './stackVideos';
@@ -30,6 +31,7 @@ export const videoHandlers = {
 	frameVideo,
 	generateVideo,
 	muteVideo,
+	overlayVideos,
 	rotateVideo,
 	splitVideoIntoScenes,
 	stackVideos,
