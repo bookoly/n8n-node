@@ -23,19 +23,13 @@ export const soundResource: ResourceDefinition = {
 					description: 'Merge multiple sound files into a single seamless audio track',
 				},
 				{
-					name: 'Create a Sound Effect',
-					value: SoundAction.CREATE_SOUND_EFFECT,
-					action: 'Create a sound effect',
-					description: 'Generate sound effects based on a text description',
-				},
-				{
 					name: 'Get a Specific Sound',
 					value: SoundAction.GET_SOUND,
 					action: 'Get a sound',
 					description: 'Fetches sound data from the API using the sound ID',
 				},
 			],
-			default: 'createSoundEffect',
+			default: 'combineSounds',
 		},
 	],
 	parameters: [
@@ -52,52 +46,6 @@ export const soundResource: ResourceDefinition = {
 			},
 			default: '',
 			description: 'The ID of the sound',
-		},
-		{
-			displayName: 'Sound Effect - Name',
-			name: 'name',
-			type: 'string',
-			required: true,
-			displayOptions: {
-				show: {
-					operation: [SoundAction.CREATE_SOUND_EFFECT],
-					resource: [ResourceType.SOUND],
-				},
-			},
-			default: '',
-			description: 'The name of the sound effect',
-		},
-		{
-			displayName: 'Sound Effect - Text',
-			name: 'effect_text',
-			type: 'string',
-			required: true,
-			displayOptions: {
-				show: {
-					operation: [SoundAction.CREATE_SOUND_EFFECT],
-					resource: [ResourceType.SOUND],
-				},
-			},
-			default: '',
-			description: 'The text that will get converted into a sound effect',
-		},
-		{
-			displayName: 'Sound Effect - Duration',
-			name: 'effect_duration',
-			type: 'number',
-			typeOptions: {
-				minValue: 0.5,
-				maxValue: 22,
-			},
-			displayOptions: {
-				show: {
-					operation: [SoundAction.CREATE_SOUND_EFFECT],
-					resource: [ResourceType.SOUND],
-				},
-			},
-			default: 1,
-			description:
-				'The duration of the sound which will be generated in seconds. Must be at least 0.5 and at most 22. We will guess the optimal duration using the text if the duration is not set',
 		},
 		{
 			displayName: 'Sound - Name',
@@ -138,7 +86,7 @@ export const soundResource: ResourceDefinition = {
 			default: true,
 			displayOptions: {
 				show: {
-					operation: [SoundAction.CREATE_SOUND_EFFECT, SoundAction.COMBINE_SOUNDS],
+					operation: [SoundAction.COMBINE_SOUNDS],
 					resource: [ResourceType.SOUND],
 				},
 			},
@@ -151,7 +99,7 @@ export const soundResource: ResourceDefinition = {
 			type: 'string',
 			displayOptions: {
 				show: {
-					operation: [SoundAction.CREATE_SOUND_EFFECT, SoundAction.COMBINE_SOUNDS],
+					operation: [SoundAction.COMBINE_SOUNDS],
 					resource: [ResourceType.SOUND],
 				},
 			},

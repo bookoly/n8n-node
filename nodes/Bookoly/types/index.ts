@@ -68,7 +68,6 @@ export enum ApiEndpoints {
 	BLUR_A_VIDEO = 'blur-a-video',
 	CLIP_A_VIDEO = 'clip-a-video',
 	COMBINE_SOUNDS = 'combine-sounds',
-	CREATE_SOUND_EFFECT = 'create-sound-effect',
 	CREATE_SPEECH_DIALOGUE = 'create-speech-dialogue',
 	CREATE_TRANSCRIPT = 'create-transcript',
 	CROP_A_VIDEO = 'crop-a-video',
@@ -115,7 +114,6 @@ export enum VideoAction {
 
 export enum SoundAction {
 	COMBINE_SOUNDS = 'combineSounds',
-	CREATE_SOUND_EFFECT = 'createSoundEffect',
 	GET_SOUND = 'getSound',
 }
 
