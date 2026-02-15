@@ -32,6 +32,7 @@ export interface BookolyScene {
 	duration: number | null;
 	effect: '' | 'zoom_in';
 }
+
 export enum ApiVersion {
 	V1 = 'v1',
 	V2 = 'v2',
@@ -81,6 +82,7 @@ export enum ApiEndpoints {
 	SPEECHES = 'speeches',
 	SPEECH_DIALOGUES = 'speechDialogues',
 	SPLIT_VIDEO_INTO_SCENES = 'split-video-into-scenes',
+	STACK_VIDEOS = 'stack-videos',
 	SUBTITLE_FILES = 'subtitleFiles',
 	TEXT_TO_SPEECH = 'text-to-speech',
 	TRANSCRIPTS = 'transcripts',
@@ -104,6 +106,7 @@ export enum VideoAction {
 	MUTE_VIDEO = 'muteVideo',
 	ROTATE_VIDEO = 'rotateVideo',
 	SPLIT_VIDEO_INTO_SCENES = 'splitVideoIntoScenes',
+	STACK_VIDEOS = 'stackVideos',
 }
 
 export enum SoundAction {
@@ -205,6 +208,11 @@ export enum DurationBasis {
 	AUDIO = 'audio',
 	SPEECH = 'speech',
 	VIDEO = 'video',
+}
+
+export enum Layout {
+	HORIZONTAL = 'horizontal',
+	VERTICAL = 'vertical',
 }
 
 export enum TranslationLanguage {

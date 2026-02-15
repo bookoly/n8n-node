@@ -101,4 +101,10 @@ export const videoOperations = [
 			'Automatically divide a video into multiple segments based on scene detection or fixed intervals',
 		action: 'Split a video into scenes',
 	},
+	{
+		name: 'Stack Videos',
+		value: VideoAction.STACK_VIDEOS,
+		description: 'Stack two videos together horizontally or vertically',
+		action: 'Stack videos',
+	},
 ];

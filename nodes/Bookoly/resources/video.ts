@@ -23,6 +23,7 @@ import { clipOptionParams } from './videoParams/clip';
 import { cropOptionParams } from './videoParams/crop';
 import { audioUrlParam, audioVolumeParam, trimAudioParam } from './videoParams/audio';
 import { splitOptionParams } from './videoParams/split';
+import { stackVideoParams } from './videoParams/stack';
 import { videoOperations } from './videoParams/operations';
 
 export const videoResource: ResourceDefinition = {
@@ -69,6 +70,7 @@ export const videoResource: ResourceDefinition = {
 				VideoAction.MUTE_VIDEO,
 				VideoAction.ROTATE_VIDEO,
 				VideoAction.SPLIT_VIDEO_INTO_SCENES,
+				VideoAction.STACK_VIDEOS,
 			],
 			ResourceType.VIDEO,
 			'The name of the video',
@@ -88,6 +90,7 @@ export const videoResource: ResourceDefinition = {
 				VideoAction.MUTE_VIDEO,
 				VideoAction.ROTATE_VIDEO,
 				VideoAction.SPLIT_VIDEO_INTO_SCENES,
+				VideoAction.STACK_VIDEOS,
 			],
 			ResourceType.VIDEO,
 		),
@@ -101,6 +104,7 @@ export const videoResource: ResourceDefinition = {
 				VideoAction.CROP_VIDEO,
 				VideoAction.ROTATE_VIDEO,
 				VideoAction.SPLIT_VIDEO_INTO_SCENES,
+				VideoAction.STACK_VIDEOS,
 			],
 			ResourceType.VIDEO,
 		),
@@ -125,6 +129,7 @@ export const videoResource: ResourceDefinition = {
 		...cropOptionParams,
 		...blurOptionParam,
 		...splitOptionParams,
+		...stackVideoParams,
 		...getSubtitleParameters([
 			VideoAction.ADD_AUDIO_WITH_SUBTITLES_TO_VIDEO,
 			VideoAction.ADD_SUBTITLES_TO_VIDEO,
@@ -147,6 +152,7 @@ export const videoResource: ResourceDefinition = {
 				VideoAction.MUTE_VIDEO,
 				VideoAction.ROTATE_VIDEO,
 				VideoAction.SPLIT_VIDEO_INTO_SCENES,
+				VideoAction.STACK_VIDEOS,
 			],
 			ResourceType.VIDEO,
 			'If enabled, the node pauses the workflow and checks the server until the video generation is finished, then returns the full video object. If disabled, only the ID and creation timestamp are returned.',
@@ -168,6 +174,7 @@ export const videoResource: ResourceDefinition = {
 				VideoAction.MUTE_VIDEO,
 				VideoAction.ROTATE_VIDEO,
 				VideoAction.SPLIT_VIDEO_INTO_SCENES,
+				VideoAction.STACK_VIDEOS,
 			],
 			ResourceType.VIDEO,
 			'Enter a valid URL to receive webhook notifications. Video ID and URL will be included.',
