@@ -109,7 +109,7 @@ export const getVoiceParam = (
 	name: 'vendor_id',
 	type: 'options',
 	required: resource === ResourceType.SPEECH,
-	default: resource === ResourceType.SPEECH ? Voice.ECHO : Voice.NONE,
+	default: resource === ResourceType.SPEECH ? Voice.KORE : Voice.NONE,
 	description: 'The name of the voice',
 	options: voiceOptions,
 	displayOptions: {

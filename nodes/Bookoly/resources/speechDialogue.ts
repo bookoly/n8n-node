@@ -58,13 +58,13 @@ export const speechDialogueResource: ResourceDefinition = {
 				'  {\n' +
 				'    "text": "Hello there!",\n' +
 				'    "voice": {\n' +
-				'      "vendor_id": "echo"\n' +
+				'      "vendor_id": "Puck"\n' +
 				'    }\n' +
 				'  },\n' +
 				'  {\n' +
 				'    "text": "How are you today?",\n' +
 				'    "voice": {\n' +
-				'      "vendor_id": "alloy"\n' +
+				'      "vendor_id": "Kore"\n' +
 				'    }\n' +
 				'  }\n' +
 				']',
