@@ -21,7 +21,7 @@ export class Bookoly implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'bookoly',
 		name: 'bookoly',
-		icon: 'file:bookoly.svg',
+		icon: { light: 'file:bookoly.svg', dark: 'file:bookoly.dark.svg' },
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',

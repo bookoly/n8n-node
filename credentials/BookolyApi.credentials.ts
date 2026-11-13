@@ -11,7 +11,10 @@ import { API_BASE_URL } from '../nodes/Bookoly/Bookoly.node';
 export class BookolyApi implements ICredentialType {
 	name: string = 'bookolyApi';
 	displayName: string = 'Bookoly API';
-	icon: Icon = 'file:../nodes/Bookoly/bookoly.svg';
+	icon: Icon = {
+		light: 'file:../nodes/Bookoly/bookoly.svg',
+		dark: 'file:../nodes/Bookoly/bookoly.dark.svg',
+	};
 	documentationUrl: string = 'https://bookoly.com/docs/api/v1#/';
 	properties: INodeProperties[] = [
 		{
