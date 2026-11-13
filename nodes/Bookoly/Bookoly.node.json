@@ -1,5 +1,5 @@
 {
-	"node": "n8n-nodes-base.Bookoly",
+	"node": "n8n-nodes-bookoly.Bookoly",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
 	"categories": ["Data & Storage"],

@@ -1,12 +1,12 @@
 {
 	"name": "n8n-nodes-bookoly",
-	"version": "1.0.20",
+	"version": "1.0.21",
 	"description": "n8n community node for bookoly API integration",
 	"keywords": [
 		"n8n-community-node-package"
 	],
 	"license": "MIT",
-	"homepage": "",
+	"homepage": "https://github.com/bookoly/n8n-node#readme",
 	"author": {
 		"name": "Alexander Baumtrog",
 		"email": "alexander.baumtrog@bookoly.de"

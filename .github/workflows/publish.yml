@@ -1,0 +1,37 @@
+# Publishes the package to npm with a provenance statement when a version tag
+# (e.g. 1.0.21) is pushed. n8n only verifies community nodes published this way.
+#
+# Authentication uses npm Trusted Publishing (OIDC): on npmjs.com the package
+# lists this repository and the workflow file publish.yml as trusted publisher,
+# so no npm token is stored in the repository.
+
+name: Publish
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+jobs:
+  publish:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'npm'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Check that the tag matches the package version
+        run: test "$GITHUB_REF_NAME" = "$(node -p "require('./package.json').version")"
+
+      - run: npm ci
+
+      # prepublishOnly builds and lints the package before it is published.
+      - run: npm publish --provenance --access public
