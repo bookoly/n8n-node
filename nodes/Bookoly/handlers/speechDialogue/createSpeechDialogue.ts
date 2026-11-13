@@ -9,6 +9,7 @@ export async function createSpeechDialogue(
 ): Promise<any> {
 	const name = ctx.getNodeParameter('name', itemIndex) as string;
 	const segments = parseJson(
+		ctx.getNode(),
 		ctx.getNodeParameter('segments', itemIndex) as string,
 		'Speech Dialogue - Segments (JSON)',
 	);

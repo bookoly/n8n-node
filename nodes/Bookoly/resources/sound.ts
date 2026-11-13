@@ -68,15 +68,14 @@ export const soundResource: ResourceDefinition = {
 			displayOptions: {
 				show: { operation: [SoundAction.COMBINE_SOUNDS], resource: [ResourceType.SOUND] },
 			},
-			default:
-				'[\n' +
-				'  {\n' +
-				'    "src": ""\n' +
-				'  },\n' +
-				'  {\n' +
-				'    "src": ""\n' +
-				'  }\n' +
-				']',
+			default: `[
+  {
+    "src": ""
+  },
+  {
+    "src": ""
+  }
+]`,
 			description: "Enter the all the public and downloadable URL's of your audio files here",
 		},
 		{

@@ -1,5 +1,5 @@
 import { resolutionOptions, voiceOptions } from './static';
-import { DurationBasis, ResourceType, SubtitleFileType, VideoResolution, Voice } from '../types';
+import { DurationBasis, ResourceType, SubtitleFileType, Voice } from '../types';
 import { INodeProperties } from 'n8n-workflow';
 
 export const getNameParam = (
@@ -101,24 +101,25 @@ export const getWebhookUrlParam = (
 	},
 });
 
-export const getVoiceParam = (
-	operation: string | string[],
-	resource?: string,
-): INodeProperties => ({
-	displayName: 'Speech Synthesis - Voice',
-	name: 'vendor_id',
-	type: 'options',
-	required: resource === ResourceType.SPEECH,
-	default: resource === ResourceType.SPEECH ? Voice.KORE : Voice.NONE,
-	description: 'The name of the voice',
-	options: voiceOptions,
-	displayOptions: {
-		show: {
-			...(resource ? { resource: [resource] } : {}),
-			operation: Array.isArray(operation) ? operation : [operation],
+export const getVoiceParam = (operation: string | string[], resource?: string): INodeProperties => {
+	const defaultVoice = resource === ResourceType.SPEECH ? Voice.KORE : Voice.NONE;
+
+	return {
+		displayName: 'Speech Synthesis - Voice',
+		name: 'vendor_id',
+		type: 'options',
+		required: resource === ResourceType.SPEECH,
+		default: defaultVoice,
+		description: 'The name of the voice',
+		options: voiceOptions,
+		displayOptions: {
+			show: {
+				...(resource ? { resource: [resource] } : {}),
+				operation: Array.isArray(operation) ? operation : [operation],
+			},
 		},
-	},
-});
+	};
+};
 
 export const getWaitParam = (
 	operation: string | string[],
@@ -142,7 +143,7 @@ export const getTypeParam = (operation: string | string[], resource?: string): I
 	displayName: 'Subtitle File - Type',
 	name: 'type',
 	type: 'options',
-	default: SubtitleFileType.ASS,
+	default: 'ass',
 	options: [{ name: 'Advanced SubStation Alpha (ASS)', value: SubtitleFileType.ASS }],
 	description: 'Choose the format for your subtitle. ASS is selected by default.',
 	displayOptions: {
@@ -202,7 +203,7 @@ export const getResolutionParam = (
 	name: 'resolution',
 	type: 'options',
 	required,
-	default: VideoResolution.HORIZONTAL_HD,
+	default: 'horizontal_hd',
 	description,
 	options: resolutionOptions,
 	displayOptions: {
@@ -223,7 +224,7 @@ export const getDurationBasisParam = (
 	name: 'duration_basis',
 	type: 'options',
 	required,
-	default: DurationBasis.VIDEO,
+	default: 'video',
 	description,
 	options: [
 		{

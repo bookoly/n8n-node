@@ -35,7 +35,7 @@ export const overlayVideoParams: INodeProperties[] = [
 		name: 'position',
 		type: 'options',
 		required: true,
-		default: Position.BOTTOM_RIGHT,
+		default: 'bottom_right',
 		options: [
 			{
 				name: 'Top Left',

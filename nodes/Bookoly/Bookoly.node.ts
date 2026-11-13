@@ -3,6 +3,8 @@ import {
 	INodeType,
 	INodeTypeDescription,
 	IExecuteFunctions,
+	JsonObject,
+	NodeApiError,
 	NodeOperationError,
 	NodeConnectionTypes,
 } from 'n8n-workflow';
@@ -46,7 +48,7 @@ export class Bookoly implements INodeType {
 					name: displayName,
 					value: value,
 				})),
-				default: Object.values(RESOURCE_DEFINITIONS)[0].value,
+				default: 'sound',
 			},
 			...Object.values(RESOURCE_DEFINITIONS).flatMap((resource) => [
 				...resource.operations,
@@ -80,7 +82,10 @@ export class Bookoly implements INodeType {
 					returnData.push({ json: { error: error.message }, pairedItem: { item: i } });
 					continue;
 				}
-				throw error;
+				if (error instanceof NodeApiError) {
+					throw new NodeApiError(this.getNode(), error as unknown as JsonObject, { itemIndex: i });
+				}
+				throw new NodeOperationError(this.getNode(), error as Error, { itemIndex: i });
 			}
 		}
 

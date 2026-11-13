@@ -1,4 +1,6 @@
-export function parseJson(input: any, fieldName: string) {
+import { INode, NodeOperationError } from 'n8n-workflow';
+
+export function parseJson(node: INode, input: any, fieldName: string) {
 	try {
 		if (typeof input === 'object') {
 			return input;
@@ -6,8 +8,8 @@ export function parseJson(input: any, fieldName: string) {
 			return JSON.parse(input);
 		}
 	} catch (exception) {
-		throw new Error(`Field ${fieldName} needs to be valid JSON`);
+		throw new NodeOperationError(node, `Field ${fieldName} needs to be valid JSON`);
 	}
 
-	throw new Error(`Unsupported type ${typeof input} for field scenes`);
+	throw new NodeOperationError(node, `Unsupported type ${typeof input} for field ${fieldName}`);
 }

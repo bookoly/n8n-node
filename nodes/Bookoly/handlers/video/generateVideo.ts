@@ -22,6 +22,7 @@ export async function generateVideo(ctx: IExecuteFunctions, itemIndex: number): 
 	) as string;
 	const duration_basis = ctx.getNodeParameter('duration_basis', itemIndex) as string;
 	const scenes = parseJson(
+		ctx.getNode(),
 		ctx.getNodeParameter('scenes', itemIndex) as string,
 		'Video - Scenes (JSON)',
 	);

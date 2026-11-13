@@ -8,21 +8,20 @@ export const scenesParam: INodeProperties = {
 	displayOptions: {
 		show: { operation: [VideoAction.CREATE_SLIDESHOW, VideoAction.GENERATE_VIDEO] },
 	},
-	default:
-		'[\n' +
-		'  {\n' +
-		'    "asset": {\n' +
-		'      "src": "",\n' +
-		'      "type": "image"\n' +
-		'    },\n' +
-		'    "duration": 10,\n' +
-		'    "mute": false,\n' +
-		'    "effect": "",\n' +
-		'    "transition": {\n' +
-		'      "name": "fade",\n' +
-		'      "duration": 5\n' +
-		'    }\n' +
-		'  }\n' +
-		']',
+	default: `[
+  {
+    "asset": {
+      "src": "",
+      "type": "image"
+    },
+    "duration": 10,
+    "mute": false,
+    "effect": "",
+    "transition": {
+      "name": "fade",
+      "duration": 5
+    }
+  }
+]`,
 	description: 'Add multiple scenes (JSON) to the slideshow',
 };

@@ -2,6 +2,7 @@ import {
 	IAuthenticateGeneric,
 	ICredentialTestRequest,
 	ICredentialType,
+	Icon,
 	INodeProperties,
 } from 'n8n-workflow';
 import { ApiEndpoints, ApiVersion, HttpMethod } from '../nodes/Bookoly/types';
@@ -10,6 +11,7 @@ import { API_BASE_URL } from '../nodes/Bookoly/Bookoly.node';
 export class BookolyApi implements ICredentialType {
 	name: string = 'bookolyApi';
 	displayName: string = 'Bookoly API';
+	icon: Icon = 'file:../nodes/Bookoly/bookoly.svg';
 	documentationUrl: string = 'https://bookoly.com/docs/api/v1#/';
 	properties: INodeProperties[] = [
 		{

@@ -7,7 +7,7 @@ export const scaleVideoParams: INodeProperties[] = [
 		name: 'mode',
 		type: 'options',
 		required: true,
-		default: ScaleMode.SCALE_TO_WIDTH,
+		default: 'scale_to_width',
 		options: [
 			{
 				name: 'Scale to Width',

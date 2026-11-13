@@ -35,7 +35,7 @@ export const stackVideoParams: INodeProperties[] = [
 		name: 'layout',
 		type: 'options',
 		required: true,
-		default: Layout.HORIZONTAL,
+		default: 'horizontal',
 		options: [
 			{
 				name: 'Horizontal',

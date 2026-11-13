@@ -53,21 +53,20 @@ export const speechDialogueResource: ResourceDefinition = {
 			displayOptions: {
 				show: { operation: [SpeechDialogueAction.CREATE_SPEECH_DIALOGUE] },
 			},
-			default:
-				'[\n' +
-				'  {\n' +
-				'    "text": "Hello there!",\n' +
-				'    "voice": {\n' +
-				'      "vendor_id": "Puck"\n' +
-				'    }\n' +
-				'  },\n' +
-				'  {\n' +
-				'    "text": "How are you today?",\n' +
-				'    "voice": {\n' +
-				'      "vendor_id": "Kore"\n' +
-				'    }\n' +
-				'  }\n' +
-				']',
+			default: `[
+  {
+    "text": "Hello there!",
+    "voice": {
+      "vendor_id": "Puck"
+    }
+  },
+  {
+    "text": "How are you today?",
+    "voice": {
+      "vendor_id": "Kore"
+    }
+  }
+]`,
 			description:
 				'Add multiple dialogue segments in JSON format. Each segment should include text and a voice with a vendor_id. You can find available vendor_id values under Voices at bookoly.com',
 		},
